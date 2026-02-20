@@ -4,15 +4,11 @@
  */
 import { ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Goal } from 'lucide-react';
 
-// Placeholder for navigation back to the main page.
-// In a real app, this would use a router like React Router.
-const goBack = () => (window.location.href = '/');
-
-export default function AdsManagerPage() {
+export default function AdsManagerPage({ onNavigateHome }: { onNavigateHome: () => void }) {
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200 font-sans">
       <header className="p-4 sticky top-0 bg-slate-900/80 backdrop-blur-sm z-10">
-        <button onClick={goBack} className="flex items-center space-x-2 text-slate-300 hover:text-sky-400 transition-colors">
+        <button onClick={onNavigateHome} className="flex items-center space-x-2 text-slate-300 hover:text-sky-400 transition-colors">
           <ArrowLeft size={16} />
           <span>Înapoi la pagina principală</span>
         </button>
