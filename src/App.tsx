@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe } from 'lucide-react';
+import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles } from 'lucide-react';
 
 // --- Component: Header --- //
 const Header = ({ setView }: { setView: (view: string) => void }) => {
@@ -154,29 +154,59 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
         </p>
       </section>
       <section className="px-4 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
-          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <h2 className="text-3xl font-bold text-sky-400">Meta & Google Ads</h2>
-            <p className="mt-2 text-slate-400">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
-            <div className="mt-6 space-y-4">
-              <div className="flex items-start space-x-3">
-                <Target className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold">Targetare Avansată</h3>
-                  <p className="text-sm text-slate-400">Identificăm și atragem exact publicul de care ai nevoie.</p>
+        <div className="max-w-6xl mx-auto space-y-16">
+          {/* Meta & Google Ads */}
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
+              <h2 className="text-3xl font-bold text-sky-400">Meta & Google Ads</h2>
+              <p className="mt-2 text-slate-400">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
+              <div className="mt-6 space-y-4">
+                <div className="flex items-start space-x-3">
+                  <Target className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold">Targetare Avansată</h3>
+                    <p className="text-sm text-slate-400">Identificăm și atragem exact publicul de care ai nevoie.</p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex items-start space-x-3">
-                <TrendingUp className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
-                <div>
-                  <h3 className="font-semibold">Maximizare ROI</h3>
-                  <p className="text-sm text-slate-400">Optimizăm fiecare aspect al campaniilor pentru cel mai bun randament.</p>
+                <div className="flex items-start space-x-3">
+                  <TrendingUp className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold">Maximizare ROI</h3>
+                    <p className="text-sm text-slate-400">Optimizăm fiecare aspect al campaniilor pentru cel mai bun randament.</p>
+                  </div>
                 </div>
               </div>
             </div>
+            <div className="h-80 md:h-full w-full">
+              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop" alt="Ads strategy team" className="w-full h-full object-cover rounded-2xl"/>
+            </div>
           </div>
-          <div className="h-80 md:h-full w-full">
-            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop" alt="Ads strategy team" className="w-full h-full object-cover rounded-2xl"/>
+
+          {/* TikTok Ads */}
+          <div className="grid md:grid-cols-2 gap-8 items-center">
+            <div className="h-80 md:h-full w-full md:order-2">
+              <img src="https://images.unsplash.com/photo-1611162617213-6d22e4f13375?q=80&w=1920&auto=format&fit=crop" alt="TikTok Ads content" className="w-full h-full object-cover rounded-2xl"/>
+            </div>
+            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 md:order-1">
+              <h2 className="text-3xl font-bold text-sky-400">TikTok Ads</h2>
+              <p className="mt-2 text-slate-400">Expertiză în ecosistemul TikTok. Ne concentrăm pe strategii de content nativ și campanii de tip Spark Ads care capitalizează pe trendurile actuale. Transformăm limbajul specific platformei în rezultate măsurabile de business prin targetare comportamentală avansată.</p>
+              <div className="mt-6 space-y-4">
+                <div className="flex items-start space-x-3">
+                  <ClipboardCheck className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold">Pixel TikTok & Conversii</h3>
+                    <p className="text-sm text-slate-400">Implementăm Pixelul TikTok și monitorizăm evenimentele de conversie pentru a măsura cu precizie impactul campaniilor.</p>
+                  </div>
+                </div>
+                <div className="flex items-start space-x-3">
+                  <Sparkles className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                  <div>
+                    <h3 className="font-semibold">Spark Ads & Content Nativ</h3>
+                    <p className="text-sm text-slate-400">Capitalizăm pe trenduri cu Spark Ads și conținut care se simte nativ pe platformă, generând engagement autentic.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
