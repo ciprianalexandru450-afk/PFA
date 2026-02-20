@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles } from 'lucide-react';
+import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2 } from 'lucide-react';
 
 // --- Component: Header --- //
 const Header = ({ setView }: { setView: (view: string) => void }) => {
@@ -32,7 +32,7 @@ const Header = ({ setView }: { setView: (view: string) => void }) => {
             {isDropdownOpen && (
               <div className="absolute top-full right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-md shadow-lg z-10">
                 <a href="#" onClick={(e) => { e.preventDefault(); setView('ads'); setIsDropdownOpen(false); }} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Ads Manager</a>
-                {/* Add other services here if they become separate pages */}
+                <a href="#" onClick={(e) => { e.preventDefault(); setView('social'); setIsDropdownOpen(false); }} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Social Media</a>
               </div>
             )}
           </div>
@@ -237,13 +237,78 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
   </div>
 );
 
+// --- Page: SocialMediaPage --- //
+const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
+  <div className="min-h-screen bg-slate-900 text-slate-200 font-sans">
+    <header className="p-4 sticky top-0 bg-slate-900/80 backdrop-blur-sm z-10">
+      <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-300 hover:text-sky-400 transition-colors">
+        <ArrowLeft size={16} />
+        <span>Înapoi la pagina principală</span>
+      </button>
+    </header>
+    <main>
+      <section className="text-center px-4 py-20 sm:py-28">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-sky-300 to-sky-500">
+          Social Media Content & Strategy
+        </h1>
+        <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-400">
+          Creăm conținut care captivează și construiește comunități. De la producție video la strategie vizuală, suntem partenerul tău creativ.
+        </p>
+      </section>
+
+      <section className="px-4 py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
+          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center">
+            <Camera size={32} className="text-sky-400 mb-4" />
+            <h2 className="text-2xl font-bold text-sky-400">Content Creation & Video Production</h2>
+            <p className="mt-2 text-slate-400">Descrie procesul de filmare la nevoie și editare profesională pentru YouTube (Long & Shorts), TikTok, și Reels (FB/IG).</p>
+          </div>
+          <div className="h-80 md:h-full w-full">
+            <img src="https://images.unsplash.com/photo-1578957952253-ba17a9b35449?auto=format&fit=crop&q=80&w=1000" alt="Video production setup" className="w-full h-full object-cover rounded-2xl"/>
+          </div>
+        </div>
+      </section>
+
+      <section className="px-4 pb-16 sm:pb-20">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
+           <div className="h-80 md:h-full w-full md:order-2">
+            <img src="https://images.unsplash.com/photo-1603484477839-93a7b31f4eba?auto=format&fit=crop&q=80&w=1000" alt="Visual strategy planning" className="w-full h-full object-cover rounded-2xl"/>
+          </div>
+          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center md:order-1">
+             <LayoutGrid size={32} className="text-sky-400 mb-4" />
+            <h2 className="text-2xl font-bold text-sky-400">Strategie Vizuală</h2>
+            <p className="mt-2 text-slate-400">Planificarea postărilor pentru a menține o estetică unitară a brandului pe toate platformele.</p>
+             <div className="mt-4 text-slate-400">
+                <h3 className="font-semibold text-sky-400 flex items-center"><Share2 size={18} className="mr-2"/> Platforme</h3>
+                <p className="text-sm mt-1">Adaptăm formatele pentru Facebook, Instagram, TikTok și YouTube, asigurând relevanță și impact maxim.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+);
+
 // --- Main App Component --- //
 export default function App() {
   const [view, setView] = useState('home');
 
+  const renderView = () => {
+    switch (view) {
+      case 'ads':
+        return <AdsManagerPage setView={setView} />;
+      case 'social':
+        return <SocialMediaPage setView={setView} />;
+      case 'home':
+      default:
+        return <HomePage setView={setView} />;
+    }
+  }
+
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200">
-      {view === 'home' ? <HomePage setView={setView} /> : <AdsManagerPage setView={setView} />}
+      {renderView()}
     </div>
   );
 }
