@@ -156,7 +156,7 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
       <section className="px-4 py-16 sm:py-20">
         <div className="max-w-6xl mx-auto space-y-16">
           {/* Meta & Google Ads */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
             <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
               <h2 className="text-3xl font-bold text-sky-400">Meta & Google Ads</h2>
               <p className="mt-2 text-slate-400">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
@@ -183,7 +183,7 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
           </div>
 
           {/* TikTok Ads */}
-          <div className="grid md:grid-cols-2 gap-8 items-center">
+          <div className="grid md:grid-cols-2 gap-8 items-stretch">
             <div className="h-80 md:h-full w-full md:order-2">
               <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" alt="TikTok Ads content" className="w-full h-full object-cover rounded-2xl"/>
             </div>
