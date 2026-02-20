@@ -185,7 +185,7 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
           {/* TikTok Ads */}
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="h-80 md:h-full w-full md:order-2">
-              <img src="https://images.unsplash.com/photo-1611162617213-6d22e4f13375?q=80&w=1920&auto=format&fit=crop" alt="TikTok Ads content" className="w-full h-full object-cover rounded-2xl"/>
+              <img src="https://images.unsplash.com/photo-1611605698335-8b1569810432?auto=format&fit=crop&q=80&w=1000" alt="TikTok Ads content" className="w-full h-full object-cover rounded-2xl"/>
             </div>
             <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 md:order-1">
               <h2 className="text-3xl font-bold text-sky-400">TikTok Ads</h2>
