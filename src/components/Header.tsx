@@ -37,7 +37,7 @@ export default function Header() {
             </button>
             {isDropdownOpen && (
               <div className="absolute top-full mt-2 w-48 bg-slate-800 border border-slate-700 rounded-md shadow-lg z-10 right-0">
-                <a href="#services" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Ads Manager</a>
+                <a href="#/ads-manager" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Ads Manager</a>
                 <a href="#services" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Social Media</a>
                 <a href="#services" onClick={() => setIsDropdownOpen(false)} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Creare Website</a>
               </div>
