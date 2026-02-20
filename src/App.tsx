@@ -1,44 +1,219 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import React, { useState } from 'react';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import AdsManagerPage from './pages/AdsManager.tsx';
+import React, { useState, useEffect, useRef } from 'react';
+import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe } from 'lucide-react';
 
+// --- Component: Header --- //
+const Header = ({ setView }: { setView: (view: string) => void }) => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  return (
+    <header className="px-4 py-4 md:px-8 md:py-6 border-b border-slate-700 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto flex justify-between items-center">
+        <h2 className="font-bold text-lg cursor-pointer" onClick={() => setView('home')}>DigitalBloom</h2>
+        <nav className="flex items-center space-x-6">
+          <div className="relative" ref={dropdownRef}>
+            <button 
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex items-center space-x-1 text-slate-200 hover:text-sky-400 transition-colors focus:outline-none"
+            >
+              <span>Servicii</span>
+              <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute top-full right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-md shadow-lg z-10">
+                <a href="#" onClick={(e) => { e.preventDefault(); setView('ads'); setIsDropdownOpen(false); }} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Ads Manager</a>
+                {/* Add other services here if they become separate pages */}
+              </div>
+            )}
+          </div>
+          <a href="#contact" className="bg-sky-400 text-slate-900 px-4 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors">Contact</a>
+        </nav>
+      </div>
+    </header>
+  );
+};
+
+// --- Component: Hero --- //
+const Hero = () => (
+  <section className="px-4 py-16 md:px-8 md:py-24 text-center">
+    <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight font-serif bg-clip-text text-transparent bg-gradient-to-b from-slate-200 to-slate-200/70">
+      Propulsăm Afacerea Ta în Era Digitală
+    </h1>
+    <p className="mt-4 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
+      De la strategie și creație, la campanii de impact și website-uri performante, suntem partenerul tău pentru succes online.
+    </p>
+  </section>
+);
+
+// --- Component: Services --- //
+const services = [
+  { icon: <BarChart size={32} className="text-sky-400" />, title: 'Ads Manager', description: 'Optimizăm campaniile tale pentru a atinge audiența potrivită și a maximiza ROI-ul.' },
+  { icon: <Annoyed size={32} className="text-sky-400" />, title: 'Social Media', description: 'Creăm conținut relevant și creștem prezența brandului tău pe platformele sociale.' },
+  { icon: <Globe size={32} className="text-sky-400" />, title: 'Creare Website', description: 'Dezvoltăm website-uri moderne, rapide și optimizate pentru mobil, care convertesc.' },
+];
+
+const Services = () => (
+  <section id="services" className="px-4 py-16 md:px-8 md:py-24 bg-slate-900">
+    <div className="max-w-7xl mx-auto">
+      <h2 className="text-3xl md:text-4xl font-bold text-center font-serif">Serviciile Noastre</h2>
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <div key={service.title} className="p-8 bg-slate-800 border border-slate-700 rounded-2xl hover:border-sky-400 transition-colors">
+            <div className="mb-4">{service.icon}</div>
+            <h3 className="text-xl font-bold mb-2">{service.title}</h3>
+            <p className="text-slate-400">{service.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// --- Component: Contact --- //
+const Contact = () => (
+  <section id="contact" className="px-4 py-16 md:px-8 md:py-24 bg-slate-800 border-t border-slate-700">
+    <div className="max-w-3xl mx-auto text-center">
+      <h2 className="text-3xl md:text-4xl font-bold font-serif">Lucrează cu noi</h2>
+      <p className="mt-4 text-lg text-slate-400">Completează formularul și te vom contacta în cel mai scurt timp.</p>
+      <form className="mt-8 text-left">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-slate-300">Nume</label>
+            <input type="text" id="name" name="name" className="mt-1 block w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-sky-400 focus:border-sky-400" />
+          </div>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-slate-300">Email</label>
+            <input type="email" id="email" name="email" className="mt-1 block w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-sky-400 focus:border-sky-400" />
+          </div>
+        </div>
+        <div className="mt-6">
+          <label htmlFor="message" className="block text-sm font-medium text-slate-300">Mesaj</label>
+          <textarea id="message" name="message" rows={4} className="mt-1 block w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-sky-400 focus:border-sky-400"></textarea>
+        </div>
+        <div className="mt-6 text-center">
+          <button type="submit" className="bg-sky-400 text-slate-900 px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">Trimite Mesajul</button>
+        </div>
+      </form>
+    </div>
+  </section>
+);
+
+// --- Component: Footer --- //
+const Footer = () => (
+  <footer className="px-4 py-8 md:px-8 md:py-12 bg-slate-900 border-t border-slate-700">
+    <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+      <p className="text-slate-400">&copy; {new Date().getFullYear()} DigitalBloom. Toate drepturile rezervate.</p>
+      <div className="flex space-x-4 mt-4 sm:mt-0">
+        <a href="#" className="text-slate-500 hover:text-sky-400 transition-colors"><Facebook /></a>
+        <a href="#" className="text-slate-500 hover:text-sky-400 transition-colors"><Instagram /></a>
+        <a href="#" className="text-slate-500 hover:text-sky-400 transition-colors"><Linkedin /></a>
+      </div>
+    </div>
+  </footer>
+);
+
+// --- Page: HomePage --- //
+const HomePage = ({ setView }: { setView: (view: string) => void }) => (
+  <>
+    <Header setView={setView} />
+    <main>
+      <Hero />
+      <Services />
+      <Contact />
+    </main>
+    <Footer />
+  </>
+);
+
+// --- Page: AdsManagerPage --- //
+const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
+  <div className="min-h-screen bg-slate-900 text-slate-200 font-sans">
+    <header className="p-4 sticky top-0 bg-slate-900/80 backdrop-blur-sm z-10">
+      <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-300 hover:text-sky-400 transition-colors">
+        <ArrowLeft size={16} />
+        <span>Înapoi la pagina principală</span>
+      </button>
+    </header>
+    <main>
+      <section className="text-center px-4 py-20 sm:py-28">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-sky-300 to-sky-500">
+          Management Anunțuri. Performanță Maximă.
+        </h1>
+        <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-400">
+          Transformăm bugetele de publicitate în rezultate măsurabile. Atinge-ți audiența ideală și domină piața cu strategii de ads create pentru a converti.
+        </p>
+      </section>
+      <section className="px-4 py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
+            <h2 className="text-3xl font-bold text-sky-400">Meta & Google Ads</h2>
+            <p className="mt-2 text-slate-400">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
+            <div className="mt-6 space-y-4">
+              <div className="flex items-start space-x-3">
+                <Target className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Targetare Avansată</h3>
+                  <p className="text-sm text-slate-400">Identificăm și atragem exact publicul de care ai nevoie.</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-3">
+                <TrendingUp className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                <div>
+                  <h3 className="font-semibold">Maximizare ROI</h3>
+                  <p className="text-sm text-slate-400">Optimizăm fiecare aspect al campaniilor pentru cel mai bun randament.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="h-80 md:h-full w-full">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop" alt="Ads strategy team" className="w-full h-full object-cover rounded-2xl"/>
+          </div>
+        </div>
+      </section>
+      <section className="px-4 py-16 sm:py-20">
+        <div className="max-w-5xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold font-serif">Procesul Nostru</h2>
+          <p className="mt-2 text-slate-400">Claritate și eficiență în fiecare etapă.</p>
+        </div>
+        <div className="mt-12 max-w-5xl mx-auto grid sm:grid-cols-3 gap-8 text-center">
+          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
+            <BrainCircuit size={40} className="mx-auto text-sky-400" />
+            <h3 className="mt-4 text-xl font-bold">1. Strategie</h3>
+            <p className="mt-2 text-slate-400">Analizăm piața și obiectivele pentru a crea un plan de acțiune.</p>
+          </div>
+          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
+            <Zap size={40} className="mx-auto text-sky-400" />
+            <h3 className="mt-4 text-xl font-bold">2. Implementare</h3>
+            <p className="mt-2 text-slate-400">Lansăm campaniile și monitorizăm performanța inițială.</p>
+          </div>
+          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
+            <Filter size={40} className="mx-auto text-sky-400" />
+            <h3 className="mt-4 text-xl font-bold">3. Optimizare</h3>
+            <p className="mt-2 text-slate-400">Ajustăm constant campaniile pentru a îmbunătăți rezultatele.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+);
+
+// --- Main App Component --- //
 export default function App() {
-  const [currentPage, setCurrentPage] = useState('home');
-
-  const renderPage = () => {
-    if (currentPage === 'ads') {
-      return <AdsManagerPage onNavigateHome={() => setCurrentPage('home')} />;
-    }
-
-    // Default is 'home'
-    return (
-      <>
-        <Header onNavigateToAds={() => setCurrentPage('ads')} />
-        <main>
-          <Hero />
-          <Services />
-          <Contact />
-        </main>
-        <Footer />
-      </>
-    );
-  };
+  const [view, setView] = useState('home');
 
   return (
     <div className="min-h-screen bg-slate-900 text-slate-200">
-      {renderPage()}
+      {view === 'home' ? <HomePage setView={setView} /> : <AdsManagerPage setView={setView} />}
     </div>
   );
-}
 }
