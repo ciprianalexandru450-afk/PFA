@@ -354,31 +354,186 @@ const Contact = () => (
 );
 
 // --- Component: Footer --- //
-const Footer = () => (
+const Footer = ({ setView }: { setView: (view: string) => void }) => (
   <footer className="px-4 py-12 md:px-8 md:py-16 bg-brand-bg border-t border-white/5">
-    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
-      <div className="text-center md:text-left">
-        <h3 className="font-serif text-2xl font-bold text-white mb-2">DigitalBloom</h3>
-        <p className="text-slate-500 text-sm font-light tracking-wide">&copy; {new Date().getFullYear()} DigitalBloom. Toate drepturile rezervate.</p>
+    <div className="max-w-7xl mx-auto">
+      <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
+        <div className="text-center md:text-left">
+          <h3 className="font-serif text-2xl font-bold text-white mb-2">DigitalBloom</h3>
+          <p className="text-slate-500 text-sm font-light tracking-wide">&copy; {new Date().getFullYear()} DigitalBloom. Toate drepturile rezervate.</p>
+        </div>
+        <div className="flex space-x-6">
+          {[
+            { icon: <Facebook size={20} />, href: "#" },
+            { icon: <Instagram size={20} />, href: "#" },
+            { icon: <Linkedin size={20} />, href: "#" }
+          ].map((social, i) => (
+            <motion.a 
+              key={i}
+              href={social.href} 
+              whileHover={{ y: -3, color: "#00D1FF" }}
+              className="text-slate-500 transition-colors"
+            >
+              {social.icon}
+            </motion.a>
+          ))}
+        </div>
       </div>
-      <div className="flex space-x-6">
-        {[
-          { icon: <Facebook size={20} />, href: "#" },
-          { icon: <Instagram size={20} />, href: "#" },
-          { icon: <Linkedin size={20} />, href: "#" }
-        ].map((social, i) => (
-          <motion.a 
-            key={i}
-            href={social.href} 
-            whileHover={{ y: -3, color: "#00D1FF" }}
-            className="text-slate-500 transition-colors"
+      
+      <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+        <div className="flex flex-wrap justify-center md:justify-start gap-6">
+          <button 
+            onClick={() => { setView('terms'); window.scrollTo(0, 0); }} 
+            className="text-xs text-slate-500 hover:text-brand-accent transition-colors font-light tracking-wider uppercase"
           >
-            {social.icon}
-          </motion.a>
-        ))}
+            Termeni și Condiții
+          </button>
+          <button 
+            onClick={() => { setView('privacy'); window.scrollTo(0, 0); }} 
+            className="text-xs text-slate-500 hover:text-brand-accent transition-colors font-light tracking-wider uppercase"
+          >
+            Politica de Confidențialitate (GDPR)
+          </button>
+        </div>
+        <div className="text-[10px] text-slate-600 font-light tracking-widest uppercase">
+          Digital Bloom Agency S.R.L.
+        </div>
       </div>
     </div>
   </footer>
+);
+
+// --- Page: TermsPage --- //
+const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
+  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Înapoi la pagina principală</span>
+        </button>
+      </div>
+    </header>
+    <main className="py-24 px-4 md:px-8">
+      <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
+        <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Termeni și Condiții</h1>
+        
+        <div className="space-y-8 text-slate-400 font-light leading-relaxed">
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">1. Introducere</h2>
+            <p>Bun venit pe website-ul DigitalBloom. Prin accesarea și utilizarea acestui site, sunteți de acord să respectați și să fiți legat de următorii termeni și condiții de utilizare, care, împreună cu politica noastră de confidențialitate, guvernează relația Digital Bloom Agency S.R.L. cu dumneavoastră în legătură cu acest website.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">2. Definiții</h2>
+            <p>Termenul 'DigitalBloom', 'noi' sau 'agenția' se referă la proprietarul website-ului, Digital Bloom Agency S.R.L. Termenul 'dumneavoastră' se referă la utilizatorul sau vizitatorul website-ului nostru.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">3. Utilizarea Website-ului</h2>
+            <p>Conținutul paginilor acestui website este pentru informarea dumneavoastră generală și utilizare personală. Acesta se poate modifica fără notificare prealabilă. Utilizarea oricărei informații sau materiale de pe acest website se face pe propriul risc, pentru care nu vom fi răspunzători.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">4. Proprietate Intelectuală</h2>
+            <p>Acest website conține materiale care sunt deținute de sau licențiate către noi. Aceste materiale includ, dar nu se limitează la, designul, layout-ul, aspectul, grafica și conținutul textual. Reproducerea este interzisă în conformitate cu legislația privind drepturile de autor.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">5. Servicii</h2>
+            <p>DigitalBloom oferă servicii de marketing digital, automatizări AI, design grafic și producție video. Detaliile specifice ale fiecărui serviciu și obligațiile contractuale vor fi stabilite prin contracte individuale semnate între agenție și client.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">6. Limitarea Răspunderii</h2>
+            <p>În nicio circumstanță DigitalBloom nu va fi răspunzătoare pentru orice pierdere sau daună, inclusiv, fără limitare, pierderi indirecte sau subsecvente, rezultate din utilizarea acestui website.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">7. Legea Aplicabilă</h2>
+            <p>Utilizarea acestui website și orice litigiu care decurge din utilizarea acestuia sunt supuse legilor din România.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <Footer setView={setView} />
+  </div>
+);
+
+// --- Page: PrivacyPage --- //
+const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
+  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Înapoi la pagina principală</span>
+        </button>
+      </div>
+    </header>
+    <main className="py-24 px-4 md:px-8">
+      <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
+        <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Politica de Confidențialitate (GDPR)</h1>
+        
+        <div className="space-y-8 text-slate-400 font-light leading-relaxed">
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">1. Informații Generale</h2>
+            <p>Digital Bloom Agency S.R.L. se angajează să protejeze confidențialitatea datelor dumneavoastră cu caracter personal. Această politică explică modul în care colectăm, utilizăm și protejăm informațiile dumneavoastră în conformitate cu Regulamentul General privind Protecția Datelor (GDPR).</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">2. Date Colectate</h2>
+            <p>Putem colecta următoarele date prin intermediul formularelor de contact:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Nume și prenume</li>
+              <li>Adresă de email</li>
+              <li>Număr de telefon</li>
+              <li>Informații despre proiectul dumneavoastră</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">3. Scopul Colectării</h2>
+            <p>Datele sunt colectate exclusiv pentru:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>A răspunde solicitărilor dumneavoastră de contact</li>
+              <li>A furniza informații despre serviciile noastre</li>
+              <li>A iniția colaborări comerciale</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">4. Durata Stocării</h2>
+            <p>Vom păstra datele dumneavoastră cu caracter personal doar atât timp cât este necesar pentru scopurile menționate mai sus sau conform cerințelor legale.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">5. Drepturile Dumneavoastră</h2>
+            <p>Conform GDPR, aveți următoarele drepturi:</p>
+            <ul className="list-disc pl-6 space-y-2">
+              <li>Dreptul de acces la date</li>
+              <li>Dreptul la rectificare</li>
+              <li>Dreptul la ștergere ("dreptul de a fi uitat")</li>
+              <li>Dreptul la restricționarea prelucrării</li>
+              <li>Dreptul la portabilitatea datelor</li>
+              <li>Dreptul de a vă opune prelucrării</li>
+            </ul>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">6. Securitatea Datelor</h2>
+            <p>Implementăm măsuri tehnice și organizatorice adecvate pentru a asigura un nivel de securitate corespunzător riscului, protejând datele împotriva accesului neautorizat, pierderii sau distrugerii.</p>
+          </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-white mb-4">7. Contact</h2>
+            <p>Pentru orice întrebări legate de protecția datelor, ne puteți contacta la adresa de email: contact@digitalbloom.ro.</p>
+          </section>
+        </div>
+      </div>
+    </main>
+    <Footer setView={setView} />
+  </div>
 );
 
 // --- Page: HomePage --- //
@@ -392,7 +547,7 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
       <AIAutomation />
       <Contact />
     </main>
-    <Footer />
+    <Footer setView={setView} />
   </>
 );
 
@@ -538,7 +693,7 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
         </div>
       </section>
     </main>
-    <Footer />
+    <Footer setView={setView} />
   </div>
 );
 
@@ -618,7 +773,7 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
         </div>
       </section>
     </main>
-    <Footer />
+    <Footer setView={setView} />
   </div>
 );
 
@@ -714,7 +869,7 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
         </div>
       </section>
     </main>
-    <Footer />
+    <Footer setView={setView} />
   </div>
 );
 
@@ -730,6 +885,10 @@ export default function App() {
         return <SocialMediaPage setView={setView} />;
       case 'website':
         return <WebsitePage setView={setView} />;
+      case 'terms':
+        return <TermsPage setView={setView} />;
+      case 'privacy':
+        return <PrivacyPage setView={setView} />;
       case 'home':
       default:
         return <HomePage setView={setView} />;
