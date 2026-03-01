@@ -285,36 +285,6 @@ const AIAutomation = () => {
 
 // --- Component: Contact --- //
 const Contact = () => {
-  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus('submitting');
-
-    const form = e.currentTarget;
-    const formData = new FormData(form);
-
-    try {
-      const response = await fetch("https://formspree.io/cipriangheorghiu72@yahoo.com", {
-        method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
-
-      if (response.ok) {
-        setStatus('success');
-        form.reset();
-        setTimeout(() => setStatus('idle'), 5000);
-      } else {
-        setStatus('error');
-      }
-    } catch (error) {
-      setStatus('error');
-    }
-  };
-
   return (
     <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
       <div className="max-w-7xl mx-auto">
@@ -391,111 +361,71 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="glass-panel p-8 md:p-12 rounded-3xl self-center relative overflow-hidden"
           >
-            <AnimatePresence mode="wait">
-              {status === 'success' ? (
-                <motion.div
-                  key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  className="text-center py-12 space-y-4"
-                >
-                  <div className="w-20 h-20 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <Sparkles size={40} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-white">Mesaj trimis cu succes!</h3>
-                  <p className="text-slate-400 font-light">Îți mulțumim pentru interes. Te vom contacta în cel mai scurt timp posibil.</p>
-                  <button 
-                    onClick={() => setStatus('idle')}
-                    className="text-brand-accent hover:underline text-sm pt-4"
-                  >
-                    Trimite un alt mesaj
-                  </button>
-                </motion.div>
-              ) : (
-                <motion.form 
-                  key="form"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  onSubmit={handleSubmit} 
-                  action="https://formspree.io/cipriangheorghiu72@yahoo.com"
-                  method="POST"
-                  className="space-y-8"
-                >
-                  {/* Honeypot */}
-                  <input type="text" name="_gotcha" style={{ display: 'none' }} />
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div className="space-y-2">
-                      <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
-                      <input 
-                        required
-                        type="text" 
-                        id="name" 
-                        name="name" 
-                        className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
-                        placeholder="Numele tău" 
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
-                      <input 
-                        required
-                        type="email" 
-                        id="email" 
-                        name="email" 
-                        className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
-                        placeholder="email@exemplu.ro" 
-                      />
-                    </div>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Telefon</label>
-                    <input 
-                      type="tel" 
-                      id="phone" 
-                      name="phone" 
-                      className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
-                      placeholder="+40 700 000 000" 
-                    />
-                  </div>
+            <form 
+              action="https://formspree.io/f/mqknzwdn"
+              method="POST"
+              className="space-y-8"
+            >
+              {/* Honeypot */}
+              <input type="text" name="_gotcha" style={{ display: 'none' }} />
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="space-y-2">
+                  <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
+                  <input 
+                    required
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                    placeholder="Numele tău" 
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
+                  <input 
+                    required
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                    placeholder="email@exemplu.ro" 
+                  />
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <label htmlFor="phone" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Telefon</label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                  placeholder="+40 700 000 000" 
+                />
+              </div>
 
-                  <div className="space-y-2">
-                    <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
-                    <textarea 
-                      required
-                      id="message" 
-                      name="message" 
-                      rows={4} 
-                      className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" 
-                      placeholder="Cum te putem ajuta?"
-                    ></textarea>
-                  </div>
-                  
-                  <div className="pt-4 text-center">
-                    <button 
-                      type="submit" 
-                      disabled={status === 'submitting'}
-                      className={`btn-premium w-full md:w-auto min-w-[240px] flex items-center justify-center space-x-2 ${status === 'submitting' ? 'opacity-70 cursor-not-allowed' : ''}`}
-                    >
-                      {status === 'submitting' ? (
-                        <>
-                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                          <span>Se trimite...</span>
-                        </>
-                      ) : (
-                        <span>Trimite Mesajul</span>
-                      )}
-                    </button>
-                    {status === 'error' && (
-                      <p className="text-red-400 text-xs mt-4">A apărut o eroare. Te rugăm să încerci din nou sau să ne contactezi direct prin email.</p>
-                    )}
-                  </div>
-                </motion.form>
-              )}
-            </AnimatePresence>
+              <div className="space-y-2">
+                <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
+                <textarea 
+                  required
+                  id="message" 
+                  name="message" 
+                  rows={4} 
+                  className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" 
+                  placeholder="Cum te putem ajuta?"
+                ></textarea>
+              </div>
+              
+              <div className="pt-4 text-center">
+                <button 
+                  type="submit" 
+                  className="btn-premium w-full md:w-auto min-w-[240px] flex items-center justify-center space-x-2"
+                >
+                  <span>Trimite Mesajul</span>
+                </button>
+              </div>
+            </form>
           </motion.div>
         </div>
       </div>
