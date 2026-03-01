@@ -85,48 +85,66 @@ const Hero = () => (
         transition={{ delay: 0.5, duration: 1 }}
         className="mt-12"
       >
-        <a href="#services" className="btn-premium shadow-[0_0_30px_rgba(0,209,255,0.2)]">Descoperă Serviciile</a>
+        <a href="#about" className="btn-premium shadow-[0_0_30px_rgba(0,209,255,0.2)]">Află Mai Multe</a>
       </motion.div>
     </motion.div>
   </section>
 );
 
-// --- Component: Services --- //
-const services = [
-  { icon: <BarChart size={28} className="text-brand-accent" />, title: 'Ads Manager', description: 'Optimizăm campaniile tale pentru a atinge audiența potrivită și a maximiza ROI-ul.' },
-  { icon: <Annoyed size={28} className="text-brand-accent" />, title: 'Social Media', description: 'Creăm conținut relevant și creștem prezența brandului tău pe platformele sociale.' },
-  { icon: <Globe size={28} className="text-brand-accent" />, title: 'Creare Website', description: 'Dezvoltăm website-uri moderne, rapide și optimizate pentru mobil, care convertesc.' },
-];
-
-const Services = () => (
-  <section id="services" className="section-spacing px-4 md:px-8 bg-brand-bg">
+// --- Component: AgencyPresentation --- //
+const AgencyPresentation = () => (
+  <section id="about" className="section-spacing px-4 md:px-8 bg-brand-bg">
     <div className="max-w-7xl mx-auto">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 tracking-tight">Serviciile Noastre</h2>
-      </motion.div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service, index) => (
-          <motion.div 
-            key={service.title}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            whileHover={{ y: -10 }}
-            className="p-10 glass-panel rounded-2xl transition-all duration-300 group"
-          >
-            <div className="mb-6 p-3 w-fit rounded-lg bg-white/5 group-hover:bg-brand-accent/10 transition-colors">
-              {service.icon}
+      <div className="grid md:grid-cols-2 gap-16 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-8"
+        >
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
+            Mai mult decât o agenție. <br/>
+            <span className="text-brand-accent italic font-medium">Partenerul tău de creștere.</span>
+          </h2>
+          <p className="text-lg text-slate-400 font-light leading-relaxed tracking-wide">
+            Nu credem în soluții predefinite. Construim strategii digitale personalizate, de la arhitectura website-ului până la campanii de Ads care scalează profitul. Combinăm analiza datelor cu creativitatea pură pentru a-ți transforma vizitatorii în clienți fideli.
+          </p>
+          
+          <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
+            <div className="flex items-start space-x-4">
+              <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
+                <Camera size={24} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Producție Video & Conținut On-Site</h3>
+                <p className="text-slate-400 font-light leading-relaxed text-sm">
+                  Nu facem marketing doar din spatele ecranului. Ne deplasăm direct la locația afacerii tale pentru filmări profesionale, ședințe foto și creare de conținut adaptat pentru TikTok, Reels și YouTube. Serviciu disponibil în Iași și zonele limitrofe.
+                </p>
+              </div>
             </div>
-            <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{service.title}</h3>
-            <p className="text-slate-400 leading-relaxed font-light">{service.description}</p>
-          </motion.div>
-        ))}
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative"
+        >
+          <div className="relative rounded-3xl overflow-hidden shadow-premium group">
+            <img 
+              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" 
+              alt="Creative workspace and video production" 
+              className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 to-transparent" />
+          </div>
+          {/* Decorative element */}
+          <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-accent/10 blur-3xl rounded-full" />
+        </motion.div>
       </div>
     </div>
   </section>
@@ -209,7 +227,7 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
     <Header setView={setView} />
     <main>
       <Hero />
-      <Services />
+      <AgencyPresentation />
       <Contact />
     </main>
     <Footer />
