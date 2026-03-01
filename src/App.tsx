@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone } from 'lucide-react';
 
 // --- Component: Header --- //
@@ -17,27 +18,43 @@ const Header = ({ setView }: { setView: (view: string) => void }) => {
   }, []);
 
   return (
-    <header className="px-4 py-4 md:px-8 md:py-6 border-b border-slate-700 bg-slate-900/80 backdrop-blur-sm sticky top-0 z-50">
+    <header className="px-4 py-4 md:px-8 md:py-5 border-b border-white/5 bg-brand-bg/70 backdrop-blur-xl sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <h2 className="font-bold text-lg cursor-pointer" onClick={() => setView('home')}>DigitalBloom</h2>
-        <nav className="flex items-center space-x-6">
+        <motion.h2 
+          whileHover={{ scale: 1.02 }}
+          className="font-serif text-2xl font-bold cursor-pointer text-white tracking-tight" 
+          onClick={() => setView('home')}
+        >
+          DigitalBloom
+        </motion.h2>
+        <nav className="flex items-center space-x-8">
           <div className="relative" ref={dropdownRef}>
             <button 
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center space-x-1 text-slate-200 hover:text-sky-400 transition-colors focus:outline-none"
+              className="flex items-center space-x-1.5 text-slate-300 hover:text-brand-accent transition-colors focus:outline-none text-sm font-medium tracking-wide"
             >
               <span>Servicii</span>
-              <ChevronDown size={16} className={`transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+              <ChevronDown size={14} className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
             </button>
-            {isDropdownOpen && (
-              <div className="absolute top-full right-0 mt-2 w-48 bg-slate-800 border border-slate-700 rounded-md shadow-lg z-10">
-                <a href="#" onClick={(e) => { e.preventDefault(); setView('ads'); setIsDropdownOpen(false); }} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Ads Manager</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); setView('social'); setIsDropdownOpen(false); }} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Social Media</a>
-                <a href="#" onClick={(e) => { e.preventDefault(); setView('website'); setIsDropdownOpen(false); }} className="block px-4 py-2 text-sm text-slate-300 hover:bg-slate-700 transition-colors">Creare Website</a>
-              </div>
-            )}
+            <AnimatePresence>
+              {isDropdownOpen && (
+                <motion.div 
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-full right-0 mt-4 w-56 glass-panel rounded-xl overflow-hidden z-50"
+                >
+                  <div className="py-2">
+                    <a href="#" onClick={(e) => { e.preventDefault(); setView('ads'); setIsDropdownOpen(false); }} className="block px-5 py-3 text-sm text-slate-300 hover:bg-white/10 hover:text-brand-accent transition-colors">Ads Manager</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); setView('social'); setIsDropdownOpen(false); }} className="block px-5 py-3 text-sm text-slate-300 hover:bg-white/10 hover:text-brand-accent transition-colors">Social Media</a>
+                    <a href="#" onClick={(e) => { e.preventDefault(); setView('website'); setIsDropdownOpen(false); }} className="block px-5 py-3 text-sm text-slate-300 hover:bg-white/10 hover:text-brand-accent transition-colors">Creare Website</a>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
-          <a href="#contact" className="bg-sky-400 text-slate-900 px-4 py-2 rounded-full font-semibold hover:bg-opacity-90 transition-colors">Contact</a>
+          <a href="#contact" className="btn-premium text-sm">Contact</a>
         </nav>
       </div>
     </header>
@@ -46,34 +63,69 @@ const Header = ({ setView }: { setView: (view: string) => void }) => {
 
 // --- Component: Hero --- //
 const Hero = () => (
-  <section className="px-4 py-16 md:px-8 md:py-24 text-center">
-    <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight font-serif bg-clip-text text-transparent bg-gradient-to-b from-slate-200 to-slate-200/70">
-      Propulsăm Afacerea Ta în Era Digitală
-    </h1>
-    <p className="mt-4 text-lg md:text-xl text-slate-400 max-w-3xl mx-auto">
-      De la strategie și creație, la campanii de impact și website-uri performante, suntem partenerul tău pentru succes online.
-    </p>
+  <section className="relative px-4 py-24 md:py-32 text-center overflow-hidden">
+    {/* Radial lighting effect */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.08)_0%,transparent_70%)] pointer-events-none" />
+    
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="relative z-10"
+    >
+      <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 max-w-5xl mx-auto">
+        Propulsăm Afacerea Ta în Era Digitală
+      </h1>
+      <p className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
+        De la strategie și creație, la campanii de impact și website-uri performante, suntem partenerul tău pentru succes online.
+      </p>
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 1 }}
+        className="mt-12"
+      >
+        <a href="#services" className="btn-premium shadow-[0_0_30px_rgba(0,209,255,0.2)]">Descoperă Serviciile</a>
+      </motion.div>
+    </motion.div>
   </section>
 );
 
 // --- Component: Services --- //
 const services = [
-  { icon: <BarChart size={32} className="text-sky-400" />, title: 'Ads Manager', description: 'Optimizăm campaniile tale pentru a atinge audiența potrivită și a maximiza ROI-ul.' },
-  { icon: <Annoyed size={32} className="text-sky-400" />, title: 'Social Media', description: 'Creăm conținut relevant și creștem prezența brandului tău pe platformele sociale.' },
-  { icon: <Globe size={32} className="text-sky-400" />, title: 'Creare Website', description: 'Dezvoltăm website-uri moderne, rapide și optimizate pentru mobil, care convertesc.' },
+  { icon: <BarChart size={28} className="text-brand-accent" />, title: 'Ads Manager', description: 'Optimizăm campaniile tale pentru a atinge audiența potrivită și a maximiza ROI-ul.' },
+  { icon: <Annoyed size={28} className="text-brand-accent" />, title: 'Social Media', description: 'Creăm conținut relevant și creștem prezența brandului tău pe platformele sociale.' },
+  { icon: <Globe size={28} className="text-brand-accent" />, title: 'Creare Website', description: 'Dezvoltăm website-uri moderne, rapide și optimizate pentru mobil, care convertesc.' },
 ];
 
 const Services = () => (
-  <section id="services" className="px-4 py-16 md:px-8 md:py-24 bg-slate-900">
+  <section id="services" className="section-spacing px-4 md:px-8 bg-brand-bg">
     <div className="max-w-7xl mx-auto">
-      <h2 className="text-3xl md:text-4xl font-bold text-center font-serif">Serviciile Noastre</h2>
-      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {services.map((service) => (
-          <div key={service.title} className="p-8 bg-slate-800 border border-slate-700 rounded-2xl hover:border-sky-400 transition-colors">
-            <div className="mb-4">{service.icon}</div>
-            <h3 className="text-xl font-bold mb-2">{service.title}</h3>
-            <p className="text-slate-400">{service.description}</p>
-          </div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 tracking-tight">Serviciile Noastre</h2>
+      </motion.div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service, index) => (
+          <motion.div 
+            key={service.title}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            whileHover={{ y: -10 }}
+            className="p-10 glass-panel rounded-2xl transition-all duration-300 group"
+          >
+            <div className="mb-6 p-3 w-fit rounded-lg bg-white/5 group-hover:bg-brand-accent/10 transition-colors">
+              {service.icon}
+            </div>
+            <h3 className="text-2xl font-bold mb-4 text-white tracking-tight">{service.title}</h3>
+            <p className="text-slate-400 leading-relaxed font-light">{service.description}</p>
+          </motion.div>
         ))}
       </div>
     </div>
@@ -82,42 +134,70 @@ const Services = () => (
 
 // --- Component: Contact --- //
 const Contact = () => (
-  <section id="contact" className="px-4 py-16 md:px-8 md:py-24 bg-slate-800 border-t border-slate-700">
-    <div className="max-w-3xl mx-auto text-center">
-      <h2 className="text-3xl md:text-4xl font-bold font-serif">Lucrează cu noi</h2>
-      <p className="mt-4 text-lg text-slate-400">Completează formularul și te vom contacta în cel mai scurt timp.</p>
-      <form className="mt-8 text-left">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium text-slate-300">Nume</label>
-            <input type="text" id="name" name="name" className="mt-1 block w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-sky-400 focus:border-sky-400" />
+  <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
+    <div className="max-w-4xl mx-auto">
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="text-center mb-16"
+      >
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Lucrează cu noi</h2>
+        <p className="text-lg text-slate-400 font-light max-w-2xl mx-auto">Completează formularul și te vom contacta în cel mai scurt timp pentru a discuta proiectul tău.</p>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, scale: 0.98 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true }}
+        className="glass-panel p-8 md:p-12 rounded-3xl"
+      >
+        <form className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="space-y-2">
+              <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
+              <input type="text" id="name" name="name" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="Numele tău" />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
+              <input type="email" id="email" name="email" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="email@exemplu.ro" />
+            </div>
           </div>
-          <div>
-            <label htmlFor="email" className="block text-sm font-medium text-slate-300">Email</label>
-            <input type="email" id="email" name="email" className="mt-1 block w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-sky-400 focus:border-sky-400" />
+          <div className="space-y-2">
+            <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
+            <textarea id="message" name="message" rows={4} className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" placeholder="Cum te putem ajuta?"></textarea>
           </div>
-        </div>
-        <div className="mt-6">
-          <label htmlFor="message" className="block text-sm font-medium text-slate-300">Mesaj</label>
-          <textarea id="message" name="message" rows={4} className="mt-1 block w-full px-3 py-2 bg-slate-900 border border-slate-700 rounded-md shadow-sm focus:outline-none focus:ring-sky-400 focus:border-sky-400"></textarea>
-        </div>
-        <div className="mt-6 text-center">
-          <button type="submit" className="bg-sky-400 text-slate-900 px-6 py-3 rounded-full font-semibold hover:bg-opacity-90 transition-colors">Trimite Mesajul</button>
-        </div>
-      </form>
+          <div className="pt-4 text-center">
+            <button type="submit" className="btn-premium w-full md:w-auto min-w-[240px]">Trimite Mesajul</button>
+          </div>
+        </form>
+      </motion.div>
     </div>
   </section>
 );
 
 // --- Component: Footer --- //
 const Footer = () => (
-  <footer className="px-4 py-8 md:px-8 md:py-12 bg-slate-900 border-t border-slate-700">
-    <div className="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
-      <p className="text-slate-400">&copy; {new Date().getFullYear()} DigitalBloom. Toate drepturile rezervate.</p>
-      <div className="flex space-x-4 mt-4 sm:mt-0">
-        <a href="#" className="text-slate-500 hover:text-sky-400 transition-colors"><Facebook /></a>
-        <a href="#" className="text-slate-500 hover:text-sky-400 transition-colors"><Instagram /></a>
-        <a href="#" className="text-slate-500 hover:text-sky-400 transition-colors"><Linkedin /></a>
+  <footer className="px-4 py-12 md:px-8 md:py-16 bg-brand-bg border-t border-white/5">
+    <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0">
+      <div className="text-center md:text-left">
+        <h3 className="font-serif text-2xl font-bold text-white mb-2">DigitalBloom</h3>
+        <p className="text-slate-500 text-sm font-light tracking-wide">&copy; {new Date().getFullYear()} DigitalBloom. Toate drepturile rezervate.</p>
+      </div>
+      <div className="flex space-x-6">
+        {[
+          { icon: <Facebook size={20} />, href: "#" },
+          { icon: <Instagram size={20} />, href: "#" },
+          { icon: <Linkedin size={20} />, href: "#" }
+        ].map((social, i) => (
+          <motion.a 
+            key={i}
+            href={social.href} 
+            whileHover={{ y: -3, color: "#00D1FF" }}
+            className="text-slate-500 transition-colors"
+          >
+            {social.icon}
+          </motion.a>
+        ))}
       </div>
     </div>
   </footer>
@@ -138,218 +218,323 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: AdsManagerPage --- //
 const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-slate-900 text-slate-200 font-sans">
-    <header className="p-4 sticky top-0 bg-slate-900/80 backdrop-blur-sm z-10">
-      <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-300 hover:text-sky-400 transition-colors">
-        <ArrowLeft size={16} />
-        <span>Înapoi la pagina principală</span>
-      </button>
+  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Înapoi la pagina principală</span>
+        </button>
+      </div>
     </header>
     <main>
-      <section className="text-center px-4 py-20 sm:py-28">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-sky-300 to-sky-500">
-          Management Anunțuri. Performanță Maximă.
-        </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-400">
-          Transformăm bugetele de publicitate în rezultate măsurabile. Atinge-ți audiența ideală și domină piața cu strategii de ads create pentru a converti.
-        </p>
+      <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10"
+        >
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 tracking-tight leading-tight">
+            Management Anunțuri. <br/>Performanță Maximă.
+          </h1>
+          <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
+            Transformăm bugetele de publicitate în rezultate măsurabile. Atinge-ți audiența ideală și domină piața cu strategii de ads create pentru a converti.
+          </p>
+        </motion.div>
       </section>
-      <section className="px-4 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-16">
+
+      <section className="section-spacing px-4 md:px-8">
+        <div className="max-w-7xl mx-auto space-y-24">
           {/* Meta & Google Ads */}
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-              <h2 className="text-3xl font-bold text-sky-400">Meta & Google Ads</h2>
-              <p className="mt-2 text-slate-400">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
-              <div className="mt-6 space-y-4">
-                <div className="flex items-start space-x-3">
-                  <Target className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-stretch"
+          >
+            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Meta & Google Ads</h2>
+              <p className="text-slate-400 font-light leading-relaxed mb-8">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-lg bg-brand-accent/10">
+                    <Target className="w-6 h-6 text-brand-accent" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold">Targetare Avansată</h3>
-                    <p className="text-sm text-slate-400">Identificăm și atragem exact publicul de care ai nevoie.</p>
+                    <h3 className="text-lg font-semibold text-white mb-1">Targetare Avansată</h3>
+                    <p className="text-sm text-slate-500 font-light">Identificăm și atragem exact publicul de care ai nevoie.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <TrendingUp className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-lg bg-brand-accent/10">
+                    <TrendingUp className="w-6 h-6 text-brand-accent" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold">Maximizare ROI</h3>
-                    <p className="text-sm text-slate-400">Optimizăm fiecare aspect al campaniilor pentru cel mai bun randament.</p>
+                    <h3 className="text-lg font-semibold text-white mb-1">Maximizare ROI</h3>
+                    <p className="text-sm text-slate-500 font-light">Optimizăm fiecare aspect al campaniilor pentru cel mai bun randament.</p>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="h-80 md:h-full w-full">
-              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop" alt="Ads strategy team" className="w-full h-full object-cover rounded-2xl"/>
+            <div className="relative group overflow-hidden rounded-3xl">
+              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop" alt="Ads strategy team" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </div>
+          </motion.div>
 
           {/* TikTok Ads */}
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="h-80 md:h-full w-full md:order-2">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" alt="TikTok Ads content" className="w-full h-full object-cover rounded-2xl"/>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-stretch"
+          >
+            <div className="relative group overflow-hidden rounded-3xl md:order-2">
+              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" alt="TikTok Ads content" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 md:order-1">
-              <h2 className="text-3xl font-bold text-sky-400">TikTok Ads</h2>
-              <p className="mt-2 text-slate-400">Expertiză în ecosistemul TikTok. Ne concentrăm pe strategii de content nativ și campanii de tip Spark Ads care capitalizează pe trendurile actuale. Transformăm limbajul specific platformei în rezultate măsurabile de business prin targetare comportamentală avansată.</p>
-              <div className="mt-6 space-y-4">
-                <div className="flex items-start space-x-3">
-                  <ClipboardCheck className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center md:order-1">
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">TikTok Ads</h2>
+              <p className="text-slate-400 font-light leading-relaxed mb-8">Expertiză în ecosistemul TikTok. Ne concentrăm pe strategii de content nativ și campanii de tip Spark Ads care capitalizează pe trendurile actuale. Transformăm limbajul specific platformei în rezultate măsurabile de business prin targetare comportamentală avansată.</p>
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-lg bg-brand-accent/10">
+                    <ClipboardCheck className="w-6 h-6 text-brand-accent" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold">Pixel TikTok & Conversii</h3>
-                    <p className="text-sm text-slate-400">Implementăm Pixelul TikTok și monitorizăm evenimentele de conversie pentru a măsura cu precizie impactul campaniilor.</p>
+                    <h3 className="text-lg font-semibold text-white mb-1">Pixel TikTok & Conversii</h3>
+                    <p className="text-sm text-slate-500 font-light">Implementăm Pixelul TikTok și monitorizăm evenimentele de conversie pentru a măsura cu precizie impactul campaniilor.</p>
                   </div>
                 </div>
-                <div className="flex items-start space-x-3">
-                  <Sparkles className="w-6 h-6 text-sky-400 mt-1 flex-shrink-0" />
+                <div className="flex items-start space-x-4">
+                  <div className="p-2 rounded-lg bg-brand-accent/10">
+                    <Sparkles className="w-6 h-6 text-brand-accent" />
+                  </div>
                   <div>
-                    <h3 className="font-semibold">Spark Ads & Content Nativ</h3>
-                    <p className="text-sm text-slate-400">Capitalizăm pe trenduri cu Spark Ads și conținut care se simte nativ pe platformă, generând engagement autentic.</p>
+                    <h3 className="text-lg font-semibold text-white mb-1">Spark Ads & Content Nativ</h3>
+                    <p className="text-sm text-slate-500 font-light">Capitalizăm pe trenduri cu Spark Ads și conținut care se simte nativ pe platformă, generând engagement autentic.</p>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
-      <section className="px-4 py-16 sm:py-20">
-        <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold font-serif">Procesul Nostru</h2>
-          <p className="mt-2 text-slate-400">Claritate și eficiență în fiecare etapă.</p>
-        </div>
-        <div className="mt-12 max-w-5xl mx-auto grid sm:grid-cols-3 gap-8 text-center">
-          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <BrainCircuit size={40} className="mx-auto text-sky-400" />
-            <h3 className="mt-4 text-xl font-bold">1. Strategie</h3>
-            <p className="mt-2 text-slate-400">Analizăm piața și obiectivele pentru a crea un plan de acțiune.</p>
-          </div>
-          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <Zap size={40} className="mx-auto text-sky-400" />
-            <h3 className="mt-4 text-xl font-bold">2. Implementare</h3>
-            <p className="mt-2 text-slate-400">Lansăm campaniile și monitorizăm performanța inițială.</p>
-          </div>
-          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
-            <Filter size={40} className="mx-auto text-sky-400" />
-            <h3 className="mt-4 text-xl font-bold">3. Optimizare</h3>
-            <p className="mt-2 text-slate-400">Ajustăm constant campaniile pentru a îmbunătăți rezultatele.</p>
+
+      <section className="section-spacing px-4 md:px-8 bg-brand-bg/50">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Procesul Nostru</h2>
+            <p className="text-slate-500 font-light tracking-wide">Claritate și eficiență în fiecare etapă.</p>
+          </motion.div>
+          <div className="grid sm:grid-cols-3 gap-8">
+            {[
+              { icon: <BrainCircuit size={32} />, step: "1. Strategie", desc: "Analizăm piața și obiectivele pentru a crea un plan de acțiune." },
+              { icon: <Zap size={32} />, step: "2. Implementare", desc: "Lansăm campaniile și monitorizăm performanța inițială." },
+              { icon: <Filter size={32} />, step: "3. Optimizare", desc: "Ajustăm constant campaniile pentru a îmbunătăți rezultatele." }
+            ].map((item, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="glass-panel p-10 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300"
+              >
+                <div className="mb-6 p-4 w-fit mx-auto rounded-2xl bg-white/5 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                  {item.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{item.step}</h3>
+                <p className="text-slate-400 font-light leading-relaxed">{item.desc}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
     </main>
+    <Footer />
   </div>
 );
 
 // --- Page: SocialMediaPage --- //
 const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-slate-900 text-slate-200 font-sans">
-    <header className="p-4 sticky top-0 bg-slate-900/80 backdrop-blur-sm z-10">
-      <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-300 hover:text-sky-400 transition-colors">
-        <ArrowLeft size={16} />
-        <span>Înapoi la pagina principală</span>
-      </button>
+  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Înapoi la pagina principală</span>
+        </button>
+      </div>
     </header>
     <main>
-      <section className="text-center px-4 py-20 sm:py-28">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-sky-300 to-sky-500">
-          Social Media Content & Strategy
-        </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-400">
-          Creăm conținut care captivează și construiește comunități. De la producție video la strategie vizuală, suntem partenerul tău creativ.
-        </p>
+      <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10"
+        >
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 tracking-tight leading-tight">
+            Social Media <br/>Content & Strategy
+          </h1>
+          <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
+            Creăm conținut care captivează și construiește comunități. De la producție video la strategie vizuală, suntem partenerul tău creativ.
+          </p>
+        </motion.div>
       </section>
 
-      <section className="px-4 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
-          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center">
-            <Camera size={32} className="text-sky-400 mb-4" />
-            <h2 className="text-2xl font-bold text-sky-400">Content Creation & Video Production</h2>
-            <p className="mt-2 text-slate-400">Descrie procesul de filmare la nevoie și editare profesională pentru YouTube (Long & Shorts), TikTok, și Reels (FB/IG).</p>
-          </div>
-          <div className="h-80 md:h-full w-full">
-            <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=1000" alt="Professional video editing and production" className="w-full h-full object-cover rounded-2xl"/>
-          </div>
-        </div>
-      </section>
-
-      <section className="px-4 pb-16 sm:pb-20">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
-           <div className="h-80 md:h-full w-full md:order-2">
-            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000" alt="Digital marketing strategy and planning" className="w-full h-full object-cover rounded-2xl"/>
-          </div>
-          <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center md:order-1">
-             <LayoutGrid size={32} className="text-sky-400 mb-4" />
-            <h2 className="text-2xl font-bold text-sky-400">Strategie Vizuală</h2>
-            <p className="mt-2 text-slate-400">Planificarea postărilor pentru a menține o estetică unitară a brandului pe toate platformele.</p>
-             <div className="mt-4 text-slate-400">
-                <h3 className="font-semibold text-sky-400 flex items-center"><Share2 size={18} className="mr-2"/> Platforme</h3>
-                <p className="text-sm mt-1">Adaptăm formatele pentru Facebook, Instagram, TikTok și YouTube, asigurând relevanță și impact maxim.</p>
+      <section className="section-spacing px-4 md:px-8">
+        <div className="max-w-7xl mx-auto space-y-24">
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-stretch"
+          >
+            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
+              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
+                <Camera size={28} className="text-brand-accent" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Content Creation & Video Production</h2>
+              <p className="text-slate-400 font-light leading-relaxed">Descrie procesul de filmare la nevoie și editare profesională pentru YouTube (Long & Shorts), TikTok, și Reels (FB/IG).</p>
             </div>
-          </div>
+            <div className="relative group overflow-hidden rounded-3xl">
+              <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=1000" alt="Professional video editing and production" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-stretch"
+          >
+            <div className="relative group overflow-hidden rounded-3xl md:order-2">
+              <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000" alt="Digital marketing strategy and planning" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center md:order-1">
+              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
+                <LayoutGrid size={28} className="text-brand-accent" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Strategie Vizuală</h2>
+              <p className="text-slate-400 font-light leading-relaxed mb-8">Planificarea postărilor pentru a menține o estetică unitară a brandului pe toate platformele.</p>
+              <div className="p-6 rounded-2xl bg-white/5 border border-white/5">
+                <h3 className="font-semibold text-white flex items-center mb-2">
+                  <Share2 size={18} className="mr-2 text-brand-accent"/> Platforme
+                </h3>
+                <p className="text-sm text-slate-500 font-light leading-relaxed">Adaptăm formatele pentru Facebook, Instagram, TikTok și YouTube, asigurând relevanță și impact maxim.</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
-
     </main>
+    <Footer />
   </div>
 );
 
 // --- Page: WebsitePage --- //
 const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-slate-900 text-slate-200 font-sans">
-    <header className="p-4 sticky top-0 bg-slate-900/80 backdrop-blur-sm z-10">
-      <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-300 hover:text-sky-400 transition-colors">
-        <ArrowLeft size={16} />
-        <span>Înapoi la pagina principală</span>
-      </button>
+  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
+          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
+          <span className="text-sm font-medium">Înapoi la pagina principală</span>
+        </button>
+      </div>
     </header>
     <main>
-      <section className="text-center px-4 py-20 sm:py-28">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-sky-300 to-sky-500">
-          Web Design & Development Performance
-        </h1>
-        <p className="mt-4 max-w-2xl mx-auto text-lg text-slate-400">
-          Construim prezența ta digitală cu focus pe estetică și performanță tehnică. Site-uri care nu doar arată bine, ci și convertesc.
-        </p>
+      <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="relative z-10"
+        >
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 tracking-tight leading-tight">
+            Web Design & <br/>Development Performance
+          </h1>
+          <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
+            Construim prezența ta digitală cu focus pe estetică și performanță tehnică. Site-uri care nu doar arată bine, ci și convertesc.
+          </p>
+        </motion.div>
       </section>
 
-      <section className="px-4 py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto space-y-16">
+      <section className="section-spacing px-4 md:px-8">
+        <div className="max-w-7xl mx-auto space-y-24">
           {/* Custom Design & UI/UX */}
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center">
-              <Palette size={32} className="text-sky-400 mb-4" />
-              <h2 className="text-2xl font-bold text-sky-400">Custom Design & UI/UX</h2>
-              <p className="mt-2 text-slate-400">Creăm layout-uri moderne, intuitive și personalizate pe brandul tău. Ne asigurăm că fiecare interacțiune a utilizatorului este fluidă și plăcută.</p>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-stretch"
+          >
+            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
+              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
+                <Palette size={28} className="text-brand-accent" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Custom Design & UI/UX</h2>
+              <p className="text-slate-400 font-light leading-relaxed">Creăm layout-uri moderne, intuitive și personalizate pe brandul tău. Ne asigurăm că fiecare interacțiune a utilizatorului este fluidă și plăcută.</p>
             </div>
-            <div className="h-80 md:h-full w-full">
-              <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1000" alt="Custom UI/UX Design" className="w-full h-full object-cover rounded-2xl"/>
+            <div className="relative group overflow-hidden rounded-3xl">
+              <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1000" alt="Custom UI/UX Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Performance & Speed */}
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="h-80 md:h-full w-full md:order-2">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" alt="Website Performance" className="w-full h-full object-cover rounded-2xl"/>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-stretch"
+          >
+            <div className="relative group overflow-hidden rounded-3xl md:order-2">
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" alt="Website Performance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center md:order-1">
-              <Gauge size={32} className="text-sky-400 mb-4" />
-              <h2 className="text-2xl font-bold text-sky-400">Performance & Speed</h2>
-              <p className="mt-2 text-slate-400">Focus pe viteza de încărcare, optimizarea codului și SEO tehnic. Un site rapid este esențial pentru a converti vizitatorii în clienți fideli.</p>
+            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center md:order-1">
+              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
+                <Gauge size={28} className="text-brand-accent" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Performance & Speed</h2>
+              <p className="text-slate-400 font-light leading-relaxed">Focus pe viteza de încărcare, optimizarea codului și SEO tehnic. Un site rapid este esențial pentru a converti vizitatorii în clienți fideli.</p>
             </div>
-          </div>
+          </motion.div>
 
           {/* Responsive & Mobile First */}
-          <div className="grid md:grid-cols-2 gap-8 items-stretch">
-            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center">
-              <Smartphone size={32} className="text-sky-400 mb-4" />
-              <h2 className="text-2xl font-bold text-sky-400">Responsive & Mobile First</h2>
-              <p className="mt-2 text-slate-400">Site-urile noastre sunt optimizate perfect pentru orice dispozitiv. Indiferent dacă este Telefon, Tabletă sau Desktop, experiența rămâne impecabilă.</p>
+          <motion.div 
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="grid md:grid-cols-2 gap-12 items-stretch"
+          >
+            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
+              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
+                <Smartphone size={28} className="text-brand-accent" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Responsive & Mobile First</h2>
+              <p className="text-slate-400 font-light leading-relaxed">Site-urile noastre sunt optimizate perfect pentru orice dispozitiv. Indiferent dacă este Telefon, Tabletă sau Desktop, experiența rămâne impecabilă.</p>
             </div>
-            <div className="h-80 md:h-full w-full">
-              <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" alt="Responsive Web Design" className="w-full h-full object-cover rounded-2xl"/>
+            <div className="relative group overflow-hidden rounded-3xl">
+              <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" alt="Responsive Web Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
     </main>
+    <Footer />
   </div>
 );
 
@@ -372,7 +557,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 text-slate-200">
+    <div className="min-h-screen bg-brand-bg text-slate-300 font-sans selection:bg-brand-accent/30 selection:text-white">
       {renderView()}
     </div>
   );
