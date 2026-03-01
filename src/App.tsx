@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder } from 'lucide-react';
 
 // --- Component: Header --- //
-const Header = ({ setView }: { setView: (view: string) => void }) => {
+const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -17,13 +17,33 @@ const Header = ({ setView }: { setView: (view: string) => void }) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
+  const handleAnchorClick = (e: React.MouseEvent, target: string) => {
+    e.preventDefault();
+    if (currentView !== 'home') {
+      setView('home');
+      setTimeout(() => {
+        const element = document.getElementById(target);
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      const element = document.getElementById(target);
+      if (element) element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className="px-4 py-4 md:px-8 md:py-5 border-b border-white/5 bg-brand-bg/70 backdrop-blur-xl sticky top-0 z-50 transition-all duration-300">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <motion.h2 
           whileHover={{ scale: 1.02 }}
           className="font-serif text-2xl font-bold cursor-pointer text-white tracking-tight" 
-          onClick={() => setView('home')}
+          onClick={() => {
+            if (currentView === 'home') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+              setView('home');
+            }
+          }}
         >
           CPR Media
         </motion.h2>
@@ -54,8 +74,20 @@ const Header = ({ setView }: { setView: (view: string) => void }) => {
               )}
             </AnimatePresence>
           </div>
-          <a href="#ai-automation" className="text-slate-300 hover:text-brand-accent transition-colors text-sm font-medium tracking-wide">Automatizare AI</a>
-          <a href="#contact" className="btn-premium text-sm">Contact</a>
+          <a 
+            href="#ai-automation" 
+            onClick={(e) => handleAnchorClick(e, 'ai-automation')}
+            className="text-slate-300 hover:text-brand-accent transition-colors text-sm font-medium tracking-wide"
+          >
+            Automatizare AI
+          </a>
+          <a 
+            href="#contact" 
+            onClick={(e) => handleAnchorClick(e, 'contact')}
+            className="btn-premium text-sm"
+          >
+            Contact
+          </a>
         </nav>
       </div>
     </header>
@@ -383,13 +415,13 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
       <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
         <div className="flex flex-wrap justify-center md:justify-start gap-6">
           <button 
-            onClick={() => { setView('terms'); window.scrollTo(0, 0); }} 
+            onClick={() => setView('terms')} 
             className="text-xs text-slate-500 hover:text-brand-accent transition-colors font-light tracking-wider uppercase"
           >
             Termeni și Condiții
           </button>
           <button 
-            onClick={() => { setView('privacy'); window.scrollTo(0, 0); }} 
+            onClick={() => setView('privacy')} 
             className="text-xs text-slate-500 hover:text-brand-accent transition-colors font-light tracking-wider uppercase"
           >
             Politica de Confidențialitate (GDPR)
@@ -406,14 +438,7 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
 // --- Page: TermsPage --- //
 const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
   <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
-    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Înapoi la pagina principală</span>
-        </button>
-      </div>
-    </header>
+    <Header setView={setView} currentView="terms" />
     <main className="py-24 px-4 md:px-8">
       <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Termeni și Condiții</h1>
@@ -463,14 +488,7 @@ const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
 // --- Page: PrivacyPage --- //
 const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
   <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
-    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Înapoi la pagina principală</span>
-        </button>
-      </div>
-    </header>
+    <Header setView={setView} currentView="privacy" />
     <main className="py-24 px-4 md:px-8">
       <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Politica de Confidențialitate (GDPR)</h1>
@@ -539,7 +557,7 @@ const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
 // --- Page: HomePage --- //
 const HomePage = ({ setView }: { setView: (view: string) => void }) => (
   <>
-    <Header setView={setView} />
+    <Header setView={setView} currentView="home" />
     <main>
       <Hero />
       <AgencyPresentation />
@@ -554,14 +572,7 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
 // --- Page: AdsManagerPage --- //
 const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
   <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
-    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Înapoi la pagina principală</span>
-        </button>
-      </div>
-    </header>
+    <Header setView={setView} currentView="ads" />
     <main>
       <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
@@ -700,14 +711,7 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
 // --- Page: SocialMediaPage --- //
 const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
   <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
-    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Înapoi la pagina principală</span>
-        </button>
-      </div>
-    </header>
+    <Header setView={setView} currentView="social" />
     <main>
       <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
@@ -780,14 +784,7 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
 // --- Page: WebsitePage --- //
 const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
   <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
-    <header className="p-6 sticky top-0 bg-brand-bg/70 backdrop-blur-xl z-50 border-b border-white/5">
-      <div className="max-w-7xl mx-auto">
-        <button onClick={() => setView('home')} className="flex items-center space-x-2 text-slate-400 hover:text-brand-accent transition-colors group">
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-          <span className="text-sm font-medium">Înapoi la pagina principală</span>
-        </button>
-      </div>
-    </header>
+    <Header setView={setView} currentView="website" />
     <main>
       <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
@@ -876,6 +873,10 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
 // --- Main App Component --- //
 export default function App() {
   const [view, setView] = useState('home');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [view]);
 
   const renderView = () => {
     switch (view) {
