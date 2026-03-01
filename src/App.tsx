@@ -125,6 +125,21 @@ const AgencyPresentation = () => (
               </div>
             </div>
           </div>
+
+          <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group">
+            <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
+            <div className="flex items-start space-x-4">
+              <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
+                <Palette size={24} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Design Grafic & Materiale Printabile</h3>
+                <p className="text-slate-400 font-light leading-relaxed text-sm">
+                  Brandul tău trebuie să arate impecabil atât online, cât și offline. Creăm identități vizuale coerente: de la cărți de vizită memorabile și bannere stradale, până la materiale promoționale care atrag atenția. Transformăm viziunea ta în realitate fizică, garantând calitate superioară și un impact vizual puternic.
+                </p>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         <motion.div
