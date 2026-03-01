@@ -320,7 +320,7 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
               <p className="mt-2 text-slate-400">Creăm layout-uri moderne, intuitive și personalizate pe brandul tău. Ne asigurăm că fiecare interacțiune a utilizatorului este fluidă și plăcută.</p>
             </div>
             <div className="h-80 md:h-full w-full">
-              <img src="https://images.unsplash.com/photo-1586717791821-3f44a563eb4c?auto=format&fit=crop&q=80&w=1000" alt="Custom UI/UX Design" className="w-full h-full object-cover rounded-2xl"/>
+              <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1000" alt="Custom UI/UX Design" className="w-full h-full object-cover rounded-2xl"/>
             </div>
           </div>
 
