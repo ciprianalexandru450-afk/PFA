@@ -264,7 +264,7 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
             <p className="mt-2 text-slate-400">Descrie procesul de filmare la nevoie și editare profesională pentru YouTube (Long & Shorts), TikTok, și Reels (FB/IG).</p>
           </div>
           <div className="h-80 md:h-full w-full">
-            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=1000" alt="Professional video editing and production" className="w-full h-full object-cover rounded-2xl"/>
+            <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=1000" alt="Professional video editing and production" className="w-full h-full object-cover rounded-2xl"/>
           </div>
         </div>
       </section>
