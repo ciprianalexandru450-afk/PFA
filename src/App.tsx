@@ -54,6 +54,7 @@ const Header = ({ setView }: { setView: (view: string) => void }) => {
               )}
             </AnimatePresence>
           </div>
+          <a href="#ai-automation" className="text-slate-300 hover:text-brand-accent transition-colors text-sm font-medium tracking-wide">Automatizare AI</a>
           <a href="#contact" className="btn-premium text-sm">Contact</a>
         </nav>
       </div>
@@ -213,7 +214,7 @@ const AIAutomation = () => {
   ];
 
   return (
-    <section className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
+    <section id="ai-automation" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
