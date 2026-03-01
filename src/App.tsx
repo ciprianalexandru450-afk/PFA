@@ -150,6 +150,28 @@ const AgencyPresentation = () => (
   </section>
 );
 
+// --- Component: BrandPhilosophy --- //
+const BrandPhilosophy = () => (
+  <section className="py-24 px-4 md:px-8 bg-brand-bg relative overflow-hidden">
+    <div className="max-w-4xl mx-auto text-center">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8 }}
+      >
+        <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight font-serif">
+          Nu doar trafic. Rezultate reale.
+        </h2>
+        <p className="text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-3xl mx-auto mb-10">
+          Marketing-ul digital nu este despre a fi vizibil peste tot, ci despre a fi prezent acolo unde contează. Construim strategii care conectează brandul tău cu oamenii care au nevoie de el, transformând click-urile în relații durabile și profit.
+        </p>
+        <div className="w-24 h-1 bg-brand-accent mx-auto rounded-full" />
+      </motion.div>
+    </div>
+  </section>
+);
+
 // --- Component: Contact --- //
 const Contact = () => (
   <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
@@ -228,6 +250,7 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
     <main>
       <Hero />
       <AgencyPresentation />
+      <BrandPhilosophy />
       <Contact />
     </main>
     <Footer />
