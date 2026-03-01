@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone } from 'lucide-react';
+import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb } from 'lucide-react';
 
 // --- Component: Header --- //
 const Header = ({ setView }: { setView: (view: string) => void }) => {
@@ -187,6 +187,69 @@ const BrandPhilosophy = () => (
   </section>
 );
 
+// --- Component: AIAutomation --- //
+const AIAutomation = () => {
+  const pillars = [
+    {
+      icon: <Bot size={28} />,
+      title: "Automatizarea Sarcinilor",
+      description: "Elimină munca manuală repetitivă și alocă resursele umane acolo unde contează cu adevărat."
+    },
+    {
+      icon: <MessageSquare size={28} />,
+      title: "Chatboți Inteligenți",
+      description: "Răspunde instantaneu clienților 24/7 și crește rata de conversie prin interacțiuni personalizate."
+    },
+    {
+      icon: <BarChart3 size={28} />,
+      title: "Analiză Predictivă",
+      description: "Folosește AI pentru a prognoza tendințele pieței și pentru a lua decizii de business bazate pe date concrete."
+    },
+    {
+      icon: <Lightbulb size={28} />,
+      title: "Automatizări Personalizate",
+      description: "Nu știi de unde să începi? Oferim consultanță pentru a identifica și implementa soluții de automatizare unice, adaptate nevoilor specifice afacerii tale."
+    }
+  ];
+
+  return (
+    <section className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-serif">
+            Eficiență Digitală prin Inteligență Artificială
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {pillars.map((pillar, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+              className="p-10 rounded-3xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-all duration-300 group"
+            >
+              <div className="mb-6 p-4 w-fit rounded-2xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                {pillar.icon}
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{pillar.title}</h3>
+              <p className="text-slate-400 font-light leading-relaxed">{pillar.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
 // --- Component: Contact --- //
 const Contact = () => (
   <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
@@ -266,6 +329,7 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
       <Hero />
       <AgencyPresentation />
       <BrandPhilosophy />
+      <AIAutomation />
       <Contact />
     </main>
     <Footer />
