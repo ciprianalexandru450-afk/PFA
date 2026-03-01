@@ -264,7 +264,7 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
             <p className="mt-2 text-slate-400">Descrie procesul de filmare la nevoie și editare profesională pentru YouTube (Long & Shorts), TikTok, și Reels (FB/IG).</p>
           </div>
           <div className="h-80 md:h-full w-full">
-            <img src="https://images.unsplash.com/photo-1578957952253-ba17a9b35449?auto=format&fit=crop&q=80&w=1000" alt="Video production setup" className="w-full h-full object-cover rounded-2xl"/>
+            <img src="https://images.unsplash.com/photo-1536240478700-b869070f9279?auto=format&fit=crop&q=80&w=1000" alt="Professional video editing and production" className="w-full h-full object-cover rounded-2xl"/>
           </div>
         </div>
       </section>
@@ -272,7 +272,7 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
       <section className="px-4 pb-16 sm:pb-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-stretch">
            <div className="h-80 md:h-full w-full md:order-2">
-            <img src="https://images.unsplash.com/photo-1603484477839-93a7b31f4eba?auto=format&fit=crop&q=80&w=1000" alt="Visual strategy planning" className="w-full h-full object-cover rounded-2xl"/>
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000" alt="Digital marketing strategy and planning" className="w-full h-full object-cover rounded-2xl"/>
           </div>
           <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 flex flex-col justify-center md:order-1">
              <LayoutGrid size={32} className="text-sky-400 mb-4" />
