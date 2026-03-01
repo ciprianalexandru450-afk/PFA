@@ -362,7 +362,7 @@ const Contact = () => {
             className="glass-panel p-8 md:p-12 rounded-3xl self-center relative overflow-hidden"
           >
             <form 
-              action="https://formspree.io/f/mqknzwdn"
+              action="https://formspree.io/f/xovjwvql"
               method="POST"
               className="space-y-8"
             >
