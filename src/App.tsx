@@ -147,13 +147,13 @@ const AgencyPresentation = () => (
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="relative"
+          className="relative flex items-center h-full"
         >
-          <div className="relative rounded-3xl overflow-hidden shadow-premium group">
+          <div className="relative rounded-3xl overflow-hidden shadow-premium group w-full h-full">
             <img 
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" 
               alt="Creative workspace and video production" 
-              className="w-full aspect-[4/5] object-cover transition-transform duration-700 group-hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 to-transparent" />
           </div>
