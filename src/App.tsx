@@ -285,6 +285,35 @@ const AIAutomation = () => {
 
 // --- Component: Contact --- //
 const Contact = () => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://forminit.com/f/d964i6yxgsj", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
   return (
     <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
       <div className="max-w-7xl mx-auto">
@@ -361,71 +390,110 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
             className="glass-panel p-8 md:p-12 rounded-3xl self-center relative overflow-hidden"
           >
-            <form 
-              action="https://formspree.io/f/xovjwvql"
-              method="POST"
-              className="space-y-8"
-            >
-              {/* Honeypot */}
-              <input type="text" name="_gotcha" style={{ display: 'none' }} />
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
-                  <input 
-                    required
-                    type="text" 
-                    id="name" 
-                    name="name" 
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
-                    placeholder="Numele tău" 
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
-                  <input 
-                    required
-                    type="email" 
-                    id="email" 
-                    name="email" 
-                    className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
-                    placeholder="email@exemplu.ro" 
-                  />
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <label htmlFor="phone" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Telefon</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  name="phone" 
-                  className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
-                  placeholder="+40 700 000 000" 
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
-                <textarea 
-                  required
-                  id="message" 
-                  name="message" 
-                  rows={4} 
-                  className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" 
-                  placeholder="Cum te putem ajuta?"
-                ></textarea>
-              </div>
-              
-              <div className="pt-4 text-center">
-                <button 
-                  type="submit" 
-                  className="btn-premium w-full md:w-auto min-w-[240px] flex items-center justify-center space-x-2"
+            <AnimatePresence mode="wait">
+              {status === 'success' ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-center py-12"
                 >
-                  <span>Trimite Mesajul</span>
-                </button>
-              </div>
-            </form>
+                  <div className="w-16 h-16 bg-brand-accent/20 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                    <ClipboardCheck size={32} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-4">Mulțumim!</h3>
+                  <p className="text-slate-400 font-light leading-relaxed">
+                    Echipa CPR Media a primit mesajul tău și te va contacta în curând.
+                  </p>
+                  <button 
+                    onClick={() => setStatus('idle')}
+                    className="mt-8 text-sm text-brand-accent hover:underline"
+                  >
+                    Trimite alt mesaj
+                  </button>
+                </motion.div>
+              ) : (
+                <form 
+                  action="https://forminit.com/f/d964i6yxgsj"
+                  method="POST"
+                  onSubmit={handleSubmit}
+                  className="space-y-8"
+                >
+                  {/* Honeypot */}
+                  <input type="text" name="_gotcha" style={{ display: 'none' }} />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
+                      <input 
+                        required
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                        placeholder="Numele tău" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
+                      <input 
+                        required
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                        placeholder="email@exemplu.ro" 
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Telefon</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone" 
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                      placeholder="+40 700 000 000" 
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
+                    <textarea 
+                      required
+                      id="message" 
+                      name="message" 
+                      rows={4} 
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" 
+                      placeholder="Cum te putem ajuta?"
+                    ></textarea>
+                  </div>
+                  
+                  <div className="pt-4 text-center">
+                    <button 
+                      type="submit" 
+                      disabled={status === 'submitting'}
+                      className="btn-premium w-full md:w-auto min-w-[240px] flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {status === 'submitting' ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Se trimite...</span>
+                        </>
+                      ) : (
+                        <span>Trimite Mesajul</span>
+                      )}
+                    </button>
+                    {status === 'error' && (
+                      <p className="mt-4 text-sm text-red-500 font-medium animate-pulse">
+                        Ups! A apărut o eroare. Te rugăm să încerci din nou.
+                      </p>
+                    )}
+                  </div>
+                </form>
+              )}
+            </AnimatePresence>
           </motion.div>
         </div>
       </div>
