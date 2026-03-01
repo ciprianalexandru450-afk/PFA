@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb } from 'lucide-react';
+import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone } from 'lucide-react';
 
 // --- Component: Header --- //
 const Header = ({ setView }: { setView: (view: string) => void }) => {
@@ -254,42 +254,82 @@ const AIAutomation = () => {
 // --- Component: Contact --- //
 const Contact = () => (
   <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
-    <div className="max-w-4xl mx-auto">
-      <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        className="text-center mb-16"
-      >
-        <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Lucrează cu noi</h2>
-        <p className="text-lg text-slate-400 font-light max-w-2xl mx-auto">Completează formularul și te vom contacta în cel mai scurt timp pentru a discuta proiectul tău.</p>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.98 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true }}
-        className="glass-panel p-8 md:p-12 rounded-3xl"
-      >
-        <form className="space-y-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-2">
-              <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
-              <input type="text" id="name" name="name" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="Numele tău" />
+    <div className="max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        {/* Left Side: Text & Data */}
+        <motion.div 
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="space-y-10"
+        >
+          <div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight font-serif leading-tight">
+              Hai să discutăm <br/>proiectul tău.
+            </h2>
+            <p className="text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
+              Ai o idee sau vrei să îți creștem afacerea? Completează formularul și te contactăm în maxim 24 de ore pentru o discuție preliminară.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            <div className="flex items-center space-x-4 group">
+              <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                <MapPin size={20} />
+              </div>
+              <span className="text-lg text-slate-300 font-light tracking-wide">Iași, România</span>
+            </div>
+            
+            <div className="flex items-center space-x-4 group">
+              <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                <Mail size={20} />
+              </div>
+              <a href="mailto:contact@digitalbloom.ro" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
+                contact@digitalbloom.ro
+              </a>
+            </div>
+
+            <div className="flex items-center space-x-4 group">
+              <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                <Phone size={20} />
+              </div>
+              <a href="tel:+40700000000" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
+                +40 700 000 000
+              </a>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Right Side: Form */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="glass-panel p-8 md:p-12 rounded-3xl"
+        >
+          <form className="space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="space-y-2">
+                <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
+                <input type="text" id="name" name="name" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="Numele tău" />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
+                <input type="email" id="email" name="email" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="email@exemplu.ro" />
+              </div>
             </div>
             <div className="space-y-2">
-              <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
-              <input type="email" id="email" name="email" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="email@exemplu.ro" />
+              <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
+              <textarea id="message" name="message" rows={4} className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" placeholder="Cum te putem ajuta?"></textarea>
             </div>
-          </div>
-          <div className="space-y-2">
-            <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
-            <textarea id="message" name="message" rows={4} className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" placeholder="Cum te putem ajuta?"></textarea>
-          </div>
-          <div className="pt-4 text-center">
-            <button type="submit" className="btn-premium w-full md:w-auto min-w-[240px]">Trimite Mesajul</button>
-          </div>
-        </form>
-      </motion.div>
+            <div className="pt-4 text-center">
+              <button type="submit" className="btn-premium w-full md:w-auto min-w-[240px]">Trimite Mesajul</button>
+            </div>
+          </form>
+        </motion.div>
+      </div>
     </div>
   </section>
 );
