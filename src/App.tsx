@@ -295,7 +295,7 @@ const Contact = () => {
     const formData = new FormData(form);
 
     try {
-      const response = await fetch("https://formspree.io/f/mqakpjpz", {
+      const response = await fetch("https://formspree.io/cipriangheorghiu72@yahoo.com", {
         method: "POST",
         body: formData,
         headers: {
@@ -419,6 +419,8 @@ const Contact = () => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   onSubmit={handleSubmit} 
+                  action="https://formspree.io/cipriangheorghiu72@yahoo.com"
+                  method="POST"
                   className="space-y-8"
                 >
                   {/* Honeypot */}
