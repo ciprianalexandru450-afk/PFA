@@ -25,7 +25,7 @@ const Header = ({ setView }: { setView: (view: string) => void }) => {
           className="font-serif text-2xl font-bold cursor-pointer text-white tracking-tight" 
           onClick={() => setView('home')}
         >
-          DigitalBloom
+          CPR Media
         </motion.h2>
         <nav className="flex items-center space-x-8">
           <div className="relative" ref={dropdownRef}>
@@ -75,7 +75,7 @@ const Hero = () => (
       className="relative z-10"
     >
       <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 max-w-5xl mx-auto">
-        Propulsăm Afacerea Ta în Era Digitală
+        Conectăm branduri cu oameni.
       </h1>
       <p className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
         De la strategie și creație, la campanii de impact și website-uri performante, suntem partenerul tău pentru succes online.
@@ -287,8 +287,8 @@ const Contact = () => (
                 <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
                   <Mail size={20} />
                 </div>
-                <a href="mailto:contact@digitalbloom.ro" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
-                  contact@digitalbloom.ro
+                <a href="mailto:contact@cprmedia.ro" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
+                  contact@cprmedia.ro
                 </a>
               </div>
 
@@ -306,7 +306,7 @@ const Contact = () => (
             <div className="pt-8 border-t border-white/5 space-y-3">
               <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
                 <Building2 size={16} className="opacity-70" />
-                <span>Digital Bloom Agency S.R.L.</span>
+                <span>CPR Media</span>
               </div>
               <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
                 <FileText size={16} className="opacity-70" />
@@ -359,8 +359,8 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
         <div className="text-center md:text-left">
-          <h3 className="font-serif text-2xl font-bold text-white mb-2">DigitalBloom</h3>
-          <p className="text-slate-500 text-sm font-light tracking-wide">&copy; {new Date().getFullYear()} DigitalBloom. Toate drepturile rezervate.</p>
+          <h3 className="font-serif text-2xl font-bold text-white mb-2">CPR Media</h3>
+          <p className="text-slate-500 text-sm font-light tracking-wide">&copy; {new Date().getFullYear()} CPR Media. Toate drepturile rezervate.</p>
         </div>
         <div className="flex space-x-6">
           {[
@@ -396,7 +396,7 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
           </button>
         </div>
         <div className="text-[10px] text-slate-600 font-light tracking-widest uppercase">
-          Digital Bloom Agency S.R.L.
+          CPR Media
         </div>
       </div>
     </div>
@@ -421,12 +421,12 @@ const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
         <div className="space-y-8 text-slate-400 font-light leading-relaxed">
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">1. Introducere</h2>
-            <p>Bun venit pe website-ul DigitalBloom. Prin accesarea și utilizarea acestui site, sunteți de acord să respectați și să fiți legat de următorii termeni și condiții de utilizare, care, împreună cu politica noastră de confidențialitate, guvernează relația Digital Bloom Agency S.R.L. cu dumneavoastră în legătură cu acest website.</p>
+            <p>Bun venit pe website-ul CPR Media. Prin accesarea și utilizarea acestui site, sunteți de acord să respectați și să fiți legat de următorii termeni și condiții de utilizare, care, împreună cu politica noastră de confidențialitate, guvernează relația CPR Media cu dumneavoastră în legătură cu acest website.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">2. Definiții</h2>
-            <p>Termenul 'DigitalBloom', 'noi' sau 'agenția' se referă la proprietarul website-ului, Digital Bloom Agency S.R.L. Termenul 'dumneavoastră' se referă la utilizatorul sau vizitatorul website-ului nostru.</p>
+            <p>Termenul 'CPR Media', 'noi' sau 'agenția' se referă la proprietarul website-ului, CPR Media. Termenul 'dumneavoastră' se referă la utilizatorul sau vizitatorul website-ului nostru.</p>
           </section>
 
           <section>
@@ -441,12 +441,12 @@ const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">5. Servicii</h2>
-            <p>DigitalBloom oferă servicii de marketing digital, automatizări AI, design grafic și producție video. Detaliile specifice ale fiecărui serviciu și obligațiile contractuale vor fi stabilite prin contracte individuale semnate între agenție și client.</p>
+            <p>CPR Media oferă servicii de marketing digital, automatizări AI, design grafic și producție video. Detaliile specifice ale fiecărui serviciu și obligațiile contractuale vor fi stabilite prin contracte individuale semnate între agenție și client.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">6. Limitarea Răspunderii</h2>
-            <p>În nicio circumstanță DigitalBloom nu va fi răspunzătoare pentru orice pierdere sau daună, inclusiv, fără limitare, pierderi indirecte sau subsecvente, rezultate din utilizarea acestui website.</p>
+            <p>În nicio circumstanță CPR Media nu va fi răspunzătoare pentru orice pierdere sau daună, inclusiv, fără limitare, pierderi indirecte sau subsecvente, rezultate din utilizarea acestui website.</p>
           </section>
 
           <section>
@@ -478,7 +478,7 @@ const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
         <div className="space-y-8 text-slate-400 font-light leading-relaxed">
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">1. Informații Generale</h2>
-            <p>Digital Bloom Agency S.R.L. se angajează să protejeze confidențialitatea datelor dumneavoastră cu caracter personal. Această politică explică modul în care colectăm, utilizăm și protejăm informațiile dumneavoastră în conformitate cu Regulamentul General privind Protecția Datelor (GDPR).</p>
+            <p>CPR Media se angajează să protejeze confidențialitatea datelor dumneavoastră cu caracter personal. Această politică explică modul în care colectăm, utilizăm și protejăm informațiile dumneavoastră în conformitate cu Regulamentul General privind Protecția Datelor (GDPR).</p>
           </section>
 
           <section>
@@ -527,7 +527,7 @@ const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">7. Contact</h2>
-            <p>Pentru orice întrebări legate de protecția datelor, ne puteți contacta la adresa de email: contact@digitalbloom.ro.</p>
+            <p>Pentru orice întrebări legate de protecția datelor, ne puteți contacta la adresa de email: contact@cprmedia.ro.</p>
           </section>
         </div>
       </div>
