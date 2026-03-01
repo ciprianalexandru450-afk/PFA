@@ -284,106 +284,222 @@ const AIAutomation = () => {
 };
 
 // --- Component: Contact --- //
-const Contact = () => (
-  <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-center">
-        {/* Left Side: Text & Data */}
-        <motion.div 
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="space-y-12"
-        >
-          <div>
-            <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight font-serif leading-tight text-white">
-              Hai să discutăm <br/>proiectul tău.
-            </h2>
-            <p className="text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
-              Ai o idee sau vrei să îți creștem afacerea? Completează formularul și te contactăm în maxim 24 de ore pentru o discuție preliminară.
-            </p>
-          </div>
+const Contact = () => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
 
-          <div className="space-y-8">
-            {/* Contact Info */}
-            <div className="space-y-5">
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
-                  <MapPin size={20} />
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('submitting');
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://formspree.io/f/mqakpjpz", {
+        method: "POST",
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        form.reset();
+        setTimeout(() => setStatus('idle'), 5000);
+      } else {
+        setStatus('error');
+      }
+    } catch (error) {
+      setStatus('error');
+    }
+  };
+
+  return (
+    <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
+      <div className="max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-center">
+          {/* Left Side: Text & Data */}
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="space-y-12"
+          >
+            <div>
+              <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight font-serif leading-tight text-white">
+                Hai să discutăm <br/>proiectul tău.
+              </h2>
+              <p className="text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
+                Ai o idee sau vrei să îți creștem afacerea? Completează formularul și te contactăm în maxim 24 de ore pentru o discuție preliminară.
+              </p>
+            </div>
+
+            <div className="space-y-8">
+              {/* Contact Info */}
+              <div className="space-y-5">
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                    <MapPin size={20} />
+                  </div>
+                  <span className="text-lg text-slate-300 font-light tracking-wide">Iași, România</span>
                 </div>
-                <span className="text-lg text-slate-300 font-light tracking-wide">Iași, România</span>
-              </div>
-              
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
-                  <Mail size={20} />
+                
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                    <Mail size={20} />
+                  </div>
+                  <a href="mailto:contact@cprmedia.ro" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
+                    contact@cprmedia.ro
+                  </a>
                 </div>
-                <a href="mailto:contact@cprmedia.ro" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
-                  contact@cprmedia.ro
-                </a>
-              </div>
 
-              <div className="flex items-center space-x-4 group">
-                <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
-                  <Phone size={20} />
+                <div className="flex items-center space-x-4 group">
+                  <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                    <Phone size={20} />
+                  </div>
+                  <a href="tel:+40700000000" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
+                    +40 700 000 000
+                  </a>
                 </div>
-                <a href="tel:+40700000000" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
-                  +40 700 000 000
-                </a>
               </div>
-            </div>
 
-            {/* Legal Info */}
-            <div className="pt-8 border-t border-white/5 space-y-3">
-              <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
-                <Building2 size={16} className="opacity-70" />
-                <span>CPR Media</span>
-              </div>
-              <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
-                <FileText size={16} className="opacity-70" />
-                <span>CUI: RO12345678</span>
-              </div>
-              <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
-                <Folder size={16} className="opacity-70" />
-                <span>Nr. Reg. Com.: J22/1234/2026</span>
+              {/* Legal Info */}
+              <div className="pt-8 border-t border-white/5 space-y-3">
+                <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
+                  <Building2 size={16} className="opacity-70" />
+                  <span>CPR Media</span>
+                </div>
+                <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
+                  <FileText size={16} className="opacity-70" />
+                  <span>CUI: RO12345678</span>
+                </div>
+                <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
+                  <Folder size={16} className="opacity-70" />
+                  <span>Nr. Reg. Com.: J22/1234/2026</span>
+                </div>
               </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
 
-        {/* Right Side: Form */}
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="glass-panel p-8 md:p-12 rounded-3xl self-center"
-        >
-          <form className="space-y-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="space-y-2">
-                <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
-                <input type="text" id="name" name="name" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="Numele tău" />
-              </div>
-              <div className="space-y-2">
-                <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
-                <input type="email" id="email" name="email" className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" placeholder="email@exemplu.ro" />
-              </div>
-            </div>
-            <div className="space-y-2">
-              <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
-              <textarea id="message" name="message" rows={4} className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" placeholder="Cum te putem ajuta?"></textarea>
-            </div>
-            <div className="pt-4 text-center">
-              <button type="submit" className="btn-premium w-full md:w-auto min-w-[240px]">Trimite Mesajul</button>
-            </div>
-          </form>
-        </motion.div>
+          {/* Right Side: Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="glass-panel p-8 md:p-12 rounded-3xl self-center relative overflow-hidden"
+          >
+            <AnimatePresence mode="wait">
+              {status === 'success' ? (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  className="text-center py-12 space-y-4"
+                >
+                  <div className="w-20 h-20 bg-emerald-500/20 text-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <Sparkles size={40} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">Mesaj trimis cu succes!</h3>
+                  <p className="text-slate-400 font-light">Îți mulțumim pentru interes. Te vom contacta în cel mai scurt timp posibil.</p>
+                  <button 
+                    onClick={() => setStatus('idle')}
+                    className="text-brand-accent hover:underline text-sm pt-4"
+                  >
+                    Trimite un alt mesaj
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form 
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onSubmit={handleSubmit} 
+                  className="space-y-8"
+                >
+                  {/* Honeypot */}
+                  <input type="text" name="_gotcha" style={{ display: 'none' }} />
+                  
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <label htmlFor="name" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Nume</label>
+                      <input 
+                        required
+                        type="text" 
+                        id="name" 
+                        name="name" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                        placeholder="Numele tău" 
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label htmlFor="email" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Email</label>
+                      <input 
+                        required
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                        placeholder="email@exemplu.ro" 
+                      />
+                    </div>
+                  </div>
+                  
+                  <div className="space-y-2">
+                    <label htmlFor="phone" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Telefon</label>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone" 
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
+                      placeholder="+40 700 000 000" 
+                    />
+                  </div>
+
+                  <div className="space-y-2">
+                    <label htmlFor="message" className="block text-xs font-semibold text-slate-500 uppercase tracking-widest">Mesaj</label>
+                    <textarea 
+                      required
+                      id="message" 
+                      name="message" 
+                      rows={4} 
+                      className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors resize-none placeholder:text-slate-700" 
+                      placeholder="Cum te putem ajuta?"
+                    ></textarea>
+                  </div>
+                  
+                  <div className="pt-4 text-center">
+                    <button 
+                      type="submit" 
+                      disabled={status === 'submitting'}
+                      className={`btn-premium w-full md:w-auto min-w-[240px] flex items-center justify-center space-x-2 ${status === 'submitting' ? 'opacity-70 cursor-not-allowed' : ''}`}
+                    >
+                      {status === 'submitting' ? (
+                        <>
+                          <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Se trimite...</span>
+                        </>
+                      ) : (
+                        <span>Trimite Mesajul</span>
+                      )}
+                    </button>
+                    {status === 'error' && (
+                      <p className="text-red-400 text-xs mt-4">A apărut o eroare. Te rugăm să încerci din nou sau să ne contactezi direct prin email.</p>
+                    )}
+                  </div>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </motion.div>
+        </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 // --- Component: Footer --- //
 const Footer = ({ setView }: { setView: (view: string) => void }) => (
