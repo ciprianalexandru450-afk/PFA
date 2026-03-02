@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import emailjs from '@emailjs/browser';
 import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder } from 'lucide-react';
 
 // --- Component: Header --- //
@@ -286,30 +287,36 @@ const AIAutomation = () => {
 // --- Component: Contact --- //
 const Contact = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const formRef = useRef<HTMLFormElement>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus('submitting');
 
-    const form = e.currentTarget;
-    const formData = new FormData(form);
+    if (!formRef.current) return;
+
+    // NOTE: You need to replace these placeholders with your actual EmailJS credentials
+    // Service ID, Template ID, and Public Key from your EmailJS dashboard
+    const SERVICE_ID = 'service_id_placeholder'; 
+    const TEMPLATE_ID = 'template_id_placeholder';
+    const PUBLIC_KEY = 'public_key_placeholder';
 
     try {
-      const response = await fetch("https://forminit.com/f/d964i6yxgsj", {
-        method: "POST",
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
-        }
-      });
+      const result = await emailjs.sendForm(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        formRef.current,
+        PUBLIC_KEY
+      );
 
-      if (response.ok) {
+      if (result.text === 'OK') {
         setStatus('success');
-        form.reset();
+        formRef.current.reset();
       } else {
         setStatus('error');
       }
     } catch (error) {
+      console.error('EmailJS Error:', error);
       setStatus('error');
     }
   };
@@ -403,7 +410,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">Mulțumim!</h3>
                   <p className="text-slate-400 font-light leading-relaxed">
-                    Echipa CPR Media a primit mesajul tău și te va contacta în curând.
+                    Mesajul a fost trimis către CPR Media.
                   </p>
                   <button 
                     onClick={() => setStatus('idle')}
@@ -414,8 +421,8 @@ const Contact = () => {
                 </motion.div>
               ) : (
                 <form 
-                  action="https://forminit.com/f/d964i6yxgsj"
-                  method="POST"
+                  id="contact-form"
+                  ref={formRef}
                   onSubmit={handleSubmit}
                   className="space-y-8"
                 >
@@ -429,7 +436,7 @@ const Contact = () => {
                         required
                         type="text" 
                         id="name" 
-                        name="name" 
+                        name="user_name" 
                         className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
                         placeholder="Numele tău" 
                       />
@@ -440,7 +447,7 @@ const Contact = () => {
                         required
                         type="email" 
                         id="email" 
-                        name="email" 
+                        name="user_email" 
                         className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
                         placeholder="email@exemplu.ro" 
                       />
@@ -452,7 +459,7 @@ const Contact = () => {
                     <input 
                       type="tel" 
                       id="phone" 
-                      name="phone" 
+                      name="user_phone" 
                       className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
                       placeholder="+40 700 000 000" 
                     />
