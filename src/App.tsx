@@ -3,6 +3,10 @@ import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder } from 'lucide-react';
 
+// Initialize EmailJS with your Public Key
+// Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
+emailjs.init('_NN9XD3VJxmiVFkCu');
+
 // --- Component: Header --- //
 const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -295,18 +299,15 @@ const Contact = () => {
 
     if (!formRef.current) return;
 
-    // NOTE: You need to replace these placeholders with your actual EmailJS credentials
-    // Service ID, Template ID, and Public Key from your EmailJS dashboard
-    const SERVICE_ID = 'service_id_placeholder'; 
-    const TEMPLATE_ID = 'template_id_placeholder';
-    const PUBLIC_KEY = 'public_key_placeholder';
+    // Replace these with your actual Service ID and Template ID from EmailJS
+    const SERVICE_ID = 'service_11w2h6m';
+    const TEMPLATE_ID = 'template_xg5ie4w';
 
     try {
       const result = await emailjs.sendForm(
         SERVICE_ID,
         TEMPLATE_ID,
-        formRef.current,
-        PUBLIC_KEY
+        formRef.current
       );
 
       if (result.text === 'OK') {
@@ -436,7 +437,7 @@ const Contact = () => {
                         required
                         type="text" 
                         id="name" 
-                        name="user_name" 
+                        name="name" 
                         className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
                         placeholder="Numele tău" 
                       />
@@ -447,7 +448,7 @@ const Contact = () => {
                         required
                         type="email" 
                         id="email" 
-                        name="user_email" 
+                        name="email" 
                         className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
                         placeholder="email@exemplu.ro" 
                       />
@@ -459,7 +460,7 @@ const Contact = () => {
                     <input 
                       type="tel" 
                       id="phone" 
-                      name="user_phone" 
+                      name="phone" 
                       className="w-full px-0 py-3 bg-transparent border-b border-white/10 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder:text-slate-700" 
                       placeholder="+40 700 000 000" 
                     />
