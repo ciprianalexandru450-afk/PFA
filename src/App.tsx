@@ -7,6 +7,25 @@ import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, Trending
 // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
 emailjs.init('_NN9XD3VJxmiVFkCu');
 
+// --- Component: Background --- //
+const Background = () => (
+  <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">
+    {/* Base dark layer */}
+    <div className="absolute inset-0 bg-brand-bg" />
+    
+    {/* Animated Glow Orbs */}
+    <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] rounded-full bg-brand-accent/5 blur-[120px] animate-float" />
+    <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-500/5 blur-[100px] animate-float-reverse" />
+    <div className="absolute top-[30%] right-[10%] w-[30%] h-[30%] rounded-full bg-brand-accent/3 blur-[80px] animate-float" />
+    
+    {/* Noise Texture Overlay */}
+    <div className="absolute inset-0 bg-noise mix-blend-overlay opacity-20" />
+    
+    {/* Subtle Grid Pattern */}
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+  </div>
+);
+
 // --- Component: Header --- //
 const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -102,9 +121,6 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
 // --- Component: Hero --- //
 const Hero = () => (
   <section className="relative px-4 py-24 md:py-32 text-center overflow-hidden">
-    {/* Radial lighting effect */}
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.08)_0%,transparent_70%)] pointer-events-none" />
-    
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -131,7 +147,7 @@ const Hero = () => (
 
 // --- Component: AgencyPresentation --- //
 const AgencyPresentation = () => (
-  <section id="about" className="section-spacing px-4 md:px-8 bg-brand-bg">
+  <section id="about" className="section-spacing px-4 md:px-8">
     <div className="max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-16 items-center">
         <motion.div
@@ -205,7 +221,7 @@ const AgencyPresentation = () => (
 
 // --- Component: BrandPhilosophy --- //
 const BrandPhilosophy = () => (
-  <section className="py-24 px-4 md:px-8 bg-brand-bg relative overflow-hidden">
+  <section className="py-24 px-4 md:px-8 relative overflow-hidden">
     <div className="max-w-4xl mx-auto text-center">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -251,7 +267,7 @@ const AIAutomation = () => {
   ];
 
   return (
-    <section id="ai-automation" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
+    <section id="ai-automation" className="section-spacing px-4 md:px-8 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -323,7 +339,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-spacing px-4 md:px-8 bg-brand-bg border-t border-white/5">
+    <section id="contact" className="section-spacing px-4 md:px-8 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-center">
           {/* Left Side: Text & Data */}
@@ -511,7 +527,7 @@ const Contact = () => {
 
 // --- Component: Footer --- //
 const Footer = ({ setView }: { setView: (view: string) => void }) => (
-  <footer className="px-4 py-12 md:px-8 md:py-16 bg-brand-bg border-t border-white/5">
+  <footer className="px-4 py-12 md:px-8 md:py-16 border-t border-white/5">
     <div className="max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
         <div className="text-center md:text-left">
@@ -561,7 +577,7 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: TermsPage --- //
 const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans">
     <Header setView={setView} currentView="terms" />
     <main className="py-24 px-4 md:px-8">
       <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
@@ -611,7 +627,7 @@ const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: PrivacyPage --- //
 const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans">
     <Header setView={setView} currentView="privacy" />
     <main className="py-24 px-4 md:px-8">
       <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
@@ -695,11 +711,10 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: AdsManagerPage --- //
 const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans">
     <Header setView={setView} currentView="ads" />
     <main>
       <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -792,7 +807,7 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
         </div>
       </section>
 
-      <section className="section-spacing px-4 md:px-8 bg-brand-bg/50">
+      <section className="section-spacing px-4 md:px-8 bg-white/5">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
@@ -834,11 +849,10 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: SocialMediaPage --- //
 const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans">
     <Header setView={setView} currentView="social" />
     <main>
       <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -907,11 +921,10 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: WebsitePage --- //
 const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen bg-brand-bg text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans">
     <Header setView={setView} currentView="website" />
     <main>
       <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_0%,rgba(0,209,255,0.05)_0%,transparent_70%)] pointer-events-none" />
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -1021,8 +1034,11 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-brand-bg text-slate-300 font-sans selection:bg-brand-accent/30 selection:text-white">
-      {renderView()}
+    <div className="min-h-screen text-slate-300 font-sans selection:bg-brand-accent/30 selection:text-white relative">
+      <Background />
+      <div className="relative z-10">
+        {renderView()}
+      </div>
     </div>
   );
 }
