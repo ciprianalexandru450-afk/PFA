@@ -186,6 +186,29 @@ const Background = () => {
   );
 };
 
+// --- Custom Hook: Scroll Reveal --- //
+const useScrollReveal = (view: string) => {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.reveal');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, [view]); // Re-run when view changes
+};
+
 // --- Component: Header --- //
 const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -307,16 +330,10 @@ const Hero = () => (
 
 // --- Component: AgencyPresentation --- //
 const AgencyPresentation = () => (
-  <section id="about" className="section-spacing px-4 md:px-8">
+  <section id="about" className="section-spacing px-4 md:px-8 reveal">
     <div className="max-w-7xl mx-auto">
       <div className="grid md:grid-cols-2 gap-16 items-center">
-        <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="space-y-8"
-        >
+        <div className="space-y-8">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
             Mai mult decât o agenție. <br/>
             <span className="text-brand-accent italic font-medium">Partenerul tău de creștere.</span>
@@ -325,44 +342,40 @@ const AgencyPresentation = () => (
             Nu credem în soluții predefinite. Construim strategii digitale personalizate, de la arhitectura website-ului până la campanii de Ads care scalează profitul. Combinăm analiza datelor cu creativitatea pură pentru a-ți transforma vizitatorii în clienți fideli.
           </p>
           
-          <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
-            <div className="flex items-start space-x-4">
-              <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
-                <Camera size={24} />
+          <div className="reveal-stagger space-y-6">
+            <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group reveal">
+              <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
+              <div className="flex items-start space-x-4">
+                <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
+                  <Camera size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Producție Video & Conținut On-Site</h3>
+                  <p className="text-slate-400 font-light leading-relaxed text-sm">
+                    Nu facem marketing doar din spatele ecranului. Ne deplasăm direct la locația afacerii tale pentru filmări profesionale, ședințe foto și creare de conținut adaptat pentru TikTok, Reels și YouTube. Serviciu disponibil în Iași și zonele limitrofe.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Producție Video & Conținut On-Site</h3>
-                <p className="text-slate-400 font-light leading-relaxed text-sm">
-                  Nu facem marketing doar din spatele ecranului. Ne deplasăm direct la locația afacerii tale pentru filmări profesionale, ședințe foto și creare de conținut adaptat pentru TikTok, Reels și YouTube. Serviciu disponibil în Iași și zonele limitrofe.
-                </p>
+            </div>
+
+            <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group reveal">
+              <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
+              <div className="flex items-start space-x-4">
+                <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
+                  <Palette size={24} />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Design Grafic & Materiale Printabile</h3>
+                  <p className="text-slate-400 font-light leading-relaxed text-sm">
+                    Brandul tău trebuie să arate impecabil atât online, cât și offline. Creăm identități vizuale coerente: de la cărți de vizită memorabile și bannere stradale, până la materiale promoționale care atrag atenția. Transformăm viziunea ta în realitate fizică, garantând calitate superioară și un impact vizual puternic.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group">
-            <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
-            <div className="flex items-start space-x-4">
-              <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
-                <Palette size={24} />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Design Grafic & Materiale Printabile</h3>
-                <p className="text-slate-400 font-light leading-relaxed text-sm">
-                  Brandul tău trebuie să arate impecabil atât online, cât și offline. Creăm identități vizuale coerente: de la cărți de vizită memorabile și bannere stradale, până la materiale promoționale care atrag atenția. Transformăm viziunea ta în realitate fizică, garantând calitate superioară și un impact vizual puternic.
-                </p>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="relative flex items-center h-full"
-        >
+        <div className="relative flex items-center h-full reveal">
           <div className="relative rounded-3xl overflow-hidden shadow-premium group w-full h-full">
             <img 
               src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" 
@@ -373,7 +386,7 @@ const AgencyPresentation = () => (
           </div>
           {/* Decorative element */}
           <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-accent/10 blur-3xl rounded-full" />
-        </motion.div>
+        </div>
       </div>
     </div>
   </section>
@@ -381,14 +394,9 @@ const AgencyPresentation = () => (
 
 // --- Component: BrandPhilosophy --- //
 const BrandPhilosophy = () => (
-  <section className="py-24 px-4 md:px-8 relative overflow-hidden">
+  <section className="py-24 px-4 md:px-8 relative overflow-hidden reveal">
     <div className="max-w-4xl mx-auto text-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
+      <div>
         <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight font-serif">
           Nu doar trafic. Rezultate reale.
         </h2>
@@ -396,7 +404,7 @@ const BrandPhilosophy = () => (
           Marketing-ul digital nu este despre a fi vizibil peste tot, ci despre a fi prezent acolo unde contează. Construim strategii care conectează brandul tău cu oamenii care au nevoie de el, transformând click-urile în relații durabile și profit.
         </p>
         <div className="w-24 h-1 bg-brand-accent mx-auto rounded-full" />
-      </motion.div>
+      </div>
     </div>
   </section>
 );
@@ -427,36 +435,26 @@ const AIAutomation = () => {
   ];
 
   return (
-    <section id="ai-automation" className="section-spacing px-4 md:px-8 border-t border-white/5">
+    <section id="ai-automation" className="section-spacing px-4 md:px-8 border-t border-white/5 reveal">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
-        >
+        <div className="text-center mb-16 reveal">
           <h2 className="text-4xl md:text-5xl font-bold tracking-tight font-serif">
             Eficiență Digitală prin Inteligență Artificială
           </h2>
-        </motion.div>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 reveal-stagger">
           {pillars.map((pillar, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="p-10 rounded-3xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-all duration-300 group"
+              className="p-10 rounded-3xl bg-white/[0.03] border border-white/5 hover:bg-white/[0.05] transition-all duration-300 group reveal"
             >
               <div className="mb-6 p-4 w-fit rounded-2xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
                 {pillar.icon}
               </div>
               <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{pillar.title}</h3>
               <p className="text-slate-400 font-light leading-relaxed">{pillar.description}</p>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>
@@ -499,17 +497,11 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-spacing px-4 md:px-8 border-t border-white/5">
+    <section id="contact" className="section-spacing px-4 md:px-8 border-t border-white/5 reveal">
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:items-center">
           {/* Left Side: Text & Data */}
-          <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="space-y-12"
-          >
+          <div className="space-y-12 reveal">
             <div>
               <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 tracking-tight font-serif leading-tight text-white">
                 Hai să discutăm <br/>proiectul tău.
@@ -564,16 +556,10 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Right Side: Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="glass-panel p-8 md:p-12 rounded-3xl self-center relative overflow-hidden"
-          >
+          <div className="glass-panel p-8 md:p-12 rounded-3xl self-center relative overflow-hidden reveal">
             <AnimatePresence mode="wait">
               {status === 'success' ? (
                 <motion.div
@@ -678,7 +664,7 @@ const Contact = () => {
                 </form>
               )}
             </AnimatePresence>
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>
@@ -739,8 +725,8 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
 const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
   <div className="min-h-screen text-slate-300 font-sans">
     <Header setView={setView} currentView="terms" />
-    <main className="py-24 px-4 md:px-8">
-      <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
+    <main className="py-24 px-4 md:px-8 reveal">
+      <div className="max-w-4xl mx-auto prose prose-invert prose-slate reveal">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Termeni și Condiții</h1>
         
         <div className="space-y-8 text-slate-400 font-light leading-relaxed">
@@ -789,8 +775,8 @@ const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
 const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
   <div className="min-h-screen text-slate-300 font-sans">
     <Header setView={setView} currentView="privacy" />
-    <main className="py-24 px-4 md:px-8">
-      <div className="max-w-4xl mx-auto prose prose-invert prose-slate">
+    <main className="py-24 px-4 md:px-8 reveal">
+      <div className="max-w-4xl mx-auto prose prose-invert prose-slate reveal">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Politica de Confidențialitate (GDPR)</h1>
         
         <div className="space-y-8 text-slate-400 font-light leading-relaxed">
@@ -889,15 +875,10 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
         </motion.div>
       </section>
 
-      <section className="section-spacing px-4 md:px-8">
+      <section className="section-spacing px-4 md:px-8 reveal">
         <div className="max-w-7xl mx-auto space-y-24">
           {/* Meta & Google Ads */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-stretch"
-          >
+          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
             <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Meta & Google Ads</h2>
               <p className="text-slate-400 font-light leading-relaxed mb-8">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
@@ -926,15 +907,10 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
               <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop" alt="Ads strategy team" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </motion.div>
+          </div>
 
           {/* TikTok Ads */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-stretch"
-          >
+          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
             <div className="relative group overflow-hidden rounded-3xl md:order-2">
               <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" alt="TikTok Ads content" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -963,41 +939,32 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      <section className="section-spacing px-4 md:px-8 bg-white/5">
+      <section className="section-spacing px-4 md:px-8 bg-white/5 reveal">
         <div className="max-w-7xl mx-auto">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
+          <div className="text-center mb-16 reveal">
             <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Procesul Nostru</h2>
             <p className="text-slate-500 font-light tracking-wide">Claritate și eficiență în fiecare etapă.</p>
-          </motion.div>
-          <div className="grid sm:grid-cols-3 gap-8">
+          </div>
+          <div className="grid sm:grid-cols-3 gap-8 reveal-stagger">
             {[
-              { icon: <BrainCircuit size={32} />, step: "1. Strategie", desc: "Analizăm piața și obiectivele pentru a crea un plan de acțiune." },
+              { icon: <BrainCircuit size={32} />, step: "1. Strategie", desc: "Analizăm piața și obiectivele pentru a crea un plan de acciune." },
               { icon: <Zap size={32} />, step: "2. Implementare", desc: "Lansăm campaniile și monitorizăm performanța inițială." },
               { icon: <Filter size={32} />, step: "3. Optimizare", desc: "Ajustăm constant campaniile pentru a îmbunătăți rezultatele." }
             ].map((item, i) => (
-              <motion.div 
+              <div 
                 key={i}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="glass-panel p-10 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300"
+                className="glass-panel p-10 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300 reveal"
               >
                 <div className="mb-6 p-4 w-fit mx-auto rounded-2xl bg-white/5 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
                   {item.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{item.step}</h3>
                 <p className="text-slate-400 font-light leading-relaxed">{item.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -1027,14 +994,9 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
         </motion.div>
       </section>
 
-      <section className="section-spacing px-4 md:px-8">
+      <section className="section-spacing px-4 md:px-8 reveal">
         <div className="max-w-7xl mx-auto space-y-24">
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-stretch"
-          >
+          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
             <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
               <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
                 <Camera size={28} className="text-brand-accent" />
@@ -1046,14 +1008,9 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
               <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=1000" alt="Professional video editing and production" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-stretch"
-          >
+          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
             <div className="relative group overflow-hidden rounded-3xl md:order-2">
               <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000" alt="Digital marketing strategy and planning" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -1071,7 +1028,7 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
                 <p className="text-sm text-slate-500 font-light leading-relaxed">Adaptăm formatele pentru Facebook, Instagram, TikTok și YouTube, asigurând relevanță și impact maxim.</p>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>
@@ -1099,15 +1056,10 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
         </motion.div>
       </section>
 
-      <section className="section-spacing px-4 md:px-8">
+      <section className="section-spacing px-4 md:px-8 reveal">
         <div className="max-w-7xl mx-auto space-y-24">
           {/* Custom Design & UI/UX */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-stretch"
-          >
+          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
             <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
               <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
                 <Palette size={28} className="text-brand-accent" />
@@ -1119,15 +1071,10 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
               <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1000" alt="Custom UI/UX Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </motion.div>
+          </div>
 
           {/* Performance & Speed */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-stretch"
-          >
+          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
             <div className="relative group overflow-hidden rounded-3xl md:order-2">
               <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" alt="Website Performance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -1139,15 +1086,10 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
               <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Performance & Speed</h2>
               <p className="text-slate-400 font-light leading-relaxed">Focus pe viteza de încărcare, optimizarea codului și SEO tehnic. Un site rapid este esențial pentru a converti vizitatorii în clienți fideli.</p>
             </div>
-          </motion.div>
+          </div>
 
           {/* Responsive & Mobile First */}
-          <motion.div 
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="grid md:grid-cols-2 gap-12 items-stretch"
-          >
+          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
             <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
               <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
                 <Smartphone size={28} className="text-brand-accent" />
@@ -1159,7 +1101,7 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
               <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" alt="Responsive Web Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
               <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>
@@ -1174,6 +1116,8 @@ export default function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [view]);
+
+  useScrollReveal(view);
 
   const renderView = () => {
     switch (view) {
