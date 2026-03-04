@@ -30,13 +30,26 @@ const Background = () => {
       vx: number;
       vy: number;
       size: number;
+      color: string;
+      rgb: string;
 
       constructor() {
         this.x = Math.random() * canvas!.width;
         this.y = Math.random() * canvas!.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.size = Math.random() * 2;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.size = Math.random() * 2 + 0.5;
+        
+        // Color distribution: 40% White, 30% Blue, 30% Orange
+        const rand = Math.random();
+        if (rand < 0.4) {
+          this.rgb = '255, 255, 255';
+        } else if (rand < 0.7) {
+          this.rgb = '0, 209, 255'; // Electric Blue
+        } else {
+          this.rgb = '255, 120, 0'; // Solar Orange
+        }
+        this.color = `rgba(${this.rgb}, 0.5)`;
       }
 
       update() {
@@ -49,10 +62,14 @@ const Background = () => {
 
       draw() {
         if (!ctx) return;
-        ctx.fillStyle = 'rgba(0, 209, 255, 0.3)';
+        ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
         ctx.fill();
+        
+        // Add a small glow to the particles
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = this.color;
       }
     }
 
@@ -67,6 +84,9 @@ const Background = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      // Reset shadow for lines
+      ctx.shadowBlur = 0;
 
       particles.forEach((p, i) => {
         p.update();
@@ -79,9 +99,10 @@ const Background = () => {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectionDistance) {
-            const opacity = 1 - dist / connectionDistance;
-            ctx.strokeStyle = `rgba(0, 209, 255, ${opacity * 0.15})`;
-            ctx.lineWidth = 0.5;
+            const opacity = (1 - dist / connectionDistance) * 0.25;
+            // Use a neutral light color for connections to keep it clean
+            ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
+            ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(p.x, p.y);
             ctx.lineTo(p2.x, p2.y);
