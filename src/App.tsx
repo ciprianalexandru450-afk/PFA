@@ -30,7 +30,6 @@ const Background = () => {
       vx: number;
       vy: number;
       size: number;
-      color: string;
       rgb: string;
 
       constructor() {
@@ -49,7 +48,6 @@ const Background = () => {
         } else {
           this.rgb = '255, 120, 0'; // Solar Orange
         }
-        this.color = `rgba(${this.rgb}, 0.5)`;
       }
 
       update() {
@@ -58,18 +56,6 @@ const Background = () => {
 
         if (this.x < 0 || this.x > canvas!.width) this.vx *= -1;
         if (this.y < 0 || this.y > canvas!.height) this.vy *= -1;
-      }
-
-      draw() {
-        if (!ctx) return;
-        ctx.fillStyle = this.color;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
-        
-        // Add a small glow to the particles
-        ctx.shadowBlur = 4;
-        ctx.shadowColor = this.color;
       }
     }
 
@@ -84,32 +70,72 @@ const Background = () => {
 
     const animate = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      
-      // Reset shadow for lines
-      ctx.shadowBlur = 0;
+      const connDistSq = connectionDistance * connectionDistance;
 
-      particles.forEach((p, i) => {
-        p.update();
-        p.draw();
+      // Update and draw connections
+      ctx.lineWidth = 0.6;
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        p1.update();
 
         for (let j = i + 1; j < particles.length; j++) {
           const p2 = particles[j];
-          const dx = p.x - p2.x;
-          const dy = p.y - p2.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
+          const dx = p1.x - p2.x;
+          const dy = p1.y - p2.y;
+          const distSq = dx * dx + dy * dy;
 
-          if (dist < connectionDistance) {
-            const opacity = (1 - dist / connectionDistance) * 0.25;
-            // Use a neutral light color for connections to keep it clean
+          if (distSq < connDistSq) {
+            const opacity = (1 - Math.sqrt(distSq) / connectionDistance) * 0.25;
             ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
-            ctx.lineWidth = 0.6;
             ctx.beginPath();
-            ctx.moveTo(p.x, p.y);
+            ctx.moveTo(p1.x, p1.y);
             ctx.lineTo(p2.x, p2.y);
             ctx.stroke();
           }
         }
-      });
+      }
+
+      // Batch draw particles by color
+      const whiteParticles: Particle[] = [];
+      const blueParticles: Particle[] = [];
+      const orangeParticles: Particle[] = [];
+
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        if (p.rgb === '255, 255, 255') whiteParticles.push(p);
+        else if (p.rgb === '0, 209, 255') blueParticles.push(p);
+        else orangeParticles.push(p);
+      }
+
+      // Draw White
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.beginPath();
+      for (let i = 0; i < whiteParticles.length; i++) {
+        const p = whiteParticles[i];
+        ctx.moveTo(p.x + p.size, p.y);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      }
+      ctx.fill();
+
+      // Draw Blue
+      ctx.fillStyle = 'rgba(0, 209, 255, 0.5)';
+      ctx.beginPath();
+      for (let i = 0; i < blueParticles.length; i++) {
+        const p = blueParticles[i];
+        ctx.moveTo(p.x + p.size, p.y);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      }
+      ctx.fill();
+
+      // Draw Orange
+      ctx.fillStyle = 'rgba(255, 120, 0, 0.5)';
+      ctx.beginPath();
+      for (let i = 0; i < orangeParticles.length; i++) {
+        const p = orangeParticles[i];
+        ctx.moveTo(p.x + p.size, p.y);
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      }
+      ctx.fill();
 
       animationFrameId = requestAnimationFrame(animate);
     };
