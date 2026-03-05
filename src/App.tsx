@@ -511,10 +511,10 @@ const AgencyPresentation = () => (
       </div>
 
       {/* Services Grid (No Cards) */}
-      <div className="grid md:grid-cols-2 gap-24 md:gap-32 reveal-stagger">
+      <div className="grid md:grid-cols-2 gap-24 md:gap-32 reveal-stagger items-start">
         {/* Video Service */}
         <div className="relative group reveal">
-          <div className="relative z-10 flex flex-col items-center md:items-start">
+          <div className="relative z-10 flex flex-col items-start">
             {/* Icon with Neon Glow */}
             <div 
               className="mb-12 text-[#00f2fe] transition-all duration-500 transform group-hover:scale-110"
@@ -526,7 +526,7 @@ const AgencyPresentation = () => (
             {/* Connecting Vector Line */}
             <div className="absolute top-12 left-12 w-48 h-32 border-l border-b border-white/10 rounded-bl-[3rem] -z-10 hidden md:block" />
             
-            <div className="text-center md:text-left">
+            <div className="text-left">
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight relative inline-block">
                 Producție Video
                 <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-[#00f2fe]/40 to-transparent" />
@@ -540,7 +540,7 @@ const AgencyPresentation = () => (
 
         {/* Design Service */}
         <div className="relative group reveal">
-          <div className="relative z-10 flex flex-col items-center md:items-start">
+          <div className="relative z-10 flex flex-col items-start">
             {/* Icon with Neon Glow */}
             <div 
               className="mb-12 text-[#4facfe] transition-all duration-500 transform group-hover:scale-110"
@@ -552,7 +552,7 @@ const AgencyPresentation = () => (
             {/* Connecting Vector Line */}
             <div className="absolute top-12 left-12 w-48 h-32 border-l border-b border-white/10 rounded-bl-[3rem] -z-10 hidden md:block" />
 
-            <div className="text-center md:text-left">
+            <div className="text-left">
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight relative inline-block">
                 Design Grafic
                 <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-[#4facfe]/40 to-transparent" />
