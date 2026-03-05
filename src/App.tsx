@@ -231,9 +231,9 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
   };
 
   const services = [
-    { name: 'SEO & Content', view: 'social' },
-    { name: 'Performance Marketing', view: 'ads' },
-    { name: 'Web Development', view: 'website' },
+    { name: 'SEO & Conținut', view: 'social' },
+    { name: 'Marketing Performanță', view: 'ads' },
+    { name: 'Dezvoltare Web', view: 'website' },
   ];
 
   const navLinks = [
