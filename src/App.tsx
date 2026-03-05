@@ -419,7 +419,7 @@ const Hero = () => (
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none z-0" />
 
     <div className="max-w-7xl mx-auto w-full relative z-10">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="grid grid-cols-[1.2fr_0.8fr] lg:grid-cols-2 gap-4 md:gap-12 items-center">
         {/* Left Side: Content */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
@@ -427,40 +427,40 @@ const Hero = () => (
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="text-left"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1] font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+          <h1 className="text-xl sm:text-2xl md:text-7xl font-bold tracking-tight leading-tight font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
             Strategii digitale care transformă vizibilitatea în profit.
           </h1>
-          <p className="mt-8 text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
+          <p className="mt-2 md:mt-8 text-[10px] sm:text-xs md:text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
             Execuție precisă pentru SEO, Ads și Web. Fără promisiuni inutile, doar creștere sustenabilă.
           </p>
         </motion.div>
 
-        {/* Right Side: Glassmorphism Card */}
+        {/* Right Side: Process List (No Card on Mobile) */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           className="lg:justify-self-end w-full max-w-md"
         >
-          <div className="glass-panel p-8 rounded-[2rem] border border-white/10 shadow-2xl relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
-            <h3 className="text-xl font-bold text-white mb-8 relative z-10 flex items-center">
+          <div className="lg:glass-panel lg:p-8 lg:rounded-[2rem] lg:border lg:border-white/10 lg:shadow-2xl relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50 hidden lg:block" />
+            <h3 className="text-xl font-bold text-white mb-8 relative z-10 hidden lg:flex items-center">
               <Zap size={20} className="mr-2 text-brand-accent" />
               Procesul nostru
             </h3>
-            <ul className="space-y-6 relative z-10">
+            <ul className="space-y-3 md:space-y-6 relative z-10">
               {[
-                { title: "Audit & Strategie", desc: "Analiză profundă și planificare." },
-                { title: "Implementare Proiect", desc: "Execuție tehnică impecabilă." },
-                { title: "Optimizare Continuă", desc: "Monitorizare și scalare profit." }
+                { title: "Audit", desc: "Analiză profundă și planificare." },
+                { title: "Implementare", desc: "Execuție tehnică impecabilă." },
+                { title: "Optimizare", desc: "Monitorizare și scalare profit." }
               ].map((item, idx) => (
-                <li key={idx} className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent text-sm font-bold shrink-0">
+                <li key={idx} className="flex items-center space-x-3 md:space-x-4">
+                  <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent text-[10px] md:text-sm font-bold shrink-0 border border-brand-accent/20">
                     {idx + 1}
                   </div>
                   <div>
-                    <h4 className="text-white font-medium">{item.title}</h4>
-                    <p className="text-sm text-slate-500 font-light">{item.desc}</p>
+                    <h4 className="text-white font-medium text-[10px] sm:text-xs md:text-base">{item.title}</h4>
+                    <p className="text-sm text-slate-500 font-light hidden md:block">{item.desc}</p>
                   </div>
                 </li>
               ))}
