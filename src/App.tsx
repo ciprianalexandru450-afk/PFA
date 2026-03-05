@@ -498,7 +498,7 @@ const AgencyPresentation = () => (
 
     <div className="max-w-7xl mx-auto relative z-10">
       {/* About Section */}
-      <div className="max-w-4xl mx-auto text-center mb-24 reveal">
+      <div className="max-w-4xl mx-auto text-center mb-32 reveal">
         <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight mb-8">
           Mai mult decât o agenție. <br/>
           <span className="font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#00f2fe] to-[#4facfe]">
@@ -506,37 +506,61 @@ const AgencyPresentation = () => (
           </span>
         </h2>
         <p className="text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
-          Nu credem în soluții predefinite. Construim strategii digitale personalizate, de la arhitectura website-ului până la campanii de Ads care scalează profitul. Combinăm analiza datelor cu creativitatea pură pentru a-ți transforma vizitatorii în clienți fideli.
+          Nu credem în soluții predefinite. Construim strategii digitale personalizate, de la arhitectura website-ului până la campanii de Ads care scalează profitul.
         </p>
       </div>
 
-      {/* Services Bento Grid */}
-      <div className="grid md:grid-cols-2 gap-8 reveal-stagger">
+      {/* Services Grid (No Cards) */}
+      <div className="grid md:grid-cols-2 gap-24 md:gap-32 reveal-stagger">
         {/* Video Service */}
-        <div className="p-10 rounded-[2.5rem] border border-white/10 bg-black relative overflow-hidden group reveal">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative z-10">
-            <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 flex items-center justify-center text-[#00f2fe] mb-8 shadow-[0_0_20px_rgba(0,242,254,0.3)] group-hover:shadow-[0_0_30px_rgba(0,242,254,0.5)] transition-all duration-500">
-              <Camera size={28} />
+        <div className="relative group reveal">
+          <div className="relative z-10 flex flex-col items-center md:items-start">
+            {/* Icon with Neon Glow */}
+            <div 
+              className="mb-12 text-[#00f2fe] transition-all duration-500 transform group-hover:scale-110"
+              style={{ filter: 'drop-shadow(0 0 20px rgba(0, 242, 254, 0.8))' }}
+            >
+              <Camera size={96} strokeWidth={1} />
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Producție Video & Conținut On-Site</h3>
-            <p className="text-slate-400 font-light leading-relaxed text-lg">
-              Nu facem marketing doar din spatele ecranului. Ne deplasăm direct la locația afacerii tale pentru filmări profesionale, ședințe foto și creare de conținut adaptat pentru TikTok, Reels și YouTube. Serviciu disponibil în Iași și zonele limitrofe.
-            </p>
+            
+            {/* Connecting Vector Line */}
+            <div className="absolute top-12 left-12 w-48 h-32 border-l border-b border-white/10 rounded-bl-[3rem] -z-10 hidden md:block" />
+            
+            <div className="text-center md:text-left">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight relative inline-block">
+                Producție Video
+                <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-[#00f2fe]/40 to-transparent" />
+              </h3>
+              <p className="text-slate-400 font-light leading-relaxed text-lg max-w-xs">
+                Conținut vizual de impact. Filmări profesionale și editare adaptată trendurilor Social Media.
+              </p>
+            </div>
           </div>
         </div>
 
         {/* Design Service */}
-        <div className="p-10 rounded-[2.5rem] border border-white/10 bg-black relative overflow-hidden group reveal">
-          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="relative z-10">
-            <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 flex items-center justify-center text-[#4facfe] mb-8 shadow-[0_0_20px_rgba(79,172,254,0.3)] group-hover:shadow-[0_0_30px_rgba(79,172,254,0.5)] transition-all duration-500">
-              <Palette size={28} />
+        <div className="relative group reveal">
+          <div className="relative z-10 flex flex-col items-center md:items-start">
+            {/* Icon with Neon Glow */}
+            <div 
+              className="mb-12 text-[#4facfe] transition-all duration-500 transform group-hover:scale-110"
+              style={{ filter: 'drop-shadow(0 0 20px rgba(79, 172, 254, 0.8))' }}
+            >
+              <Palette size={96} strokeWidth={1} />
             </div>
-            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Design Grafic & Materiale Printabile</h3>
-            <p className="text-slate-400 font-light leading-relaxed text-lg">
-              Brandul tău trebuie să arate impecabil atât online, cât și offline. Creăm identități vizuale coerente: de la cărți de vizită memorabile și bannere stradale, până la materiale promoționale care atrag atenția. Transformăm viziunea ta în realitate fizică, garantând calitate superioară și un impact vizual puternic.
-            </p>
+
+            {/* Connecting Vector Line */}
+            <div className="absolute top-12 left-12 w-48 h-32 border-l border-b border-white/10 rounded-bl-[3rem] -z-10 hidden md:block" />
+
+            <div className="text-center md:text-left">
+              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight relative inline-block">
+                Design Grafic
+                <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-[#4facfe]/40 to-transparent" />
+              </h3>
+              <p className="text-slate-400 font-light leading-relaxed text-lg max-w-xs">
+                Identitate vizuală memorabilă. Design modern care transformă viziunea brandului tău în realitate.
+              </p>
+            </div>
           </div>
         </div>
       </div>
