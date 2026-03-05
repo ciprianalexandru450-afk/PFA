@@ -1043,118 +1043,148 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: AdsManagerPage --- //
 const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans relative">
     <Header setView={setView} currentView="ads" />
-    <main>
-      <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10"
-        >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 tracking-tight leading-tight">
-            Management Anunțuri. <br/>Performanță Maximă.
-          </h1>
-          <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
-            Transformăm bugetele de publicitate în rezultate măsurabile. Atinge-ți audiența ideală și domină piața cu strategii de ads create pentru a converti.
-          </p>
-        </motion.div>
-      </section>
+    
+    <main className="relative z-10">
+      {/* Hero Section */}
+      <section className="relative px-4 pt-48 pb-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left"
+          >
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 tracking-tight leading-[1.1]">
+              Management Anunțuri. <br/>Performanță Maximă.
+            </h1>
+            <p className="mt-8 max-w-xl text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
+              Transformăm bugetele de publicitate în rezultate măsurabile. Atinge-ți audiența ideală și domină piața cu strategii de ads create pentru a converti.
+            </p>
+          </motion.div>
 
-      <section className="section-spacing px-4 md:px-8 reveal">
-        <div className="max-w-7xl mx-auto space-y-24">
-          {/* Meta & Google Ads */}
-          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
-            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Meta & Google Ads</h2>
-              <p className="text-slate-400 font-light leading-relaxed mb-8">De la notorietate la conversie, acoperim cele mai importante platforme. Creăm campanii personalizate care aduc clienți, nu doar click-uri.</p>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 rounded-lg bg-brand-accent/10">
-                    <Target className="w-6 h-6 text-brand-accent" />
+          {/* Floating ROI Chart (Abstract Visual) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative w-full max-w-md mx-auto aspect-square flex items-center justify-center">
+              <div className="absolute inset-0 border border-white/5 rounded-full animate-pulse" />
+              <div className="relative z-10 p-12 w-full">
+                <div className="space-y-6">
+                  <div className="flex items-center justify-between">
+                    <p className="text-xs uppercase tracking-widest text-[#00f2fe]">ROAS</p>
+                    <p className="text-2xl font-serif text-white">8.5x</p>
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Targetare Avansată</h3>
-                    <p className="text-sm text-slate-500 font-light">Identificăm și atragem exact publicul de care ai nevoie.</p>
+                  <div className="h-2 w-full bg-white/5 rounded-full overflow-hidden">
+                    <motion.div 
+                      initial={{ width: 0 }}
+                      animate={{ width: '85%' }}
+                      transition={{ duration: 1.5, delay: 0.5 }}
+                      className="h-full bg-gradient-to-r from-[#00f2fe] to-[#4facfe]"
+                    />
                   </div>
-                </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 rounded-lg bg-brand-accent/10">
-                    <TrendingUp className="w-6 h-6 text-brand-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Maximizare ROI</h3>
-                    <p className="text-sm text-slate-500 font-light">Optimizăm fiecare aspect al campaniilor pentru cel mai bun randament.</p>
+                  <div className="grid grid-cols-2 gap-4 pt-4">
+                    <div className="p-4 border border-white/10 rounded-2xl">
+                      <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Conversions</p>
+                      <p className="text-xl font-serif text-white">+1,240</p>
+                    </div>
+                    <div className="p-4 border border-white/10 rounded-2xl">
+                      <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">CPA</p>
+                      <p className="text-xl font-serif text-white">-32%</p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-            <div className="relative group overflow-hidden rounded-3xl">
-              <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1920&auto=format&fit=crop" alt="Ads strategy team" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Content Sections */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-48 pb-48">
+        
+        {/* Section 1: Meta & Google Ads */}
+        <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          <div className="space-y-8">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#00f2fe]/20 text-[#00f2fe] text-xs font-medium tracking-widest uppercase">
+              Omnichannel Ads
             </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              Meta & Google Ads <br/>Strategy
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Targetare avansată și optimizare continuă pentru a atrage exact publicul de care ai nevoie. Maximizăm ROI prin date, nu prin presupuneri.
+            </p>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#00f2fe] to-transparent" />
           </div>
 
-          {/* TikTok Ads */}
-          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
-            <div className="relative group overflow-hidden rounded-3xl md:order-2">
-              <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=1000" alt="TikTok Ads content" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center md:order-1">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">TikTok Ads</h2>
-              <p className="text-slate-400 font-light leading-relaxed mb-8">Expertiză în ecosistemul TikTok. Ne concentrăm pe strategii de content nativ și campanii de tip Spark Ads care capitalizează pe trendurile actuale. Transformăm limbajul specific platformei în rezultate măsurabile de business prin targetare comportamentală avansată.</p>
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 rounded-lg bg-brand-accent/10">
-                    <ClipboardCheck className="w-6 h-6 text-brand-accent" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Pixel TikTok & Conversii</h3>
-                    <p className="text-sm text-slate-500 font-light">Implementăm Pixelul TikTok și monitorizăm evenimentele de conversie pentru a măsura cu precizie impactul campaniilor.</p>
-                  </div>
+          {/* Wireframe Mockup: Ad Manager */}
+          <div className="relative flex justify-center">
+            <div className="w-full max-w-lg aspect-video border border-white/10 rounded-2xl p-6 relative overflow-hidden bg-black/20 backdrop-blur-sm">
+              <div className="flex items-center justify-between mb-8">
+                <div className="flex space-x-2">
+                  <div className="w-3 h-3 rounded-full bg-[#00f2fe]" />
+                  <div className="w-24 h-3 bg-white/10 rounded-full" />
                 </div>
-                <div className="flex items-start space-x-4">
-                  <div className="p-2 rounded-lg bg-brand-accent/10">
-                    <Sparkles className="w-6 h-6 text-brand-accent" />
+                <div className="w-12 h-3 bg-white/10 rounded-full" />
+              </div>
+              <div className="space-y-4">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="flex items-center space-x-4">
+                    <div className="w-8 h-8 rounded-lg bg-white/5" />
+                    <div className="flex-1 h-2 bg-white/5 rounded-full" />
+                    <div className="w-16 h-2 bg-[#00f2fe]/20 rounded-full" />
                   </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-white mb-1">Spark Ads & Content Nativ</h3>
-                    <p className="text-sm text-slate-500 font-light">Capitalizăm pe trenduri cu Spark Ads și conținut care se simte nativ pe platformă, generând engagement autentic.</p>
-                  </div>
-                </div>
+                ))}
+              </div>
+              {/* Floating UI */}
+              <div className="absolute bottom-6 right-6 p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
+                <BarChart3 size={24} className="text-[#00f2fe] mb-2" />
+                <p className="text-[10px] font-bold text-white">Real-time Optimization</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
 
-      <section className="section-spacing px-4 md:px-8 bg-white/5 reveal">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16 reveal">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 tracking-tight">Procesul Nostru</h2>
-            <p className="text-slate-500 font-light tracking-wide">Claritate și eficiență în fiecare etapă.</p>
-          </div>
-          <div className="grid sm:grid-cols-3 gap-8 reveal-stagger">
-            {[
-              { icon: <BrainCircuit size={32} />, step: "1. Strategie", desc: "Analizăm piața și obiectivele pentru a crea un plan de acciune." },
-              { icon: <Zap size={32} />, step: "2. Implementare", desc: "Lansăm campaniile și monitorizăm performanța inițială." },
-              { icon: <Filter size={32} />, step: "3. Optimizare", desc: "Ajustăm constant campaniile pentru a îmbunătăți rezultatele." }
-            ].map((item, i) => (
-              <div 
-                key={i}
-                className="glass-panel p-10 rounded-3xl text-center group hover:-translate-y-2 transition-all duration-300 reveal"
-              >
-                <div className="mb-6 p-4 w-fit mx-auto rounded-2xl bg-white/5 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
-                  {item.icon}
+        {/* Section 2: TikTok Ads */}
+        <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          {/* Wireframe Mockup: TikTok Interface */}
+          <div className="relative flex justify-center md:order-2">
+            <div className="w-64 h-[500px] border border-white/10 rounded-[3rem] p-4 relative overflow-hidden bg-black/20 backdrop-blur-sm">
+              <div className="absolute inset-0 flex flex-col justify-end p-8 space-y-4">
+                <div className="h-4 w-3/4 bg-white/10 rounded-full" />
+                <div className="h-4 w-1/2 bg-white/10 rounded-full" />
+                <div className="h-12 w-full bg-[#4facfe] rounded-xl flex items-center justify-center">
+                  <p className="text-xs font-bold text-white">Shop Now</p>
                 </div>
-                <h3 className="text-2xl font-bold text-white mb-4 tracking-tight">{item.step}</h3>
-                <p className="text-slate-400 font-light leading-relaxed">{item.desc}</p>
               </div>
-            ))}
+              <div className="absolute top-1/2 right-4 flex flex-col space-y-6">
+                <div className="w-10 h-10 rounded-full bg-white/10" />
+                <div className="w-10 h-10 rounded-full bg-white/10" />
+                <div className="w-10 h-10 rounded-full bg-white/10" />
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-8 md:order-1">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
+              Nativ & Viral
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              TikTok Ads & <br/>Spark Campaigns
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Capitalizăm pe trenduri cu conținut care se simte nativ. Transformăm limbajul platformei în rezultate măsurabile de business.
+            </p>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
           </div>
         </div>
-      </section>
+
+      </div>
     </main>
     <Footer setView={setView} />
   </div>
@@ -1162,134 +1192,291 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
 
 // --- Page: SocialMediaPage --- //
 const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans relative">
     <Header setView={setView} currentView="social" />
-    <main>
-      <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10"
-        >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 tracking-tight leading-tight">
-            Social Media <br/>Content & Strategy
-          </h1>
-          <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
-            Creăm conținut care captivează și construiește comunități. De la producție video la strategie vizuală, suntem partenerul tău creativ.
-          </p>
-        </motion.div>
+    
+    <main className="relative z-10">
+      {/* Hero Section */}
+      <section className="relative px-4 pt-48 pb-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left"
+          >
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 tracking-tight leading-[1.1]">
+              Social Media <br/>Content & Strategy
+            </h1>
+            <p className="mt-8 max-w-xl text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
+              Creăm conținut care captivează și construiește comunități. De la producție video la strategie vizuală, suntem partenerul tău creativ.
+            </p>
+          </motion.div>
+
+          {/* Floating Analytics Card (Abstract Visual) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, rotate: 5 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative w-full max-w-md mx-auto aspect-square flex items-center justify-center">
+              {/* Abstract Lines & Numbers */}
+              <div className="absolute inset-0 border border-white/5 rounded-[3rem] rotate-6" />
+              <div className="absolute inset-0 border border-[#00f2fe]/10 rounded-[3rem] -rotate-3" />
+              
+              <div className="relative z-10 space-y-8 w-full px-12">
+                <div className="flex items-end justify-between border-b border-white/10 pb-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-[#00f2fe] mb-1">Engagement Rate</p>
+                    <p className="text-4xl font-serif text-white">12.4%</p>
+                  </div>
+                  <div className="h-12 w-24 flex items-end space-x-1">
+                    {[40, 70, 50, 90, 60, 85].map((h, i) => (
+                      <motion.div 
+                        key={i}
+                        initial={{ height: 0 }}
+                        animate={{ height: `${h}%` }}
+                        transition={{ duration: 1, delay: 0.5 + i * 0.1 }}
+                        className="flex-1 bg-gradient-to-t from-[#00f2fe] to-transparent rounded-t-sm"
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <div className="flex items-end justify-between border-b border-white/10 pb-4">
+                  <div>
+                    <p className="text-xs uppercase tracking-widest text-[#4facfe] mb-1">Reach Growth</p>
+                    <p className="text-4xl font-serif text-white">+240%</p>
+                  </div>
+                  <div className="text-[#4facfe]">
+                    <TrendingUp size={32} />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      <section className="section-spacing px-4 md:px-8 reveal">
-        <div className="max-w-7xl mx-auto space-y-24">
-          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
-            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
-              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
-                <Camera size={28} className="text-brand-accent" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Content Creation & Video Production</h2>
-              <p className="text-slate-400 font-light leading-relaxed">Descrie procesul de filmare la nevoie și editare profesională pentru YouTube (Long & Shorts), TikTok, și Reels (FB/IG).</p>
+      {/* Content Sections */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-48 pb-48">
+        
+        {/* Section 1: Content Creation */}
+        <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          <div className="space-y-8">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#00f2fe]/20 text-[#00f2fe] text-xs font-medium tracking-widest uppercase">
+              Producție Video
             </div>
-            <div className="relative group overflow-hidden rounded-3xl">
-              <img src="https://images.unsplash.com/photo-1492724441997-5dc865305da7?auto=format&fit=crop&q=80&w=1000" alt="Professional video editing and production" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              Content Creation & <br/>Video Production
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Filmări profesionale și editare adaptată pentru YouTube, TikTok și Reels. Transformăm ideile în conținut viral care rezonează cu audiența ta.
+            </p>
+            {/* Neon Line Connector */}
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#00f2fe] to-transparent" />
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
-            <div className="relative group overflow-hidden rounded-3xl md:order-2">
-              <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=1000" alt="Digital marketing strategy and planning" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center md:order-1">
-              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
-                <LayoutGrid size={28} className="text-brand-accent" />
+          {/* Wireframe Mockup: Smartphone */}
+          <div className="relative flex justify-center">
+            <div className="w-64 h-[500px] border border-white/10 rounded-[3rem] p-4 relative overflow-hidden bg-black/20 backdrop-blur-sm">
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-16 h-4 bg-white/5 rounded-full" />
+              <div className="mt-12 space-y-4">
+                <div className="aspect-[9/16] w-full bg-gradient-to-br from-white/5 to-transparent rounded-2xl border border-white/5 flex items-center justify-center">
+                  <Camera size={48} className="text-white/10" />
+                </div>
+                <div className="h-4 w-3/4 bg-white/5 rounded-full" />
+                <div className="h-4 w-1/2 bg-white/5 rounded-full" />
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Strategie Vizuală</h2>
-              <p className="text-slate-400 font-light leading-relaxed mb-8">Planificarea postărilor pentru a menține o estetică unitară a brandului pe toate platformele.</p>
-              <div className="p-6 rounded-2xl bg-white/5 border border-white/5">
-                <h3 className="font-semibold text-white flex items-center mb-2">
-                  <Share2 size={18} className="mr-2 text-brand-accent"/> Platforme
-                </h3>
-                <p className="text-sm text-slate-500 font-light leading-relaxed">Adaptăm formatele pentru Facebook, Instagram, TikTok și YouTube, asigurând relevanță și impact maxim.</p>
+              {/* Floating UI Elements */}
+              <div className="absolute bottom-12 right-[-20px] p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
+                <p className="text-xs font-bold text-[#00f2fe]">Viral Score: 98/100</p>
               </div>
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Section 2: Visual Strategy */}
+        <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          {/* Wireframe Mockup: Browser */}
+          <div className="relative flex justify-center md:order-2">
+             <div className="w-full max-w-lg aspect-video border border-white/10 rounded-2xl p-4 relative overflow-hidden bg-black/20 backdrop-blur-sm">
+                <div className="flex space-x-1.5 mb-4">
+                  <div className="w-2 h-2 rounded-full bg-white/10" />
+                  <div className="w-2 h-2 rounded-full bg-white/10" />
+                  <div className="w-2 h-2 rounded-full bg-white/10" />
+                </div>
+                <div className="grid grid-cols-3 gap-3">
+                  {[1, 2, 3, 4, 5, 6].map((i) => (
+                    <div key={i} className="aspect-square bg-white/5 rounded-lg border border-white/5" />
+                  ))}
+                </div>
+                {/* Floating UI Elements */}
+                <div className="absolute top-1/2 left-[-30px] p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
+                  <p className="text-xs font-bold text-[#4facfe]">Aesthetic Match: 100%</p>
+                </div>
+             </div>
+          </div>
+
+          <div className="space-y-8 md:order-1">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
+              Branding Digital
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              Strategie Vizuală & <br/>Estetică de Brand
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Planificăm și executăm o prezență vizuală unitară pe toate platformele. Adaptăm formatele pentru impact maxim și relevanță culturală.
+            </p>
+            {/* Neon Line Connector */}
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
+          </div>
+        </div>
+
+      </div>
     </main>
+    
     <Footer setView={setView} />
   </div>
 );
 
 // --- Page: WebsitePage --- //
 const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
-  <div className="min-h-screen text-slate-300 font-sans">
+  <div className="min-h-screen text-slate-300 font-sans relative">
     <Header setView={setView} currentView="website" />
-    <main>
-      <section className="relative text-center px-4 py-24 sm:py-32 overflow-hidden">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="relative z-10"
-        >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60 tracking-tight leading-tight">
-            Web Design & <br/>Development Performance
-          </h1>
-          <p className="mt-8 max-w-2xl mx-auto text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
-            Construim prezența ta digitală cu focus pe estetică și performanță tehnică. Site-uri care nu doar arată bine, ci și convertesc.
-          </p>
-        </motion.div>
+    
+    <main className="relative z-10">
+      {/* Hero Section */}
+      <section className="relative px-4 pt-48 pb-32 overflow-hidden">
+        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-left"
+          >
+            <h1 className="text-5xl sm:text-6xl md:text-8xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 tracking-tight leading-[1.1]">
+              Web Design & <br/>Development
+            </h1>
+            <p className="mt-8 max-w-xl text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
+              Construim prezența ta digitală cu focus pe estetică și performanță tehnică. Site-uri care nu doar arată bine, ci și convertesc.
+            </p>
+          </motion.div>
+
+          {/* Floating Code Element (Abstract Visual) */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, x: 20 }}
+            animate={{ opacity: 1, scale: 1, x: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative w-full max-w-md mx-auto aspect-video border border-white/10 rounded-2xl p-6 bg-black/40 backdrop-blur-xl shadow-2xl overflow-hidden">
+              <div className="flex space-x-2 mb-6">
+                <div className="w-3 h-3 rounded-full bg-red-500/50" />
+                <div className="w-3 h-3 rounded-full bg-yellow-500/50" />
+                <div className="w-3 h-3 rounded-full bg-green-500/50" />
+              </div>
+              <div className="font-mono text-sm space-y-2">
+                <p className="text-[#00f2fe]">&lt;section className="hero"&gt;</p>
+                <p className="pl-4 text-white/60">const [performance, setPerformance] = useState(100);</p>
+                <p className="pl-4 text-[#4facfe]">return (</p>
+                <p className="pl-8 text-white">&lt;div className="impact"&gt;</p>
+                <p className="pl-12 text-white/40">Transforming Vision...</p>
+                <p className="pl-8 text-white">&lt;/div&gt;</p>
+                <p className="pl-4 text-[#4facfe]">)</p>
+                <p className="text-[#00f2fe]">&lt;/section&gt;</p>
+              </div>
+              {/* Decorative Glow */}
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#00f2fe]/20 blur-[60px] rounded-full" />
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      <section className="section-spacing px-4 md:px-8 reveal">
-        <div className="max-w-7xl mx-auto space-y-24">
-          {/* Custom Design & UI/UX */}
-          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
-            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
-              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
-                <Palette size={28} className="text-brand-accent" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Custom Design & UI/UX</h2>
-              <p className="text-slate-400 font-light leading-relaxed">Creăm layout-uri moderne, intuitive și personalizate pe brandul tău. Ne asigurăm că fiecare interacțiune a utilizatorului este fluidă și plăcută.</p>
+      {/* Content Sections */}
+      <div className="max-w-7xl mx-auto px-4 md:px-8 space-y-48 pb-48">
+        
+        {/* Section 1: Custom Design */}
+        <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          <div className="space-y-8">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#00f2fe]/20 text-[#00f2fe] text-xs font-medium tracking-widest uppercase">
+              UI/UX Design
             </div>
-            <div className="relative group overflow-hidden rounded-3xl">
-              <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&q=80&w=1000" alt="Custom UI/UX Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              Custom Design & <br/>Experiență Digitală
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Creăm layout-uri moderne, intuitive și personalizate pe brandul tău. Ne asigurăm că fiecare interacțiune este fluidă și plăcută.
+            </p>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#00f2fe] to-transparent" />
           </div>
 
-          {/* Performance & Speed */}
-          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
-            <div className="relative group overflow-hidden rounded-3xl md:order-2">
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1000" alt="Website Performance" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </div>
-            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center md:order-1">
-              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
-                <Gauge size={28} className="text-brand-accent" />
+          {/* Wireframe Mockup: Browser UI */}
+          <div className="relative flex justify-center">
+            <div className="w-full max-w-lg aspect-[4/3] border border-white/10 rounded-2xl p-6 relative overflow-hidden bg-black/20 backdrop-blur-sm">
+              <div className="w-full h-8 bg-white/5 rounded-lg mb-6" />
+              <div className="grid grid-cols-12 gap-4">
+                <div className="col-span-8 space-y-4">
+                  <div className="h-32 bg-white/5 rounded-xl" />
+                  <div className="h-4 w-full bg-white/5 rounded-full" />
+                  <div className="h-4 w-2/3 bg-white/5 rounded-full" />
+                </div>
+                <div className="col-span-4 space-y-4">
+                  <div className="h-12 bg-[#00f2fe]/10 rounded-xl" />
+                  <div className="h-12 bg-white/5 rounded-xl" />
+                  <div className="h-12 bg-white/5 rounded-xl" />
+                </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Performance & Speed</h2>
-              <p className="text-slate-400 font-light leading-relaxed">Focus pe viteza de încărcare, optimizarea codului și SEO tehnic. Un site rapid este esențial pentru a converti vizitatorii în clienți fideli.</p>
-            </div>
-          </div>
-
-          {/* Responsive & Mobile First */}
-          <div className="grid md:grid-cols-2 gap-12 items-stretch reveal">
-            <div className="glass-panel p-10 md:p-12 rounded-3xl flex flex-col justify-center">
-              <div className="p-3 w-fit rounded-lg bg-brand-accent/10 mb-6">
-                <Smartphone size={28} className="text-brand-accent" />
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight">Responsive & Mobile First</h2>
-              <p className="text-slate-400 font-light leading-relaxed">Site-urile noastre sunt optimizate perfect pentru orice dispozitiv. Indiferent dacă este Telefon, Tabletă sau Desktop, experiența rămâne impecabilă.</p>
-            </div>
-            <div className="relative group overflow-hidden rounded-3xl">
-              <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&q=80&w=1000" alt="Responsive Web Design" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"/>
-              <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
           </div>
         </div>
-      </section>
+
+        {/* Section 2: Technical SEO */}
+        <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          {/* Wireframe Mockup: Performance Metrics */}
+          <div className="relative flex justify-center md:order-2">
+            <div className="w-full max-w-md aspect-square flex items-center justify-center">
+              <div className="relative w-48 h-48 rounded-full border-4 border-white/5 flex items-center justify-center">
+                <div className="text-center">
+                  <p className="text-5xl font-serif text-[#4facfe]">100</p>
+                  <p className="text-[10px] uppercase tracking-widest text-slate-500">Performance</p>
+                </div>
+                {/* Progress Ring */}
+                <svg className="absolute inset-0 w-full h-full -rotate-90">
+                  <circle 
+                    cx="96" cy="96" r="92" 
+                    fill="none" stroke="#4facfe" strokeWidth="4" 
+                    strokeDasharray="578" strokeDashoffset="0"
+                    className="opacity-20"
+                  />
+                </svg>
+              </div>
+              {/* Floating Metrics */}
+              <div className="absolute top-0 right-0 p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
+                <p className="text-[10px] font-bold text-[#4facfe]">LCP: 0.8s</p>
+              </div>
+              <div className="absolute bottom-0 left-0 p-4 bg-black/40 backdrop-blur-md border border-white/10 rounded-2xl shadow-2xl">
+                <p className="text-[10px] font-bold text-[#4facfe]">SEO Score: 100</p>
+              </div>
+            </div>
+          </div>
+
+          <div className="space-y-8 md:order-1">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
+              Core Web Vitals
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              Performanță Tehnică & <br/>Optimizare SEO
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Focus pe viteza de încărcare și SEO tehnic. Un site rapid este esențial pentru a converti vizitatorii în clienți fideli.
+            </p>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
+          </div>
+        </div>
+
+      </div>
     </main>
     <Footer setView={setView} />
   </div>
