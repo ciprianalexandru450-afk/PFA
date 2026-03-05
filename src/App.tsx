@@ -492,62 +492,52 @@ const Hero = () => (
 
 // --- Component: AgencyPresentation --- //
 const AgencyPresentation = () => (
-  <section id="about" className="section-spacing px-4 md:px-8 reveal">
-    <div className="max-w-7xl mx-auto">
-      <div className="grid md:grid-cols-2 gap-16 items-center">
-        <div className="space-y-8">
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight">
-            Mai mult decât o agenție. <br/>
-            <span className="text-brand-accent italic font-medium">Partenerul tău de creștere.</span>
-          </h2>
-          <p className="text-lg text-slate-400 font-light leading-relaxed tracking-wide">
-            Nu credem în soluții predefinite. Construim strategii digitale personalizate, de la arhitectura website-ului până la campanii de Ads care scalează profitul. Combinăm analiza datelor cu creativitatea pură pentru a-ți transforma vizitatorii în clienți fideli.
-          </p>
-          
-          <div className="reveal-stagger space-y-6">
-            <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group reveal">
-              <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
-                  <Camera size={24} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Producție Video & Conținut On-Site</h3>
-                  <p className="text-slate-400 font-light leading-relaxed text-sm">
-                    Nu facem marketing doar din spatele ecranului. Ne deplasăm direct la locația afacerii tale pentru filmări profesionale, ședințe foto și creare de conținut adaptat pentru TikTok, Reels și YouTube. Serviciu disponibil în Iași și zonele limitrofe.
-                  </p>
-                </div>
-              </div>
-            </div>
+  <section id="about" className="section-spacing px-4 md:px-8 relative overflow-hidden">
+    {/* Decorative Blur Orb */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#00f2fe]/10 rounded-full blur-[120px] pointer-events-none z-0" />
 
-            <div className="p-8 rounded-2xl border border-white/10 glass-panel relative overflow-hidden group reveal">
-              <div className="absolute top-0 left-0 w-1 h-full bg-brand-accent" />
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent">
-                  <Palette size={24} />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-2 tracking-tight">Design Grafic & Materiale Printabile</h3>
-                  <p className="text-slate-400 font-light leading-relaxed text-sm">
-                    Brandul tău trebuie să arate impecabil atât online, cât și offline. Creăm identități vizuale coerente: de la cărți de vizită memorabile și bannere stradale, până la materiale promoționale care atrag atenția. Transformăm viziunea ta în realitate fizică, garantând calitate superioară și un impact vizual puternic.
-                  </p>
-                </div>
-              </div>
+    <div className="max-w-7xl mx-auto relative z-10">
+      {/* About Section */}
+      <div className="max-w-4xl mx-auto text-center mb-24 reveal">
+        <h2 className="text-4xl md:text-5xl lg:text-7xl font-bold leading-tight tracking-tight mb-8">
+          Mai mult decât o agenție. <br/>
+          <span className="font-serif bg-clip-text text-transparent bg-gradient-to-r from-[#00f2fe] to-[#4facfe]">
+            Partenerul tău de creștere.
+          </span>
+        </h2>
+        <p className="text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide">
+          Nu credem în soluții predefinite. Construim strategii digitale personalizate, de la arhitectura website-ului până la campanii de Ads care scalează profitul. Combinăm analiza datelor cu creativitatea pură pentru a-ți transforma vizitatorii în clienți fideli.
+        </p>
+      </div>
+
+      {/* Services Bento Grid */}
+      <div className="grid md:grid-cols-2 gap-8 reveal-stagger">
+        {/* Video Service */}
+        <div className="p-10 rounded-[2.5rem] border border-white/10 bg-black relative overflow-hidden group reveal">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 flex items-center justify-center text-[#00f2fe] mb-8 shadow-[0_0_20px_rgba(0,242,254,0.3)] group-hover:shadow-[0_0_30px_rgba(0,242,254,0.5)] transition-all duration-500">
+              <Camera size={28} />
             </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Producție Video & Conținut On-Site</h3>
+            <p className="text-slate-400 font-light leading-relaxed text-lg">
+              Nu facem marketing doar din spatele ecranului. Ne deplasăm direct la locația afacerii tale pentru filmări profesionale, ședințe foto și creare de conținut adaptat pentru TikTok, Reels și YouTube. Serviciu disponibil în Iași și zonele limitrofe.
+            </p>
           </div>
         </div>
 
-        <div className="relative flex items-center h-full reveal">
-          <div className="relative rounded-3xl overflow-hidden shadow-premium group w-full h-full">
-            <img 
-              src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?auto=format&fit=crop&q=80&w=1000" 
-              alt="Creative workspace and video production" 
-              className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-bg/40 to-transparent" />
+        {/* Design Service */}
+        <div className="p-10 rounded-[2.5rem] border border-white/10 bg-black relative overflow-hidden group reveal">
+          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="relative z-10">
+            <div className="w-14 h-14 rounded-2xl bg-black border border-white/10 flex items-center justify-center text-[#4facfe] mb-8 shadow-[0_0_20px_rgba(79,172,254,0.3)] group-hover:shadow-[0_0_30px_rgba(79,172,254,0.5)] transition-all duration-500">
+              <Palette size={28} />
+            </div>
+            <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 tracking-tight">Design Grafic & Materiale Printabile</h3>
+            <p className="text-slate-400 font-light leading-relaxed text-lg">
+              Brandul tău trebuie să arate impecabil atât online, cât și offline. Creăm identități vizuale coerente: de la cărți de vizită memorabile și bannere stradale, până la materiale promoționale care atrag atenția. Transformăm viziunea ta în realitate fizică, garantând calitate superioară și un impact vizual puternic.
+            </p>
           </div>
-          {/* Decorative element */}
-          <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-brand-accent/10 blur-3xl rounded-full" />
         </div>
       </div>
     </div>
