@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
-import { ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder } from 'lucide-react';
+import { Menu, X, ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder } from 'lucide-react';
 
 // Initialize EmailJS with your Public Key
 // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
@@ -211,21 +211,11 @@ const useScrollReveal = (view: string) => {
 
 // --- Component: Header --- //
 const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setIsDropdownOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleAnchorClick = (e: React.MouseEvent, target: string) => {
     e.preventDefault();
+    setIsMenuOpen(false);
     if (currentView !== 'home') {
       setView('home');
       setTimeout(() => {
@@ -238,65 +228,93 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
     }
   };
 
+  const navLinks = [
+    { name: 'Acasă', target: 'hero', action: () => { if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('home'); setIsMenuOpen(false); } },
+    { name: 'Servicii', target: 'about' },
+    { name: 'Portofoliu', target: 'about' },
+    { name: 'Despre', target: 'about' },
+  ];
+
   return (
-    <header className="px-4 py-4 md:px-8 md:py-5 border-b border-white/5 bg-brand-bg/70 backdrop-blur-xl sticky top-0 z-50 transition-all duration-300">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
-        <motion.h2 
-          whileHover={{ scale: 1.02 }}
-          className="font-serif text-2xl font-bold cursor-pointer text-white tracking-tight" 
+    <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl">
+      <nav className="bg-black/40 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 flex justify-between items-center shadow-lg shadow-black/5 transition-all duration-300">
+        {/* Logo */}
+        <div 
+          className="font-serif text-xl font-bold cursor-pointer text-white tracking-tight"
           onClick={() => {
-            if (currentView === 'home') {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
-            } else {
-              setView('home');
-            }
+            if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
+            else setView('home');
           }}
         >
           CPR Media
-        </motion.h2>
-        <nav className="flex items-center space-x-8">
-          <div className="relative" ref={dropdownRef}>
-            <button 
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center space-x-1.5 text-slate-300 hover:text-brand-accent transition-colors focus:outline-none text-sm font-medium tracking-wide"
+        </div>
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={`#${link.target}`}
+              onClick={(e) => link.action ? link.action() : handleAnchorClick(e, link.target)}
+              className="text-sm font-medium text-white/70 hover:text-white transition-all duration-200 tracking-wide"
             >
-              <span>Servicii</span>
-              <ChevronDown size={14} className={`transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} />
-            </button>
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.div 
-                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full right-0 mt-4 w-56 glass-panel rounded-xl overflow-hidden z-50"
-                >
-                  <div className="py-2">
-                    <a href="#" onClick={(e) => { e.preventDefault(); setView('ads'); setIsDropdownOpen(false); }} className="block px-5 py-3 text-sm text-slate-300 hover:bg-white/10 hover:text-brand-accent transition-colors">Ads Manager</a>
-                    <a href="#" onClick={(e) => { e.preventDefault(); setView('social'); setIsDropdownOpen(false); }} className="block px-5 py-3 text-sm text-slate-300 hover:bg-white/10 hover:text-brand-accent transition-colors">Social Media</a>
-                    <a href="#" onClick={(e) => { e.preventDefault(); setView('website'); setIsDropdownOpen(false); }} className="block px-5 py-3 text-sm text-slate-300 hover:bg-white/10 hover:text-brand-accent transition-colors">Creare Website</a>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-          <a 
-            href="#ai-automation" 
-            onClick={(e) => handleAnchorClick(e, 'ai-automation')}
-            className="text-slate-300 hover:text-brand-accent transition-colors text-sm font-medium tracking-wide"
-          >
-            Automatizare AI
-          </a>
+              {link.name}
+            </a>
+          ))}
+        </div>
+
+        {/* Desktop CTA */}
+        <div className="hidden md:block">
           <a 
             href="#contact" 
             onClick={(e) => handleAnchorClick(e, 'contact')}
-            className="btn-premium text-sm"
+            className="bg-brand-accent text-white text-sm font-semibold px-6 py-2 rounded-full hover:bg-brand-accent/90 transition-all duration-300 shadow-md shadow-brand-accent/20"
           >
-            Contact
+            Cere o Ofertă
           </a>
-        </nav>
-      </div>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="md:hidden text-white/80 hover:text-white transition-colors"
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -20, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="absolute top-full left-0 right-0 mt-4 p-6 bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl z-40 md:hidden"
+          >
+            <div className="flex flex-col space-y-6">
+              {navLinks.map((link) => (
+                <a
+                  key={link.name}
+                  href={`#${link.target}`}
+                  onClick={(e) => link.action ? link.action() : handleAnchorClick(e, link.target)}
+                  className="text-lg font-medium text-white/80 hover:text-brand-accent transition-colors"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <a 
+                href="#contact" 
+                onClick={(e) => handleAnchorClick(e, 'contact')}
+                className="bg-brand-accent text-white text-center py-4 rounded-2xl font-bold shadow-lg shadow-brand-accent/20"
+              >
+                Cere o Ofertă
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 };
