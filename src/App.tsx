@@ -212,6 +212,8 @@ const useScrollReveal = (view: string) => {
 // --- Component: Header --- //
 const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
 
   const handleAnchorClick = (e: React.MouseEvent, target: string) => {
     e.preventDefault();
@@ -228,16 +230,22 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
     }
   };
 
+  const services = [
+    { name: 'SEO & Content', view: 'social' },
+    { name: 'Performance Marketing', view: 'ads' },
+    { name: 'Web Development', view: 'website' },
+  ];
+
   const navLinks = [
     { name: 'Acasă', target: 'hero', action: () => { if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('home'); setIsMenuOpen(false); } },
-    { name: 'Servicii', target: 'about' },
     { name: 'Portofoliu', target: 'about' },
+    { name: 'Blog', target: 'about' },
     { name: 'Despre', target: 'about' },
   ];
 
   return (
     <header className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-5xl">
-      <nav className="bg-black/40 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 flex justify-between items-center shadow-lg shadow-black/5 transition-all duration-300">
+      <nav className="bg-black/20 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 flex justify-between items-center shadow-lg shadow-black/5 transition-all duration-300">
         {/* Logo */}
         <div 
           className="font-serif text-xl font-bold cursor-pointer text-white tracking-tight"
@@ -251,7 +259,49 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
 
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          {navLinks.map((link) => (
+          <a
+            href="#hero"
+            onClick={(e) => { e.preventDefault(); if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('home'); }}
+            className="text-sm font-medium text-white/70 hover:text-white transition-all duration-200 tracking-wide"
+          >
+            Acasă
+          </a>
+
+          {/* Services Dropdown */}
+          <div 
+            className="relative group"
+            onMouseEnter={() => setIsServicesOpen(true)}
+            onMouseLeave={() => setIsServicesOpen(false)}
+          >
+            <button className="flex items-center space-x-1 text-sm font-medium text-white/70 hover:text-white transition-all duration-200 tracking-wide">
+              <span>Servicii</span>
+              <ChevronDown size={14} className={`transition-transform duration-300 ${isServicesOpen ? 'rotate-180' : ''}`} />
+            </button>
+            
+            <AnimatePresence>
+              {isServicesOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-56 bg-black/60 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden py-2"
+                >
+                  {services.map((service) => (
+                    <button
+                      key={service.name}
+                      onClick={() => { setView(service.view); setIsServicesOpen(false); }}
+                      className="w-full text-left px-4 py-3 text-sm text-white/70 hover:text-white hover:bg-white/10 transition-all duration-200"
+                    >
+                      {service.name}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {navLinks.slice(1).map((link) => (
             <a
               key={link.name}
               href={`#${link.target}`}
@@ -293,8 +343,47 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
             transition={{ duration: 0.2, ease: "easeOut" }}
             className="absolute top-full left-0 right-0 mt-4 p-6 bg-black/60 backdrop-blur-2xl border border-white/10 rounded-3xl shadow-2xl z-40 md:hidden"
           >
-            <div className="flex flex-col space-y-6">
-              {navLinks.map((link) => (
+            <div className="flex flex-col space-y-4">
+              <a
+                href="#hero"
+                onClick={(e) => { e.preventDefault(); setView('home'); setIsMenuOpen(false); }}
+                className="text-lg font-medium text-white/80 hover:text-brand-accent transition-colors"
+              >
+                Acasă
+              </a>
+
+              {/* Mobile Services Accordion */}
+              <div className="space-y-2">
+                <button 
+                  onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                  className="flex items-center justify-between w-full text-lg font-medium text-white/80 hover:text-brand-accent transition-colors"
+                >
+                  <span>Servicii</span>
+                  <ChevronDown size={20} className={`transition-transform duration-300 ${isMobileServicesOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <AnimatePresence>
+                  {isMobileServicesOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden pl-4 flex flex-col space-y-3 border-l border-white/10"
+                    >
+                      {services.map((service) => (
+                        <button
+                          key={service.name}
+                          onClick={() => { setView(service.view); setIsMenuOpen(false); }}
+                          className="text-left text-white/60 hover:text-white transition-colors py-1"
+                        >
+                          {service.name}
+                        </button>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              {navLinks.slice(1).map((link) => (
                 <a
                   key={link.name}
                   href={`#${link.target}`}
@@ -304,13 +393,16 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
                   {link.name}
                 </a>
               ))}
-              <a 
-                href="#contact" 
-                onClick={(e) => handleAnchorClick(e, 'contact')}
-                className="bg-brand-accent text-white text-center py-4 rounded-2xl font-bold shadow-lg shadow-brand-accent/20"
-              >
-                Cere o Ofertă
-              </a>
+              
+              <div className="pt-4">
+                <a 
+                  href="#contact" 
+                  onClick={(e) => handleAnchorClick(e, 'contact')}
+                  className="block bg-brand-accent text-white text-center py-4 rounded-2xl font-bold shadow-lg shadow-brand-accent/20"
+                >
+                  Cere o Ofertă
+                </a>
+              </div>
             </div>
           </motion.div>
         )}
