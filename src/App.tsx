@@ -85,7 +85,7 @@ const Background = () => {
           const distSq = dx * dx + dy * dy;
 
           if (distSq < connDistSq) {
-            const opacity = (1 - Math.sqrt(distSq) / connectionDistance) * 0.25;
+            const opacity = (1 - Math.sqrt(distSq) / connectionDistance) * 0.45;
             ctx.strokeStyle = `rgba(255, 255, 255, ${opacity})`;
             ctx.beginPath();
             ctx.moveTo(p1.x, p1.y);
@@ -108,7 +108,7 @@ const Background = () => {
       }
 
       // Draw White
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
       ctx.beginPath();
       for (let i = 0; i < whiteParticles.length; i++) {
         const p = whiteParticles[i];
@@ -118,7 +118,7 @@ const Background = () => {
       ctx.fill();
 
       // Draw Blue
-      ctx.fillStyle = 'rgba(0, 209, 255, 0.5)';
+      ctx.fillStyle = 'rgba(0, 209, 255, 0.8)';
       ctx.beginPath();
       for (let i = 0; i < blueParticles.length; i++) {
         const p = blueParticles[i];
@@ -128,7 +128,7 @@ const Background = () => {
       ctx.fill();
 
       // Draw Orange
-      ctx.fillStyle = 'rgba(255, 120, 0, 0.5)';
+      ctx.fillStyle = 'rgba(255, 120, 0, 0.8)';
       ctx.beginPath();
       for (let i = 0; i < orangeParticles.length; i++) {
         const p = orangeParticles[i];
@@ -174,7 +174,7 @@ const Background = () => {
       {/* Canvas Constellation */}
       <canvas 
         ref={canvasRef} 
-        className="absolute inset-0 opacity-60"
+        className="absolute inset-0 opacity-100"
       />
       
       {/* Noise Texture Overlay */}
@@ -413,28 +413,79 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
 
 // --- Component: Hero --- //
 const Hero = () => (
-  <section className="relative px-4 py-24 md:py-32 text-center overflow-hidden">
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className="relative z-10"
-    >
-      <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[1.1] font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 max-w-5xl mx-auto">
-        Conectăm branduri cu oameni.
-      </h1>
-      <p className="mt-8 text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed tracking-wide">
-        De la strategie și creație, la campanii de impact și website-uri performante, suntem partenerul tău pentru succes online.
-      </p>
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="mt-12"
+  <section id="hero" className="relative min-h-screen flex flex-col justify-center px-4 pt-32 pb-16 overflow-hidden">
+    {/* Spotlight Effect */}
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none z-0" />
+
+    <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="grid lg:grid-cols-2 gap-12 items-center">
+        {/* Left Side: Content */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-left"
+        >
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1] font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
+            Strategii digitale care transformă vizibilitatea în profit.
+          </h1>
+          <p className="mt-8 text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
+            Execuție precisă pentru SEO, Ads și Web. Fără promisiuni inutile, doar creștere sustenabilă.
+          </p>
+        </motion.div>
+
+        {/* Right Side: Glassmorphism Card */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="lg:justify-self-end w-full max-w-md"
+        >
+          <div className="glass-panel p-8 rounded-[2rem] border border-white/10 shadow-2xl relative overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
+            <h3 className="text-xl font-bold text-white mb-8 relative z-10 flex items-center">
+              <Zap size={20} className="mr-2 text-brand-accent" />
+              Procesul nostru
+            </h3>
+            <ul className="space-y-6 relative z-10">
+              {[
+                { title: "Audit & Strategie", desc: "Analiză profundă și planificare." },
+                { title: "Implementare Proiect", desc: "Execuție tehnică impecabilă." },
+                { title: "Optimizare Continuă", desc: "Monitorizare și scalare profit." }
+              ].map((item, idx) => (
+                <li key={idx} className="flex items-start space-x-4">
+                  <div className="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent text-sm font-bold shrink-0">
+                    {idx + 1}
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium">{item.title}</h4>
+                    <p className="text-sm text-slate-500 font-light">{item.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Partners Section */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.4 }}
+        className="mt-24 pt-12 border-t border-white/5"
       >
-        <a href="#about" className="btn-premium shadow-[0_0_30px_rgba(0,209,255,0.2)]">Află Mai Multe</a>
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold mb-8">Parteneri în succes:</p>
+        <div className="flex flex-wrap justify-between items-center gap-8 opacity-30 grayscale contrast-125">
+          {/* Placeholders for monochrome logos */}
+          <div className="h-8 w-32 bg-white/20 rounded animate-pulse" />
+          <div className="h-8 w-24 bg-white/20 rounded animate-pulse" />
+          <div className="h-8 w-40 bg-white/20 rounded animate-pulse" />
+          <div className="h-8 w-28 bg-white/20 rounded animate-pulse" />
+          <div className="h-8 w-36 bg-white/20 rounded animate-pulse" />
+        </div>
       </motion.div>
-    </motion.div>
+    </div>
   </section>
 );
 
