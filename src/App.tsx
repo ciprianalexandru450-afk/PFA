@@ -415,75 +415,119 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
 // --- Component: Hero --- //
 const Hero = () => (
   <section id="hero" className="relative min-h-screen flex flex-col justify-center px-4 pt-32 pb-16 overflow-hidden">
-    {/* Spotlight Effect */}
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-brand-accent/5 rounded-full blur-[120px] pointer-events-none z-0" />
+    {/* Deep Glow Effects */}
+    <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-brand-accent/10 rounded-full blur-[140px] pointer-events-none z-0 animate-pulse" />
+    <div className="absolute bottom-1/4 -right-20 w-[500px] h-[500px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none z-0 animate-pulse" style={{ animationDelay: '2s' }} />
 
     <div className="max-w-7xl mx-auto w-full relative z-10">
-      <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-16 items-center">
         {/* Left Side: Content */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
+          initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="text-left"
+          className="text-left space-y-8"
         >
-          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1] font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60">
-            Strategii digitale care transformă vizibilitatea în profit.
+          <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold tracking-tight leading-[1.1] text-white">
+            <span className="font-serif italic font-medium block mb-2 text-white/90">Construim punți digitale</span>
+            <span className="font-sans bg-clip-text text-transparent bg-gradient-to-r from-white via-white to-white/40">
+              între viziunea ta și rezultate tangibile.
+            </span>
           </h1>
-          <p className="mt-8 text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
-            Execuție precisă pentru SEO, Ads și Web. Fără promisiuni inutile, doar creștere sustenabilă.
+          <p className="text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
+            Strategie, execuție și analiză. Simplificăm complexitatea marketingului digital pentru a-ți scala afacerea în mod sustenabil.
           </p>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.6 }}
+            className="pt-4"
+          >
+            <a 
+              href="#about" 
+              className="group flex items-center space-x-2 text-white/60 hover:text-brand-accent transition-colors text-sm font-medium tracking-widest uppercase"
+            >
+              <span>Descoperă procesul</span>
+              <ArrowLeft className="rotate-180 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+          </motion.div>
         </motion.div>
 
-        {/* Right Side: Glassmorphism Card */}
+        {/* Right Side: Analytics Card (Glassmorphism) */}
         <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="lg:justify-self-end w-full max-w-md"
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
+          className="relative"
         >
-          <div className="glass-panel p-8 rounded-[2rem] border border-white/10 shadow-2xl relative overflow-hidden group">
+          <div className="glass-panel p-8 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
-            <h3 className="text-xl font-bold text-white mb-8 relative z-10 flex items-center">
-              <Zap size={20} className="mr-2 text-brand-accent" />
-              Procesul nostru
-            </h3>
-            <ul className="space-y-6 relative z-10">
-              {[
-                { title: "Audit & Strategie", desc: "Analiză profundă și planificare." },
-                { title: "Implementare Proiect", desc: "Execuție tehnică impecabilă." },
-                { title: "Optimizare Continuă", desc: "Monitorizare și scalare profit." }
-              ].map((item, idx) => (
-                <li key={idx} className="flex items-start space-x-4">
-                  <div className="w-8 h-8 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent text-sm font-bold shrink-0">
-                    {idx + 1}
-                  </div>
-                  <div>
-                    <h4 className="text-white font-medium">{item.title}</h4>
-                    <p className="text-sm text-slate-500 font-light">{item.desc}</p>
-                  </div>
-                </li>
+            
+            <div className="flex justify-between items-start mb-10 relative z-10">
+              <div>
+                <p className="text-xs uppercase tracking-widest text-slate-500 font-bold mb-1">Performanță Lunar Reccuring</p>
+                <h3 className="text-3xl font-bold text-white tracking-tight">+142.8%</h3>
+              </div>
+              <div className="p-3 rounded-2xl bg-emerald-500/10 text-emerald-400">
+                <TrendingUp size={24} />
+              </div>
+            </div>
+
+            {/* Stylized Chart Placeholder */}
+            <div className="h-32 w-full flex items-end space-x-2 mb-8 relative z-10">
+              {[40, 25, 45, 30, 55, 70, 60, 85, 75, 100].map((h, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ height: 0 }}
+                  animate={{ height: `${h}%` }}
+                  transition={{ delay: 0.5 + i * 0.1, duration: 0.8 }}
+                  className="flex-1 bg-gradient-to-t from-brand-accent/40 to-brand-accent rounded-t-sm"
+                />
               ))}
-            </ul>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4 relative z-10">
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
+                <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">Conversii</p>
+                <p className="text-lg font-bold text-white">2.4k</p>
+              </div>
+              <div className="p-4 rounded-2xl bg-white/5 border border-white/5">
+                <p className="text-[10px] uppercase tracking-widest text-slate-500 mb-1">ROI Mediu</p>
+                <p className="text-lg font-bold text-white">4.8x</p>
+              </div>
+            </div>
+            
+            {/* Floating Badge */}
+            <motion.div 
+              animate={{ y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+              className="absolute -top-6 -right-6 p-4 glass-panel rounded-2xl border border-white/20 shadow-xl z-20"
+            >
+              <div className="flex items-center space-x-2">
+                <div className="w-2 h-2 rounded-full bg-brand-accent animate-pulse" />
+                <p className="text-[10px] font-bold text-white uppercase tracking-tighter">Live Analysis</p>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       </div>
 
-      {/* Partners Section */}
+      {/* Trusted By Section */}
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-24 pt-12 border-t border-white/5"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1, delay: 0.8 }}
+        className="mt-32 pt-12 border-t border-white/5"
       >
-        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold mb-8">Parteneri în succes:</p>
-        <div className="flex flex-wrap justify-between items-center gap-8 opacity-30 grayscale contrast-125">
-          {/* Placeholders for monochrome logos */}
-          <div className="h-8 w-32 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-24 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-40 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-28 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-36 bg-white/20 rounded animate-pulse" />
+        <p className="text-[10px] uppercase tracking-[0.3em] text-slate-500 font-bold mb-10 text-center">Trusted by forward-thinking companies</p>
+        <div className="flex flex-wrap justify-center items-center gap-x-16 gap-y-8 opacity-30 grayscale contrast-125">
+          {/* Monochrome Logo Placeholders */}
+          <div className="text-xl font-bold tracking-tighter text-white">TECHFLOW</div>
+          <div className="text-xl font-bold tracking-tighter text-white">LUMINA</div>
+          <div className="text-xl font-bold tracking-tighter text-white">NEXUS</div>
+          <div className="text-xl font-bold tracking-tighter text-white">VANTAGE</div>
+          <div className="text-xl font-bold tracking-tighter text-white">ORBIT</div>
         </div>
       </motion.div>
     </div>
