@@ -238,6 +238,7 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
 
   const navLinks = [
     { name: 'Acasă', target: 'hero', action: () => { if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('home'); setIsMenuOpen(false); } },
+    { name: 'Automatizare AI', target: 'ai-automation' },
     { name: 'Portofoliu', target: 'about' },
     { name: 'Blog', target: 'about' },
     { name: 'Despre', target: 'about' },
