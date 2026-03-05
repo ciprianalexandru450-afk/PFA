@@ -1309,8 +1309,22 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
 
         {/* Section 2: Visual Strategy */}
         <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          <div className="space-y-8 mb-8 md:mb-0 md:order-2">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
+              Branding Digital
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              Strategie Vizuală & <br/>Estetică de Brand
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Planificăm și executăm o prezență vizuală unitară pe toate platformele. Adaptăm formatele pentru impact maxim și relevanță culturală.
+            </p>
+            {/* Neon Line Connector */}
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
+          </div>
+
           {/* Wireframe Mockup: Browser */}
-          <div className="relative flex justify-center md:order-2">
+          <div className="relative flex justify-center md:order-1">
              <div className="w-full max-w-lg aspect-video border border-white/10 rounded-2xl p-4 relative overflow-hidden bg-black/20 backdrop-blur-sm">
                 <div className="flex space-x-1.5 mb-4">
                   <div className="w-2 h-2 rounded-full bg-white/10" />
@@ -1327,20 +1341,6 @@ const SocialMediaPage = ({ setView }: { setView: (view: string) => void }) => (
                   <p className="text-xs font-bold text-[#4facfe]">Aesthetic Match: 100%</p>
                 </div>
              </div>
-          </div>
-
-          <div className="space-y-8 md:order-1">
-            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
-              Branding Digital
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
-              Strategie Vizuală & <br/>Estetică de Brand
-            </h2>
-            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
-              Planificăm și executăm o prezență vizuală unitară pe toate platformele. Adaptăm formatele pentru impact maxim și relevanță culturală.
-            </p>
-            {/* Neon Line Connector */}
-            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
           </div>
         </div>
 
