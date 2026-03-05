@@ -479,26 +479,18 @@ const Hero = () => (
         <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold mb-10">Parteneri în succes:</p>
         
         <div className="relative flex overflow-hidden group">
-          <div className="flex animate-infinite-scroll whitespace-nowrap items-center space-x-16 md:space-x-32 pr-16 md:pr-32 group-hover:[animation-play-state:paused]">
+          <div className="flex animate-infinite-scroll whitespace-nowrap items-center space-x-16 md:space-x-32 pr-16 md:pr-32">
             {[...Array(2)].map((_, i) => (
               <React.Fragment key={i}>
-                <div className="flex items-center space-x-16 md:space-x-32">
-                  <img 
-                    src="https://picsum.photos/seed/csstop-logo/200/80" 
-                    alt="Csstop ApS Logo" 
-                    className="h-8 md:h-10 w-auto opacity-30 grayscale brightness-0 invert hover:opacity-100 hover:drop-shadow-[0_0_10px_rgba(0,242,254,0.5)] transition-all duration-300 cursor-default"
-                    referrerPolicy="no-referrer"
-                  />
-                  <img 
-                    src="https://picsum.photos/seed/nutricione-logo/200/80" 
-                    alt="NUTRICIONE Romania Logo" 
-                    className="h-8 md:h-10 w-auto opacity-30 grayscale brightness-0 invert hover:opacity-100 hover:drop-shadow-[0_0_10px_rgba(0,242,254,0.5)] transition-all duration-300 cursor-default"
-                    referrerPolicy="no-referrer"
-                  />
-                  <span className="text-2xl md:text-3xl font-serif italic bg-clip-text text-transparent bg-gradient-to-r from-[#00f2fe] to-[#4facfe] drop-shadow-[0_0_10px_rgba(0,242,254,0.3)] hover:drop-shadow-[0_0_20px_rgba(0,242,254,0.8)] transition-all duration-300 cursor-default">
-                    Poti fi TU urmatorul nostru partener
-                  </span>
-                </div>
+                <span className="text-2xl md:text-3xl font-sans font-bold text-white/30 hover:text-white hover:drop-shadow-[0_0_15px_rgba(0,242,254,0.8)] transition-all duration-300 cursor-default">
+                  Csstop ApS
+                </span>
+                <span className="text-2xl md:text-3xl font-sans font-bold text-white/30 hover:text-white hover:drop-shadow-[0_0_15px_rgba(0,242,254,0.8)] transition-all duration-300 cursor-default">
+                  NUTRICIONE Romania
+                </span>
+                <span className="text-2xl md:text-3xl font-serif italic bg-clip-text text-transparent bg-gradient-to-r from-[#00f2fe] to-[#4facfe] drop-shadow-[0_0_10px_rgba(0,242,254,0.3)] hover:drop-shadow-[0_0_20px_rgba(0,242,254,0.8)] transition-all duration-300 cursor-default">
+                  Poti fi TU urmatorul nostru partener
+                </span>
               </React.Fragment>
             ))}
           </div>
