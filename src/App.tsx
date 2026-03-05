@@ -474,16 +474,26 @@ const Hero = () => (
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="mt-24 pt-12 border-t border-white/5"
+        className="mt-24 pt-12 border-t border-white/5 overflow-hidden"
       >
-        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold mb-8">Parteneri în succes:</p>
-        <div className="flex flex-wrap justify-between items-center gap-8 opacity-30 grayscale contrast-125">
-          {/* Placeholders for monochrome logos */}
-          <div className="h-8 w-32 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-24 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-40 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-28 bg-white/20 rounded animate-pulse" />
-          <div className="h-8 w-36 bg-white/20 rounded animate-pulse" />
+        <p className="text-xs uppercase tracking-[0.2em] text-slate-500 font-semibold mb-10">Parteneri în succes:</p>
+        
+        <div className="relative flex overflow-hidden group">
+          <div className="flex animate-infinite-scroll whitespace-nowrap items-center space-x-16 md:space-x-32 pr-16 md:pr-32">
+            {[...Array(2)].map((_, i) => (
+              <React.Fragment key={i}>
+                <span className="text-2xl md:text-3xl font-sans font-bold text-white/30 hover:text-white hover:drop-shadow-[0_0_15px_rgba(0,242,254,0.8)] transition-all duration-300 cursor-default">
+                  Csstop ApS
+                </span>
+                <span className="text-2xl md:text-3xl font-sans font-bold text-white/30 hover:text-white hover:drop-shadow-[0_0_15px_rgba(0,242,254,0.8)] transition-all duration-300 cursor-default">
+                  NUTRICIONE Romania
+                </span>
+                <span className="text-2xl md:text-3xl font-serif italic bg-clip-text text-transparent bg-gradient-to-r from-[#00f2fe] to-[#4facfe] drop-shadow-[0_0_10px_rgba(0,242,254,0.3)] hover:drop-shadow-[0_0_20px_rgba(0,242,254,0.8)] transition-all duration-300 cursor-default">
+                  Poti fi TU urmatorul nostru partener
+                </span>
+              </React.Fragment>
+            ))}
+          </div>
         </div>
       </motion.div>
     </div>
