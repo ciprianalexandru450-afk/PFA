@@ -511,10 +511,10 @@ const AgencyPresentation = () => (
       </div>
 
       {/* Services Grid (No Cards) */}
-      <div className="grid md:grid-cols-2 gap-24 md:gap-32 reveal-stagger items-start">
+      <div className="grid md:grid-cols-2 gap-16 md:gap-24 reveal-stagger items-start w-full">
         {/* Video Service */}
-        <div className="relative group reveal">
-          <div className="relative z-10 flex flex-col items-start">
+        <div className="w-full relative group reveal">
+          <div className="flex flex-col items-start">
             {/* Icon with Neon Glow */}
             <div 
               className="mb-12 text-[#00f2fe] transition-all duration-500 transform group-hover:scale-110"
@@ -526,12 +526,12 @@ const AgencyPresentation = () => (
             {/* Connecting Vector Line */}
             <div className="absolute top-12 left-12 w-48 h-32 border-l border-b border-white/10 rounded-bl-[3rem] -z-10 hidden md:block" />
             
-            <div className="text-left">
+            <div className="w-full text-left">
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight relative inline-block">
                 Producție Video
                 <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-[#00f2fe]/40 to-transparent" />
               </h3>
-              <p className="text-slate-400 font-light leading-relaxed text-lg max-w-xs">
+              <p className="text-slate-400 font-light leading-relaxed text-lg max-w-md">
                 Conținut vizual de impact. Filmări profesionale și editare adaptată trendurilor Social Media.
               </p>
             </div>
@@ -539,8 +539,8 @@ const AgencyPresentation = () => (
         </div>
 
         {/* Design Service */}
-        <div className="relative group reveal">
-          <div className="relative z-10 flex flex-col items-start">
+        <div className="w-full relative group reveal">
+          <div className="flex flex-col items-start">
             {/* Icon with Neon Glow */}
             <div 
               className="mb-12 text-[#4facfe] transition-all duration-500 transform group-hover:scale-110"
@@ -552,12 +552,12 @@ const AgencyPresentation = () => (
             {/* Connecting Vector Line */}
             <div className="absolute top-12 left-12 w-48 h-32 border-l border-b border-white/10 rounded-bl-[3rem] -z-10 hidden md:block" />
 
-            <div className="text-left">
+            <div className="w-full text-left">
               <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 tracking-tight relative inline-block">
                 Design Grafic
                 <div className="absolute -bottom-2 left-0 w-full h-[1px] bg-gradient-to-r from-[#4facfe]/40 to-transparent" />
               </h3>
-              <p className="text-slate-400 font-light leading-relaxed text-lg max-w-xs">
+              <p className="text-slate-400 font-light leading-relaxed text-lg max-w-md">
                 Identitate vizuală memorabilă. Design modern care transformă viziunea brandului tău în realitate.
               </p>
             </div>
