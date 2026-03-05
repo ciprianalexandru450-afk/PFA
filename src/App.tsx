@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
-import { Menu, X, ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder } from 'lucide-react';
+import { Menu, X, ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder, Check } from 'lucide-react';
 
 // Initialize EmailJS with your Public Key
 // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
@@ -556,16 +556,40 @@ const AgencyPresentation = () => (
 
 // --- Component: BrandPhilosophy --- //
 const BrandPhilosophy = () => (
-  <section className="py-24 px-4 md:px-8 relative overflow-hidden reveal">
-    <div className="max-w-4xl mx-auto text-center">
-      <div>
-        <h2 className="text-4xl md:text-5xl font-bold mb-8 tracking-tight font-serif">
-          Nu doar trafic. Rezultate reale.
-        </h2>
-        <p className="text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-3xl mx-auto mb-10">
-          Marketing-ul digital nu este despre a fi vizibil peste tot, ci despre a fi prezent acolo unde contează. Construim strategii care conectează brandul tău cu oamenii care au nevoie de el, transformând click-urile în relații durabile și profit.
-        </p>
-        <div className="w-24 h-1 bg-brand-accent mx-auto rounded-full" />
+  <section className="section-spacing px-4 md:px-8 relative overflow-hidden reveal">
+    <div className="max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+        {/* Left Column: Message */}
+        <div className="space-y-8">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight font-serif">
+            Calitate de agenție. <br/>
+            <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00f2fe] to-[#4facfe]">
+              Costuri de partener.
+            </span>
+          </h2>
+          <p className="text-lg md:text-xl text-slate-400 font-light leading-relaxed tracking-wide max-w-xl">
+            Am eliminat costurile inutile — birourile scumpe, procesele greoaie și ierarhiile inutile. Rezultatul? Primești expertiză de top la un preț corect, adaptat realității afacerii tale.
+          </p>
+        </div>
+
+        {/* Right Column: Comparison List */}
+        <div className="md:border-l border-white/10 md:pl-12 space-y-10">
+          {[
+            { title: "Fără Overhead", desc: "Nu plătești chiria noastră, ci doar munca noastră." },
+            { title: "Execuție Directă", desc: "Lucrezi direct cu specialiștii, nu cu intermediari." },
+            { title: "Eficiență Maximă", desc: "Bugetul tău merge 100% în performanță, nu în birocrație." }
+          ].map((item, idx) => (
+            <div key={idx} className="flex items-start space-x-4 group">
+              <div className="mt-1.5 w-5 h-5 rounded-full border border-[#00f2fe]/30 flex items-center justify-center text-[#00f2fe] shrink-0 group-hover:bg-[#00f2fe]/10 transition-colors">
+                <Check size={12} strokeWidth={3} />
+              </div>
+              <div>
+                <h4 className="text-white font-bold text-xl mb-1">{item.title}</h4>
+                <p className="text-slate-400 font-light leading-relaxed">{item.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   </section>
