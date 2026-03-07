@@ -1162,8 +1162,21 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
 
         {/* Section 2: TikTok Ads */}
         <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          <div className="space-y-8 mb-12 md:mb-0 md:order-2">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
+              Nativ & Viral
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              TikTok Ads & <br/>Spark Campaigns
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Capitalizăm pe trenduri cu conținut care se simte nativ. Transformăm limbajul platformei în rezultate măsurabile de business.
+            </p>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
+          </div>
+
           {/* Wireframe Mockup: TikTok Interface */}
-          <div className="relative flex justify-center md:order-2">
+          <div className="relative flex justify-center md:order-1">
             <div className="w-64 h-[500px] border border-white/10 rounded-[3rem] p-4 relative overflow-hidden bg-black/20 backdrop-blur-sm">
               <div className="absolute inset-0 flex flex-col justify-end p-8 space-y-4">
                 <div className="h-4 w-3/4 bg-white/10 rounded-full" />
@@ -1178,19 +1191,6 @@ const AdsManagerPage = ({ setView }: { setView: (view: string) => void }) => (
                 <div className="w-10 h-10 rounded-full bg-white/10" />
               </div>
             </div>
-          </div>
-
-          <div className="space-y-8 md:order-1">
-            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
-              Nativ & Viral
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
-              TikTok Ads & <br/>Spark Campaigns
-            </h2>
-            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
-              Capitalizăm pe trenduri cu conținut care se simte nativ. Transformăm limbajul platformei în rezultate măsurabile de business.
-            </p>
-            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
           </div>
         </div>
 
@@ -1444,8 +1444,21 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
 
         {/* Section 2: Technical SEO */}
         <div className="grid md:grid-cols-2 gap-24 items-center reveal">
+          <div className="space-y-8 mb-12 md:mb-0 md:order-2">
+            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
+              Core Web Vitals
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
+              Performanță Tehnică & <br/>Optimizare SEO
+            </h2>
+            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
+              Focus pe viteza de încărcare și SEO tehnic. Un site rapid este esențial pentru a converti vizitatorii în clienți fideli.
+            </p>
+            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
+          </div>
+
           {/* Wireframe Mockup: Performance Metrics */}
-          <div className="relative flex justify-center md:order-2">
+          <div className="relative flex justify-center md:order-1">
             <div className="w-full max-w-md aspect-square flex items-center justify-center">
               <div className="relative w-48 h-48 rounded-full border-4 border-white/5 flex items-center justify-center">
                 <div className="text-center">
@@ -1470,19 +1483,6 @@ const WebsitePage = ({ setView }: { setView: (view: string) => void }) => (
                 <p className="text-[10px] font-bold text-[#4facfe]">SEO Score: 100</p>
               </div>
             </div>
-          </div>
-
-          <div className="space-y-8 md:order-1">
-            <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
-              Core Web Vitals
-            </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white font-serif tracking-tight">
-              Performanță Tehnică & <br/>Optimizare SEO
-            </h2>
-            <p className="text-lg text-slate-400 font-light leading-relaxed max-w-md">
-              Focus pe viteza de încărcare și SEO tehnic. Un site rapid este esențial pentru a converti vizitatorii în clienți fideli.
-            </p>
-            <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
           </div>
         </div>
 
