@@ -2,13 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { Menu, X, ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder, Check } from 'lucide-react';
+import PortofoliuPage from './Portofoliu';
 
 // Initialize EmailJS with your Public Key
 // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
 emailjs.init('_NN9XD3VJxmiVFkCu');
 
 // --- Component: Background --- //
-const Background = () => {
+export const Background = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -187,7 +188,7 @@ const Background = () => {
 };
 
 // --- Custom Hook: Scroll Reveal --- //
-const useScrollReveal = (view: string) => {
+export const useScrollReveal = (view: string) => {
   useEffect(() => {
     const observerOptions = {
       threshold: 0.1,
@@ -210,7 +211,7 @@ const useScrollReveal = (view: string) => {
 };
 
 // --- Component: Header --- //
-const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
+export const Header = ({ setView, currentView }: { setView: (view: string) => void, currentView: string }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
@@ -239,7 +240,7 @@ const Header = ({ setView, currentView }: { setView: (view: string) => void, cur
   const navLinks = [
     { name: 'Acasă', target: 'hero', action: () => { if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('home'); setIsMenuOpen(false); } },
     { name: 'Automatizare AI', target: 'ai-automation' },
-    { name: 'Portofoliu', target: 'portfolio' },
+    { name: 'Portofoliu', target: 'portfolio', action: () => { setView('portfolio'); setIsMenuOpen(false); } },
     { name: 'Blog', target: 'about' },
     { name: 'Despre', target: 'about' },
   ];
@@ -658,82 +659,6 @@ const AIAutomation = () => {
   );
 };
 
-// --- Component: Portfolio --- //
-const Portfolio = () => {
-  return (
-    <section id="portfolio" className="section-spacing px-4 md:px-8 overflow-hidden">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-24 reveal">
-          <h2 className="text-5xl md:text-7xl font-bold font-serif bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 tracking-tight leading-tight">
-            Proiecte Recente
-          </h2>
-          <p className="mt-6 text-xl text-slate-400 font-light tracking-wide">
-            Nu vindem servicii, livrăm rezultate tangibile.
-          </p>
-        </div>
-
-        <div className="space-y-48">
-          {/* Project 1: AccesLimo */}
-          <div className="grid md:grid-cols-12 gap-12 lg:gap-24 items-center reveal">
-            <div className="md:col-span-5 space-y-8 order-1">
-              <div className="inline-block px-4 py-1 rounded-full border border-[#00f2fe]/20 text-[#00f2fe] text-xs font-medium tracking-widest uppercase">
-                DEZVOLTARE WEB
-              </div>
-              <h3 className="text-3xl md:text-5xl font-bold text-white font-serif tracking-tight">
-                AccesLimo – Prezență Digitală Premium
-              </h3>
-              <p className="text-lg text-slate-400 font-light leading-relaxed">
-                Proiectare și dezvoltare completă a platformei <a href="https://www.google.com/search?q=acceslimo.com" target="_blank" rel="noopener noreferrer" className="text-[#00f2fe] hover:underline">acceslimo.com</a>. Un design minimalist, orientat spre conversie, cu focus pe viteză de încărcare și o experiență de rezervare fluidă pe mobil.
-              </p>
-              <div className="w-24 h-[1px] bg-gradient-to-r from-[#00f2fe] to-transparent" />
-            </div>
-
-            <div className="md:col-span-7 order-2">
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#00f2fe]/20 to-transparent rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative aspect-[16/10] border border-white/10 rounded-[2rem] bg-black/20 backdrop-blur-sm overflow-hidden flex items-center justify-center p-8">
-                  <div className="w-full h-full border border-white/5 rounded-xl bg-white/5 flex items-center justify-center">
-                    <Smartphone size={48} className="text-white/10" />
-                    <p className="absolute text-xs font-mono text-white/20 tracking-widest uppercase">Laptop Screenshot Placeholder</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Project 2: NUTRICIONE Romania */}
-          <div className="grid md:grid-cols-12 gap-12 lg:gap-24 items-center reveal">
-            <div className="md:col-span-5 space-y-8 order-1 md:order-2">
-              <div className="inline-block px-4 py-1 rounded-full border border-[#4facfe]/20 text-[#4facfe] text-xs font-medium tracking-widest uppercase">
-                CONTENT & ADS MANAGER
-              </div>
-              <h3 className="text-3xl md:text-5xl font-bold text-white font-serif tracking-tight">
-                NUTRICIONE – Scalare Full-Stack
-              </h3>
-              <p className="text-lg text-slate-400 font-light leading-relaxed">
-                O preluare End-to-End a ecosistemului de marketing: de la filmarea și editarea materialelor video (TikTok/Reels), până la arhitectura și administrarea bugetelor de Meta & TikTok Ads pentru maximizarea ROAS-ului.
-              </p>
-              <div className="w-24 h-[1px] bg-gradient-to-r from-[#4facfe] to-transparent" />
-            </div>
-
-            <div className="md:col-span-7 order-2 md:order-1">
-              <div className="relative group flex justify-center">
-                <div className="absolute -inset-1 bg-gradient-to-r from-[#4facfe]/20 to-transparent rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
-                <div className="relative w-full max-w-sm aspect-[9/16] border border-white/10 rounded-[3rem] bg-black/20 backdrop-blur-sm overflow-hidden flex items-center justify-center p-6">
-                  <div className="w-full h-full border border-white/5 rounded-[2rem] bg-white/5 flex items-center justify-center">
-                    <Smartphone size={64} className="text-white/10" />
-                    <p className="absolute text-xs font-mono text-white/20 tracking-widest uppercase rotate-90">Mobile/Ads Placeholder</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
 // --- Component: Contact --- //
 const Contact = () => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
@@ -928,7 +853,7 @@ const Contact = () => {
 };
 
 // --- Component: Footer --- //
-const Footer = ({ setView }: { setView: (view: string) => void }) => (
+export const Footer = ({ setView }: { setView: (view: string) => void }) => (
   <footer className="px-4 py-8 md:px-8 md:py-16 border-t border-white/5">
     <div className="max-w-7xl mx-auto text-center md:text-left">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
@@ -1110,7 +1035,6 @@ const HomePage = ({ setView }: { setView: (view: string) => void }) => (
       <AgencyPresentation />
       <BrandPhilosophy />
       <AIAutomation />
-      <Portfolio />
       <Contact />
     </main>
     <Footer setView={setView} />
@@ -1576,6 +1500,8 @@ export default function App() {
         return <SocialMediaPage setView={setView} />;
       case 'website':
         return <WebsitePage setView={setView} />;
+      case 'portfolio':
+        return <PortofoliuPage setView={setView} />;
       case 'terms':
         return <TermsPage setView={setView} />;
       case 'privacy':
