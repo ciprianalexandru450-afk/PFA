@@ -735,22 +735,6 @@ const Contact = () => {
                   </a>
                 </div>
               </div>
-
-              {/* Legal Info */}
-              <div className="pt-8 border-t border-white/5 space-y-3">
-                <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
-                  <Building2 size={16} className="opacity-70" />
-                  <span>CPR Media</span>
-                </div>
-                <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
-                  <FileText size={16} className="opacity-70" />
-                  <span>CUI: RO12345678</span>
-                </div>
-                <div className="flex items-center space-x-3 text-slate-500 text-sm font-light">
-                  <Folder size={16} className="opacity-70" />
-                  <span>Nr. Reg. Com.: J22/1234/2026</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -869,12 +853,17 @@ const Contact = () => {
 
 // --- Component: Footer --- //
 const Footer = ({ setView }: { setView: (view: string) => void }) => (
-  <footer className="px-4 py-12 md:px-8 md:py-16 border-t border-white/5">
-    <div className="max-w-7xl mx-auto">
+  <footer className="px-4 py-8 md:px-8 md:py-16 border-t border-white/5">
+    <div className="max-w-7xl mx-auto text-center md:text-left">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
-        <div className="text-center md:text-left">
+        <div className="flex flex-col items-center md:items-start">
           <h3 className="font-serif text-2xl font-bold text-white mb-2">CPR Media</h3>
-          <p className="text-slate-500 text-sm font-light tracking-wide">&copy; {new Date().getFullYear()} CPR Media. Toate drepturile rezervate.</p>
+          <p className="text-slate-500 text-sm font-light tracking-wide">
+            &copy; {new Date().getFullYear()} CPR Media. Toate drepturile rezervate.
+          </p>
+          <p className="mt-2 text-[10px] text-white/40 font-light tracking-widest uppercase">
+            CUI: RO12345678 <span className="hidden md:inline mx-1">|</span> <br className="md:hidden" /> Nr. Reg. Com.: J22/1234/2026
+          </p>
         </div>
         <div className="flex space-x-6">
           {[
@@ -894,7 +883,7 @@ const Footer = ({ setView }: { setView: (view: string) => void }) => (
         </div>
       </div>
       
-      <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
         <div className="flex flex-wrap justify-center md:justify-start gap-6">
           <button 
             onClick={() => setView('terms')} 
