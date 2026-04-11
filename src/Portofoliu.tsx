@@ -77,8 +77,7 @@ const PortofoliuPage = ({ setView }: { setView: (view: string) => void }) => {
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#4facfe]/20 to-transparent rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                     <div className="relative w-full max-w-sm aspect-[9/16] border border-white/10 rounded-[3rem] bg-black/20 backdrop-blur-sm overflow-hidden flex items-center justify-center p-6">
                       <div className="w-full h-full border border-white/5 rounded-[2rem] bg-white/5 flex items-center justify-center">
-                        <Smartphone size={64} className="text-white/10" />
-                        <p className="absolute text-xs font-mono text-white/20 tracking-widest uppercase rotate-90">Mobile/Ads Placeholder</p>
+                        <img src="https://i.ibb.co/xStTH6NV/SAVE-20260411-145144.jpg" alt="Nutricione Case Study" className="w-full h-full object-contain object-center rounded-xl" />
                       </div>
                     </div>
                   </div>
