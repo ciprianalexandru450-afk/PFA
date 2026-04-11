@@ -49,8 +49,8 @@ const PortofoliuPage = ({ setView }: { setView: (view: string) => void }) => {
                   <div className="relative group">
                     <div className="absolute -inset-1 bg-gradient-to-r from-[#00f2fe]/20 to-transparent rounded-[2rem] blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
                     <div className="relative aspect-[16/10] border border-white/10 rounded-[2rem] bg-black/20 backdrop-blur-sm overflow-hidden flex items-center justify-center p-8">
-                      <div className="w-full h-full border border-white/5 rounded-xl bg-white/5 flex items-center justify-center">
-                        <img src="https://i.ibb.co/xqMr90PB/Screenshot-2026-04-11-13-49-52-842-com-android-chrome-edit.jpg" alt="AccesLimo Portfolio" className="w-full h-full object-cover object-top rounded-xl" />
+                      <div className="w-full h-full border border-white/5 rounded-xl bg-white/5 bg-slate-900/50 flex items-center justify-center">
+                        <img src="https://i.ibb.co/xqMr90PB/Screenshot-2026-04-11-13-49-52-842-com-android-chrome-edit.jpg" alt="AccesLimo Portfolio" className="w-full h-full object-contain object-center rounded-xl" />
                       </div>
                     </div>
                   </div>
