@@ -1034,7 +1034,7 @@ const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">7. Contact</h2>
-            <p>Pentru orice întrebări legate de protecția datelor, ne puteți contacta la adresa de email: contact@cprise.ro.</p>
+            <p>Pentru orice întrebări legate de protecția datelor, ne puteți contacta la adresa de email: office@cprisehub.com.</p>
           </section>
         </div>
       </div>

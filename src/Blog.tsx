@@ -155,9 +155,8 @@ const BlogPage = ({ setView }: { setView: (view: string) => void }) => {
             </motion.div>
           )}
         </AnimatePresence>
+        <Footer setView={setView} />
       </main>
-
-      <Footer setView={setView} />
     </div>
   );
 };
