@@ -86,9 +86,8 @@ const PortofoliuPage = ({ setView }: { setView: (view: string) => void }) => {
             </div>
           </div>
         </section>
+        <Footer setView={setView} />
       </main>
-      
-      <Footer setView={setView} />
     </div>
   );
 };
