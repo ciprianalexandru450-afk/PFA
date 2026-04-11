@@ -714,15 +714,15 @@ const Contact = () => {
                   <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
                     <MapPin size={20} />
                   </div>
-                  <span className="text-lg text-slate-300 font-light tracking-wide">Iași, România</span>
+                  <span className="text-lg text-slate-300 font-light tracking-wide">Iași • Suceava</span>
                 </div>
                 
                 <div className="flex items-center space-x-4 group">
                   <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
                     <Mail size={20} />
                   </div>
-                  <a href="mailto:contact@cprmedia.ro" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
-                    contact@cprmedia.ro
+                  <a href="mailto:office@cprisehub.com" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
+                    office@cprisehub.com
                   </a>
                 </div>
 
@@ -730,8 +730,8 @@ const Contact = () => {
                   <div className="p-3 rounded-xl bg-brand-accent/10 text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
                     <Phone size={20} />
                   </div>
-                  <a href="tel:+40700000000" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
-                    +40 700 000 000
+                  <a href="tel:+40741050618" className="text-lg text-slate-300 font-light tracking-wide hover:text-brand-accent transition-colors">
+                    0741 050 618
                   </a>
                 </div>
               </div>
