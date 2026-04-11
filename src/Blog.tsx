@@ -148,22 +148,6 @@ const BlogPage = ({ setView }: { setView: (view: string) => void }) => {
                   onClick={handleContentClick}
                 />
               </article>
-
-              {/* Newsletter / CTA */}
-              <div className="mt-24 p-12 rounded-[2rem] border border-white/5 bg-white/5 backdrop-blur-sm text-center space-y-6">
-                <h3 className="text-2xl font-bold text-white font-serif">Ți-a plăcut acest articol?</h3>
-                <p className="text-slate-400 max-w-md mx-auto">Abonează-te pentru a primi cele mai noi strategii de marketing direct în inbox.</p>
-                <div className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-                  <input 
-                    type="email" 
-                    placeholder="Adresa ta de email" 
-                    className="flex-1 bg-black/40 border border-white/10 rounded-xl px-6 py-3 text-sm focus:outline-none focus:border-brand-accent/50 transition-colors"
-                  />
-                  <button className="bg-brand-accent text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-brand-accent/90 transition-colors">
-                    Abonează-te
-                  </button>
-                </div>
-              </div>
             </motion.div>
           )}
         </AnimatePresence>
