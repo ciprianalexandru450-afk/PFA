@@ -18,6 +18,17 @@ const BlogPage = ({ setView }: { setView: (view: string) => void }) => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleContentClick = (e: React.MouseEvent) => {
+    const target = e.target as HTMLElement;
+    if (target.id === 'cta-blog-contact') {
+      setView('home');
+      setTimeout(() => {
+        const element = document.getElementById('contact');
+        if (element) element.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    }
+  };
+
   return (
     <div className="min-h-screen text-slate-300 font-sans relative">
       <Background />
@@ -134,6 +145,7 @@ const BlogPage = ({ setView }: { setView: (view: string) => void }) => {
                 <div 
                   className="prose prose-invert prose-slate max-w-none text-lg text-slate-400 font-light leading-relaxed space-y-8"
                   dangerouslySetInnerHTML={{ __html: selectedPost.content }}
+                  onClick={handleContentClick}
                 />
               </article>
 
