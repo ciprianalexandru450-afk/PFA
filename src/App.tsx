@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import emailjs from '@emailjs/browser';
 import { Menu, X, ChevronDown, Facebook, Instagram, Linkedin, ArrowLeft, Target, TrendingUp, Filter, Zap, BrainCircuit, Annoyed, BarChart, Globe, ClipboardCheck, Sparkles, Camera, LayoutGrid, Share2, Palette, Gauge, Smartphone, Bot, MessageSquare, BarChart3, Lightbulb, MapPin, Mail, Phone, Building2, FileText, Folder, Check } from 'lucide-react';
 import PortofoliuPage from './Portofoliu';
+import BlogPage from './Blog';
 
 // Initialize EmailJS with your Public Key
 // Replace 'YOUR_PUBLIC_KEY' with your actual EmailJS Public Key
@@ -241,7 +242,7 @@ export const Header = ({ setView, currentView }: { setView: (view: string) => vo
     { name: 'Acasă', target: 'hero', action: () => { if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' }); else setView('home'); setIsMenuOpen(false); } },
     { name: 'Automatizare AI', target: 'ai-automation' },
     { name: 'Portofoliu', target: 'portfolio', action: () => { setView('portfolio'); setIsMenuOpen(false); } },
-    { name: 'Blog', target: 'about' },
+    { name: 'Blog', target: 'blog', action: () => { setView('blog'); setIsMenuOpen(false); } },
   ];
 
   return (
@@ -1518,6 +1519,8 @@ export default function App() {
         return <WebsitePage setView={setView} />;
       case 'portfolio':
         return <PortofoliuPage setView={setView} />;
+      case 'blog':
+        return <BlogPage setView={setView} />;
       case 'terms':
         return <TermsPage setView={setView} />;
       case 'privacy':
