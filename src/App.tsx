@@ -255,7 +255,7 @@ export const Header = ({ setView, currentView }: { setView: (view: string) => vo
             else setView('home');
           }}
         >
-          CPR Media
+          CPRise
         </div>
 
         {/* Desktop Navigation */}
@@ -753,7 +753,7 @@ const Contact = () => {
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">Mulțumim!</h3>
                   <p className="text-slate-400 font-light leading-relaxed">
-                    Mesajul a fost trimis către CPR Media.
+                    Mesajul a fost trimis către CPRise.
                   </p>
                   <button 
                     onClick={() => setStatus('idle')}
@@ -857,13 +857,18 @@ export const Footer = ({ setView }: { setView: (view: string) => void }) => (
     <div className="max-w-7xl mx-auto text-center md:text-left">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
         <div className="flex flex-col items-center md:items-start">
-          <h3 className="font-serif text-2xl font-bold text-white mb-2">CPR Media</h3>
-          <p className="text-slate-500 text-sm font-light tracking-wide">
-            &copy; {new Date().getFullYear()} CPR Media. Toate drepturile rezervate.
-          </p>
-          <p className="mt-2 text-[10px] text-white/40 font-light tracking-widest uppercase">
-            CUI: RO12345678 <span className="hidden md:inline mx-1">|</span> <br className="md:hidden" /> Nr. Reg. Com.: J22/1234/2026
-          </p>
+          <h3 className="font-serif text-2xl font-bold text-white mb-2">CPRise</h3>
+          <div className="space-y-1">
+            <p className="text-slate-500 text-sm font-light tracking-wide">
+              &copy; 2026 CPRise. Toate drepturile rezervate.
+            </p>
+            <p className="text-[10px] text-white/30 font-light tracking-widest uppercase">
+              CUI: 54407349 | Reg. Com: F2026017853004
+            </p>
+            <p className="text-[10px] text-white/30 font-light tracking-widest uppercase">
+              Sediu Social: București, Sector 1 | Puncte de lucru: Iași • Suceava
+            </p>
+          </div>
         </div>
         <div className="flex space-x-6">
           {[
@@ -899,7 +904,7 @@ export const Footer = ({ setView }: { setView: (view: string) => void }) => (
           </button>
         </div>
         <div className="text-[10px] text-slate-600 font-light tracking-widest uppercase">
-          CPR Media
+          CPRise
         </div>
       </div>
     </div>
@@ -914,15 +919,21 @@ const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
       <div className="max-w-4xl mx-auto prose prose-invert prose-slate reveal">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Termeni și Condiții</h1>
         
+        <div className="mb-12 p-6 border border-white/10 rounded-2xl bg-white/5">
+          <p className="text-sm text-slate-300 font-medium">
+            Site-ul CPRise este operat legal de Gheorghiu Alexandru-Ciprian PFA, cu sediul în București, Sector 1, cod poștal 012366.
+          </p>
+        </div>
+        
         <div className="space-y-8 text-slate-400 font-light leading-relaxed">
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">1. Introducere</h2>
-            <p>Bun venit pe website-ul CPR Media. Prin accesarea și utilizarea acestui site, sunteți de acord să respectați și să fiți legat de următorii termeni și condiții de utilizare, care, împreună cu politica noastră de confidențialitate, guvernează relația CPR Media cu dumneavoastră în legătură cu acest website.</p>
+            <p>Bun venit pe website-ul CPRise. Prin accesarea și utilizarea acestui site, sunteți de acord să respectați și să fiți legat de următorii termeni și condiții de utilizare, care, împreună cu politica noastră de confidențialitate, guvernează relația CPRise cu dumneavoastră în legătură cu acest website.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">2. Definiții</h2>
-            <p>Termenul 'CPR Media', 'noi' sau 'agenția' se referă la proprietarul website-ului, CPR Media. Termenul 'dumneavoastră' se referă la utilizatorul sau vizitatorul website-ului nostru.</p>
+            <p>Termenul 'CPRise', 'noi' sau 'agenția' se referă la proprietarul website-ului, CPRise. Termenul 'dumneavoastră' se referă la utilizatorul sau vizitatorul website-ului nostru.</p>
           </section>
 
           <section>
@@ -937,12 +948,12 @@ const TermsPage = ({ setView }: { setView: (view: string) => void }) => (
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">5. Servicii</h2>
-            <p>CPR Media oferă servicii de marketing digital, automatizări AI, design grafic și producție video. Detaliile specifice ale fiecărui serviciu și obligațiile contractuale vor fi stabilite prin contracte individuale semnate între agenție și client.</p>
+            <p>CPRise oferă servicii de marketing digital, automatizări AI, design grafic și producție video. Detaliile specifice ale fiecărui serviciu și obligațiile contractuale vor fi stabilite prin contracte individuale semnate între agenție și client.</p>
           </section>
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">6. Limitarea Răspunderii</h2>
-            <p>În nicio circumstanță CPR Media nu va fi răspunzătoare pentru orice pierdere sau daună, inclusiv, fără limitare, pierderi indirecte sau subsecvente, rezultate din utilizarea acestui website.</p>
+            <p>În nicio circumstanță CPRise nu va fi răspunzătoare pentru orice pierdere sau daună, inclusiv, fără limitare, pierderi indirecte sau subsecvente, rezultate din utilizarea acestui website.</p>
           </section>
 
           <section>
@@ -964,10 +975,16 @@ const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
       <div className="max-w-4xl mx-auto prose prose-invert prose-slate reveal">
         <h1 className="text-4xl md:text-5xl font-bold font-serif text-white mb-12 tracking-tight">Politica de Confidențialitate (GDPR)</h1>
         
+        <div className="mb-12 p-6 border border-white/10 rounded-2xl bg-white/5">
+          <p className="text-sm text-slate-300 font-medium">
+            Site-ul CPRise este operat legal de Gheorghiu Alexandru-Ciprian PFA, cu sediul în București, Sector 1, cod poștal 012366.
+          </p>
+        </div>
+        
         <div className="space-y-8 text-slate-400 font-light leading-relaxed">
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">1. Informații Generale</h2>
-            <p>CPR Media se angajează să protejeze confidențialitatea datelor dumneavoastră cu caracter personal. Această politică explică modul în care colectăm, utilizăm și protejăm informațiile dumneavoastră în conformitate cu Regulamentul General privind Protecția Datelor (GDPR).</p>
+            <p>CPRise se angajează să protejeze confidențialitatea datelor dumneavoastră cu caracter personal. Această politică explică modul în care colectăm, utilizăm și protejăm informațiile dumneavoastră în conformitate cu Regulamentul General privind Protecția Datelor (GDPR).</p>
           </section>
 
           <section>
@@ -1016,7 +1033,7 @@ const PrivacyPage = ({ setView }: { setView: (view: string) => void }) => (
 
           <section>
             <h2 className="text-2xl font-bold text-white mb-4">7. Contact</h2>
-            <p>Pentru orice întrebări legate de protecția datelor, ne puteți contacta la adresa de email: contact@cprmedia.ro.</p>
+            <p>Pentru orice întrebări legate de protecția datelor, ne puteți contacta la adresa de email: contact@cprise.ro.</p>
           </section>
         </div>
       </div>
