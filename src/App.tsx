@@ -242,7 +242,6 @@ export const Header = ({ setView, currentView }: { setView: (view: string) => vo
     { name: 'Automatizare AI', target: 'ai-automation' },
     { name: 'Portofoliu', target: 'portfolio', action: () => { setView('portfolio'); setIsMenuOpen(false); } },
     { name: 'Blog', target: 'about' },
-    { name: 'Despre', target: 'about' },
   ];
 
   return (
