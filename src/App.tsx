@@ -250,13 +250,18 @@ export const Header = ({ setView, currentView }: { setView: (view: string) => vo
       <nav className="bg-black/20 backdrop-blur-xl border border-white/20 rounded-full px-6 py-3 flex justify-between items-center shadow-lg shadow-black/5 transition-all duration-300">
         {/* Logo */}
         <div 
-          className="font-serif text-xl font-bold cursor-pointer text-white tracking-tight"
+          className="cursor-pointer flex items-center h-8 md:h-10"
           onClick={() => {
             if (currentView === 'home') window.scrollTo({ top: 0, behavior: 'smooth' });
             else setView('home');
           }}
         >
-          CPRise
+          <img 
+            src="https://i.ibb.co/Rk3g0y35/CPRise-Logo-20260420-201239-0000.png" 
+            alt="CPRise Logo" 
+            className="h-full w-auto object-contain"
+            referrerPolicy="no-referrer"
+          />
         </div>
 
         {/* Desktop Navigation */}
