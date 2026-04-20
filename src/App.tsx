@@ -863,7 +863,7 @@ export const Footer = ({ setView }: { setView: (view: string) => void }) => (
     <div className="max-w-7xl mx-auto text-center md:text-left">
       <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
         <div className="flex flex-col items-center md:items-start">
-          <div className="mt-8 mb-6">
+          <div className="mb-6">
             <img 
               src="https://i.ibb.co/3y92ntr2/CPRise-Logo-20260420-201239-0000.png" 
               alt="CPRise Logo" 
