@@ -859,9 +859,9 @@ const Contact = () => {
 
 // --- Component: Footer --- //
 export const Footer = ({ setView }: { setView: (view: string) => void }) => (
-  <footer className="px-4 py-8 md:px-8 md:py-16 border-t border-white/5">
+  <footer className="px-4 py-6 md:px-8 md:py-12 border-t border-white/5">
     <div className="max-w-7xl mx-auto text-center md:text-left">
-      <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-12">
+      <div className="flex flex-col md:flex-row justify-between items-center space-y-8 md:space-y-0 mb-9">
         <div className="flex flex-col items-center md:items-start">
           <div className="mb-6">
             <img 
